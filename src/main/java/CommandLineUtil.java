@@ -1,15 +1,30 @@
+import classpath.ClassFileReader;
 import org.apache.commons.cli.*;
 
 /**
- * wym
+ * @author wym
  */
 public class CommandLineUtil {
+    private static CommandLine commandLine;
     private static CommandLineParser parser = new DefaultParser();
     private static Options options = new Options();
-    private static void initOptions(){
+    public static void initCommandLine(String args[]){
         options.addOption("h","help",false,"Print help message");
-        options.addOption("cp","classpath",true,"Specify the classpath");
+        options.addOption("cp","classpath",true,"Specify the user classpath");
         options.addOption("v","version",false,"Print version and exit");
+        //todo:这里考虑要不要修改启动类路径
+        //options.addOption("Xbootclasspath",true,"Specify boot classpath");
+        options.addOption("Xjre",true,"Specify extended classpath");
+
+        //初始化commandline
+        try {
+            commandLine = parser.parse(options,args);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("Unexpected exception"+e.getMessage());
+        }
+
+
     }
 
     private static void printHelpMessage(){
@@ -27,19 +42,29 @@ public class CommandLineUtil {
         System.exit(0);
     }
 
-    public static void readArgs(String[] args){
-        initOptions();
-        try {
-            CommandLine commandLine = parser.parse(options,args);
-            if(commandLine.hasOption("h")||commandLine.hasOption("help"))printHelpMessage();
-            if(commandLine.hasOption("v")||commandLine.hasOption("version"))printVersion();
-        } catch (ParseException e) {
-            e.printStackTrace();
-            System.out.println("Unexpected exception"+e.getMessage());
-        }
+    private static void setExtEntry(String classPath){
+        ClassFileReader.setExtClasspath(classPath);
 
     }
 
+    private static void setUserEntry(String classPath){
+        ClassFileReader.setUserClasspath(classPath);
+    }
+
+    public static String[] readArgs(){
+        String[] ret = new String[0];
+        if (commandLine.getArgs().length>0){
+            ret = commandLine.getArgs();
+        }
+        return ret;
+    }
+
+    public static void handleOptions(){
+        if(commandLine.hasOption("h")||commandLine.hasOption("help"))printHelpMessage();
+        if(commandLine.hasOption("v")||commandLine.hasOption("version"))printVersion();
+        if(commandLine.hasOption("cp")||commandLine.hasOption("classpath")) setUserEntry(commandLine.getOptionValue("cp"));
+        if(commandLine.hasOption("Xjre"))setExtEntry(commandLine.getOptionValue("Xjre"));
+    }
 
 
 }
