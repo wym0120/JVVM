@@ -31,8 +31,14 @@ public class ClassFile {
 
     public ClassFile(byte[] classfile) {
         ByteBuffer in = ByteBuffer.wrap(classfile);
-        in.getInt();
+        this.magic = in.getInt();
+        assert this.magic == 0xCAFEBABE;
+        this.minorVersion = in.getShort();
+        this.majorVersion = in.getShort();
+        this.constantPoolCount = in.getShort();
+        int currentPosition = in.position();
 
+        System.out.println();
 
 
     }

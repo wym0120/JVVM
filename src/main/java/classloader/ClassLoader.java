@@ -7,12 +7,13 @@ package classloader;
  * Created on 2020-02-10
  */
 public class ClassLoader {
-    private Byte[] classFile;
-    public ClassLoader(Byte[] classFile) {
+    private ClassFile classFile;
+
+    public ClassLoader(byte[] classFile) {
         if (classFile == null) {
             throw new RuntimeException("Class file is null!");
         }
-        this.classFile = classFile;
+        this.classFile = new ClassFile(classFile);
     }
 
 }

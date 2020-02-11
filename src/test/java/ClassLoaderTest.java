@@ -1,6 +1,9 @@
 import classloader.ClassLoader;
 import org.junit.Test;
 
+import java.io.*;
+import java.util.Scanner;
+
 /**
  * Description:
  * Test for class loader
@@ -9,10 +12,16 @@ import org.junit.Test;
  */
 
 public class ClassLoaderTest {
-    ClassLoader loader = new ClassLoader(null);
+    ClassLoader loader ;
 
     @Test
-    public void test() {
+    public void test() throws IOException {
         System.out.println("Hi JVVM");
+        File file = new File("MyClass.class");
+        byte[] bytes = new byte[(int) file.length()];
+        FileInputStream in = new FileInputStream(file);
+        int num = in.read(bytes);
+        assert num == file.length();
+        loader = new ClassLoader(bytes);
     }
 }
