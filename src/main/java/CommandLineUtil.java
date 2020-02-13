@@ -63,6 +63,9 @@ public class CommandLineUtil {
         if(commandLine.hasOption("v")||commandLine.hasOption("version"))printVersion();
         if(commandLine.hasOption("cp")||commandLine.hasOption("classpath")) setUserEntry(commandLine.getOptionValue("cp"));
         if(commandLine.hasOption("Xjre"))setExtEntry(commandLine.getOptionValue("Xjre"));
+        //todo:设置初始堆栈的最大最小
+        if(commandLine.hasOption("Xms"));
+        if(commandLine.hasOption("Xmx"));
     }
 
 

@@ -22,11 +22,7 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(Arrays.toString(classFile));
-        //todo:翔哲！！！来写代码啦
     }
 
-//    private static void startJVVM(String[] args){
-//
-//    }
 
 }
