@@ -1,4 +1,4 @@
-import classpath.ClassFileReader;
+import classloader.ClassFileReader;
 import org.apache.commons.cli.*;
 
 /**
@@ -12,7 +12,7 @@ public class CommandLineUtil {
         options.addOption("h","help",false,"Print help message");
         options.addOption("cp","classpath",true,"Specify the user classpath");
         options.addOption("v","version",false,"Print version and exit");
-        //todo:这里考虑要不要修改启动类路径
+        //todo:留作作业中的扩展
         //options.addOption("Xbootclasspath",true,"Specify boot classpath");
         options.addOption("Xjre",true,"Specify extended classpath");
 
@@ -30,7 +30,6 @@ public class CommandLineUtil {
     private static void printHelpMessage(){
         String header = "\njava [-options] class [args...]\n" +
                 "   or java [-options] -jar jarfile [args...]\n" ;
-        //todo:翔哲快来看看这句五毛英语通不通顺
         String footer = "\nRefer to help doc for more information";
 
         HelpFormatter formatter = new HelpFormatter();

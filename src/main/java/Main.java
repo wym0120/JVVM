@@ -1,5 +1,6 @@
-import classpath.ClassFileReader;
+import classloader.ClassFileReader;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Main {
@@ -13,7 +14,14 @@ public class Main {
             System.exit(-1);
         }
         String className = userArgs[0];
-        byte[] classFile = ClassFileReader.readClassFile(className);
+        System.out.println("Class : " + className);
+        byte[] classFile = new byte[0];
+        try {
+            classFile = ClassFileReader.readClassFile(className);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Arrays.toString(classFile));
         //todo:翔哲！！！来写代码啦
     }
 
