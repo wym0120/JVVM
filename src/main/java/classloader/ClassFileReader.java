@@ -63,10 +63,10 @@ public class ClassFileReader {
         checkCorrectClasspath();
         String realClassName = className + ".class";
         byte[] data;
-        if ((data = bootClasspath.readClass(realClassName)) != null) {
+        if ((data = bootClasspath.readClass(realClassName)) != null && data.length!=0) {
             return data;
         }
-        if ((data = extClasspath.readClass(realClassName)) != null) {
+        if ((data = extClasspath.readClass(realClassName)) != null && data.length!=0) {
             return data;
         }
         return userClasspath.readClass(realClassName);
