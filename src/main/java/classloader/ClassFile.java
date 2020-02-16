@@ -1,5 +1,7 @@
 package classloader;
 
+import classloader.constantpool.ConstantPool;
+import com.sun.tools.javac.util.Pair;
 import lombok.Data;
 
 import java.nio.ByteBuffer;
@@ -16,7 +18,7 @@ public class ClassFile {
     private short minorVersion;
     private short majorVersion;
     private short constantPoolCount;
-    private ConstantPoolInfo[] constantPool;
+    private ConstantPool constantPool;
     private short accessFlags;
     private short thisClass;
     private short superClass;
@@ -36,8 +38,15 @@ public class ClassFile {
         this.minorVersion = in.getShort();
         this.majorVersion = in.getShort();
         this.constantPoolCount = in.getShort();
-        int currentPosition = in.position();
-
+        int currentPos = in.position();
+        Pair<ConstantPool, Integer> cpInt = ConstantPool.getInstance(constantPoolCount, classfile, currentPos);
+        constantPool = cpInt.fst;
+        currentPos += cpInt.snd;
+        in.position(currentPos);
+        this.accessFlags = in.getShort();
+        this.thisClass = in.getShort();
+        this.superClass = in.getShort();
+        this.interfacesCount = in.getShort();
         System.out.println();
 
 
