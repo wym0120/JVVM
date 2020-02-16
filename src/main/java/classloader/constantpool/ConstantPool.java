@@ -27,7 +27,7 @@ public class ConstantPool {
         return Pair.of(constantPool, currentOfs - offset);
     }
 
-    public ConstantPoolInfo getConstantPoolInfo(int i) {
+    public ConstantPoolInfo get(int i) {
         if (i <= 0 || i > infos.length - 1) {
             throw new UnsupportedOperationException("Invalid CP index " + i);
         }
@@ -38,4 +38,6 @@ public class ConstantPool {
         }
         return info;
     }
+
+
 }

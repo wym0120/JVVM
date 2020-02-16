@@ -1,10 +1,13 @@
 package classloader;
 
+import classloader.attribute.AttributeBuilder;
+import classloader.attribute.AttributeInfo;
 import classloader.constantpool.ConstantPool;
 import com.sun.tools.javac.util.Pair;
 import lombok.Data;
 
 import java.nio.ByteBuffer;
+import java.util.function.Supplier;
 
 /**
  * Description:
@@ -31,24 +34,55 @@ public class ClassFile {
     private short attributeCount;
     private AttributeInfo[] attributes;
 
+    private ByteBuffer in;
+    Supplier<AttributeInfo> attrBuilder = this::getAttribute;
+
     public ClassFile(byte[] classfile) {
-        ByteBuffer in = ByteBuffer.wrap(classfile);
+        in = ByteBuffer.wrap(classfile);
         this.magic = in.getInt();
-        assert this.magic == 0xCAFEBABE;
+        if (this.magic != 0xCAFEBABE) {
+            throw new UnsupportedOperationException(
+                    "Wrong magic number! Expect 0xCAFEBABE but actual is " + Integer.toHexString(this.magic));
+        }
         this.minorVersion = in.getShort();
         this.majorVersion = in.getShort();
+        parseConstantPool(classfile);
+        this.accessFlags = in.getShort();
+        this.thisClass = in.getShort();
+        this.superClass = in.getShort();
+        parseInterfaces();
+        parseFields();
+
+        System.out.println();
+
+    }
+
+    private void parseFields() {
+        this.fieldsCount = in.getShort();
+        this.fields = new FieldInfo[this.fieldsCount];
+        for (int i = 0; i < this.fieldsCount; i++) {
+            this.fields[i] = new FieldInfo(this.attrBuilder, in);
+        }
+    }
+
+    private void parseInterfaces() {
+        this.interfacesCount = in.getShort();
+        interfaces = new short[this.interfacesCount];
+        for (int i = 0; i < this.interfacesCount; i++) {
+            this.interfaces[i] = in.getShort();
+        }
+    }
+
+    private void parseConstantPool(byte[] classfile) {
         this.constantPoolCount = in.getShort();
         int currentPos = in.position();
         Pair<ConstantPool, Integer> cpInt = ConstantPool.getInstance(constantPoolCount, classfile, currentPos);
         constantPool = cpInt.fst;
         currentPos += cpInt.snd;
         in.position(currentPos);
-        this.accessFlags = in.getShort();
-        this.thisClass = in.getShort();
-        this.superClass = in.getShort();
-        this.interfacesCount = in.getShort();
-        System.out.println();
+    }
 
-
+    public AttributeInfo getAttribute() {
+        return AttributeBuilder.createAttribute(this.constantPool, in);
     }
 }

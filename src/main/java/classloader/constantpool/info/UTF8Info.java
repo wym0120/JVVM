@@ -13,6 +13,7 @@ import java.nio.ByteBuffer;
 public class UTF8Info extends ConstantPoolInfo {
     private short length;
     private byte[] bytes;
+    private String myString;
 
     public UTF8Info(short length, byte[] bytes) {
         this.length = length;
@@ -21,6 +22,7 @@ public class UTF8Info extends ConstantPoolInfo {
             throw new UnsupportedOperationException(
                     "UTF8 constantpool info expects " + length + " but actual is " + bytes.length);
         }
+        myString = new String(bytes);
         super.tag = ConstantPoolInfo.UTF8;
     }
 
@@ -32,5 +34,9 @@ public class UTF8Info extends ConstantPoolInfo {
             bytes[i] = buffer.get();
         }
         return Pair.of(new UTF8Info(length, bytes), 2 + length);
+    }
+
+    public String getString() {
+        return myString;
     }
 }

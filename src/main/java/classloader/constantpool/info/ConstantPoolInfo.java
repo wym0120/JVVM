@@ -11,20 +11,20 @@ import java.nio.ByteBuffer;
  * Created on 2020-02-10
  */
 public class ConstantPoolInfo {
-    protected static final byte CLASS = 7;
-    protected static final byte FIELD_REF = 9;
-    protected static final byte METHOD_REF = 10;
-    protected static final byte INTERFACE_METHOD_REF = 11;
-    protected static final byte STRING = 8;
-    protected static final byte INTEGER = 3;
-    protected static final byte FLOAT = 4;
-    protected static final byte LONG = 5;
-    protected static final byte DOUBLE = 6;
-    protected static final byte NAME_AND_TYPE = 12;
-    protected static final byte UTF8 = 1;
-    protected static final byte METHOD_HANDLE = 15;
-    protected static final byte METHOD_TYPE = 16;
-    protected static final byte INVOKE_DYNAMIC = 18;
+    public static final byte CLASS = 7;
+    public static final byte FIELD_REF = 9;
+    public static final byte METHOD_REF = 10;
+    public static final byte INTERFACE_METHOD_REF = 11;
+    public static final byte STRING = 8;
+    public static final byte INTEGER = 3;
+    public static final byte FLOAT = 4;
+    public static final byte LONG = 5;
+    public static final byte DOUBLE = 6;
+    public static final byte NAME_AND_TYPE = 12;
+    public static final byte UTF8 = 1;
+    public static final byte METHOD_HANDLE = 15;
+    public static final byte METHOD_TYPE = 16;
+    public static final byte INVOKE_DYNAMIC = 18;
     protected byte tag;
 
 
@@ -134,5 +134,9 @@ public class ConstantPoolInfo {
 
     public int getEntryLength(){
         return 1;
+    }
+
+    public byte getTag() {
+        return tag;
     }
 }
