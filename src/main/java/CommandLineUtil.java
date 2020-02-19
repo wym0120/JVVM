@@ -33,7 +33,8 @@ public class CommandLineUtil {
         String footer = "\nRefer to help doc for more information";
 
         HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("JVVM",header,options,footer);
+        formatter.printHelp("JVVM", header, options, footer);
+        System.exit(0);
     }
 
     private static void printVersion(){

@@ -23,27 +23,20 @@ public class ClassFileReader {
     private static Entry userClasspath = null;
 
     /**
-     * 设置JRE路径，当前实现中启动类路径于扩展类路径是一致的
-     * @param classpath 类路径
+     * Set Jre(ext) and XBootClasspath
      */
     public static void setExtClasspath(String classpath) {
-        //todo:这里bootClasspath和ext保持一致，作业中需要单独实现bootClasspath
+        //todo:homework : implement bootClasspath
         bootClasspath = chooseEntryType(String.join(FILE_SEPARATOR, classpath, "lib", "*"));
         extClasspath = chooseEntryType(String.join(FILE_SEPARATOR, classpath, "lib", "ext", "*"));
     }
 
-    /**
-     * 设置用户类路径
-     * @param classpath 类路径
-     */
     public static void setUserClasspath(String classpath) {
         userClasspath = chooseEntryType(classpath);
     }
 
     /**
-     * 根据类路径的类型来选择合适的路经筛选类
-     * @param classpath 类路径
-     * @return 合适的路径筛选类
+     * select Entry by type of classpath
      */
     public static Entry chooseEntryType(String classpath) {
         if (classpath.contains(PATH_SEPARATOR)) {
@@ -73,29 +66,26 @@ public class ClassFileReader {
     }
 
     /**
-     * 检查三种路径是否都是合法路径，若不合法则设置为默认值
+     * Check all paths are correct,if not,set default value
      */
     private static void checkCorrectClasspath() throws FileNotFoundException {
         if(bootClasspath == null){
-            //todo:作业
+            //todo:homework
         }
 
         if (extClasspath == null) {
             File f;
 
-            //判断为当前目录下是否存在jre路径
             f = new File(String.join(FILE_SEPARATOR, ".", "jre"));
             if (f.exists()) {
                 setExtClasspath(String.join(FILE_SEPARATOR, ".", "jre"));
             }else{
-                //判断是否有环境变量并且能找到jre路径
-                final String JAVA_HOME = System.getProperty("JAVA_HOME");
+                final String JAVA_HOME = System.getenv("JAVA_HOME");
                 if (JAVA_HOME != null) {
                     f = new File(JAVA_HOME);
                     if (f.exists()) {
                         setExtClasspath(String.join(FILE_SEPARATOR, JAVA_HOME, "jre"));
                     }else{
-                        //若都不存在则抛出异常
                         throw new FileNotFoundException("Cannot find JRE folder!");
                     }
                 }

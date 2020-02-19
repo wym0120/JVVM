@@ -2,6 +2,9 @@ plugins {
     id 'java'
 }
 
+apply plugin:'java'
+apply plugin: 'idea'
+
 group 'nju'
 version '1.0-SNAPSHOT'
 
@@ -15,12 +18,31 @@ test {
     useJUnit()
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // https://mvnrepository.com/artifact/commons-cli/commons-cli
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
     compile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    compile files("${System.properties['java.home']}/../lib/tools.jar")
+
+}
 
 
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifestContentCharset 'utf-8'
+    metadataCharset 'utf-8'
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
