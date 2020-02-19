@@ -7,9 +7,9 @@ package classloader.constantpool.info;
  * Created on 2020-02-15
  */
 public class ClassInfo extends ConstantPoolInfo {
-    private short nameIndex;
+    private int nameIndex;
 
-    public ClassInfo(short nameIndex) {
+    public ClassInfo(int nameIndex) {
         this.nameIndex = nameIndex;
         super.tag = ConstantPoolInfo.CLASS;
     }

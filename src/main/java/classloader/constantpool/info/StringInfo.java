@@ -7,9 +7,9 @@ package classloader.constantpool.info;
  * Created on 2020-02-15
  */
 public class StringInfo extends ConstantPoolInfo{
-    private short stringIndex;
+    private int stringIndex;
 
-    public StringInfo(short stringIndex) {
+    public StringInfo(int stringIndex) {
         this.stringIndex = stringIndex;
         super.tag = ConstantPoolInfo.STRING;
     }

@@ -1,12 +1,12 @@
 package classloader.attribute;
 
-import classloader.constantpool.ConstantPool;
+import classloader.BuildInfo;
+import classloader.attribute.smta.StackMapTableAttribute;
 import classloader.constantpool.info.ConstantPoolInfo;
 import classloader.constantpool.info.UTF8Info;
 
+
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +17,7 @@ import java.util.Map;
  * Created on 2020-02-15
  */
 public class AttributeBuilder {
+
     public static final String AnnotationDefault = "AnnotationDefault";
     public static final String BootstrapMethods = "BootstrapMethods";
     public static final String CharacterRangeTable = "CharacterRangeTable";
@@ -42,39 +43,45 @@ public class AttributeBuilder {
     public static final String SourceFile = "SourceFile";
     public static final String SourceID = "SourceID";
     public static final String StackMap = "StackMap";
-    public static final String StackMapTable = "StackMapTable";
+    public static final String StackMapTable = "StackMapTableAttribute";
     public static final String Synthetic = "Synthetic";
     private static Map<String, Class<? extends AttributeInfo>> standardAttributes;
 
     private static void init() {
         standardAttributes = new HashMap<>();
         standardAttributes.put(ConstantValue, ConstantValueAttr.class);
+        standardAttributes.put(Code, CodeAttribute.class);
+        standardAttributes.put(StackMapTable, StackMapTableAttribute.class);
     }
 
-    public static AttributeInfo createAttribute(ConstantPool cp, ByteBuffer buffer) {
+
+    public static AttributeInfo createAttribute(BuildInfo buildInfo) {
         if (standardAttributes == null) {
             init();
         }
 
-        short attributeNameAndIndex = buffer.getShort();
-        int attributeLength = buffer.getInt();
+        int attributeNameAndIndex = buildInfo.getU2();
+        int attributeLength = (int) buildInfo.getU4();
 
-        ConstantPoolInfo constantPoolInfo = cp.get(attributeNameAndIndex);
+        ConstantPoolInfo constantPoolInfo = buildInfo.getConstantPool().get(attributeNameAndIndex);
+
         if (constantPoolInfo instanceof UTF8Info) {
             String attrName = ((UTF8Info) constantPoolInfo).getString();
+            //find the class of the attribute
             Class<? extends AttributeInfo> attrClz = standardAttributes.get(attrName);
             if (attrClz != null) {
                 try {
+                    //get the constructor of this attribute
                     Constructor<? extends AttributeInfo> constructor = attrClz.getDeclaredConstructor(
-                            ByteBuffer.class, Short.TYPE, Integer.TYPE);
-                    return constructor.newInstance(buffer, attributeNameAndIndex, attributeLength);
+                            BuildInfo.class, Integer.TYPE, Integer.TYPE);
+                    return constructor.newInstance(buildInfo, attributeNameAndIndex, attributeLength);
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new UnsupportedOperationException("Error when parsing attribute " + attrName);
                 }
             } else {
                 //default attr info
-                return new AttributeInfo(buffer, attributeNameAndIndex, attributeLength);
+                return new AttributeInfo(buildInfo, attributeNameAndIndex, attributeLength);
             }
         } else {
             throw new UnsupportedOperationException("The nameIndex of attribute is not a UTF-8 string!");

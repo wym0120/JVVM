@@ -11,11 +11,11 @@ import java.nio.ByteBuffer;
  * Created on 2020-02-15
  */
 public class UTF8Info extends ConstantPoolInfo {
-    private short length;
+    private int length;
     private byte[] bytes;
     private String myString;
 
-    public UTF8Info(short length, byte[] bytes) {
+    public UTF8Info(int length, byte[] bytes) {
         this.length = length;
         this.bytes = bytes;
         if (bytes.length != length) {
@@ -28,7 +28,7 @@ public class UTF8Info extends ConstantPoolInfo {
 
     static Pair<UTF8Info, Integer> getInstance(byte[] in, int offset) {
         ByteBuffer buffer = ByteBuffer.wrap(in, offset, in.length - offset);
-        short length = buffer.getShort();
+        int length = 0xFFFF & (int) buffer.getShort();
         byte[] bytes = new byte[length];
         for (int i = 0; i < length; i++) {
             bytes[i] = buffer.get();

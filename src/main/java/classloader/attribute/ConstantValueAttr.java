@@ -1,8 +1,7 @@
 package classloader.attribute;
 
-import classloader.attribute.AttributeInfo;
-
-import java.nio.ByteBuffer;
+import classloader.BuildInfo;
+import lombok.Data;
 
 /**
  * Description:
@@ -10,11 +9,12 @@ import java.nio.ByteBuffer;
  * @author xxz
  * Created on 2020-02-15
  */
-public class ConstantValueAttr extends AttributeInfo{
-    private short constantValueIndex;
+@Data
+public class ConstantValueAttr extends AttributeInfo {
+    private int constantValueIndex;
 
-    public ConstantValueAttr(ByteBuffer byteBuffer, short index, int length) {
+    public ConstantValueAttr(BuildInfo buildInfo, int index, int length) {
         super(index, length);
-        constantValueIndex = byteBuffer.getShort();
+        constantValueIndex = buildInfo.getU2();
     }
 }

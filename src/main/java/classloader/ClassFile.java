@@ -52,14 +52,14 @@ public class ClassFile {
         this.superClass = in.getShort();
         parseInterfaces();
         parseFields();
-
+        //TODO parse method info
         System.out.println();
 
     }
 
     private void parseFields() {
         this.fieldsCount = in.getShort();
-        this.fields = new FieldInfo[this.fieldsCount];
+        this.fields = new FieldInfo[0xFFFF & this.fieldsCount];
         for (int i = 0; i < this.fieldsCount; i++) {
             this.fields[i] = new FieldInfo(this.attrBuilder, in);
         }
@@ -67,7 +67,7 @@ public class ClassFile {
 
     private void parseInterfaces() {
         this.interfacesCount = in.getShort();
-        interfaces = new short[this.interfacesCount];
+        interfaces = new short[0xFFFF & this.interfacesCount];
         for (int i = 0; i < this.interfacesCount; i++) {
             this.interfaces[i] = in.getShort();
         }
@@ -83,6 +83,6 @@ public class ClassFile {
     }
 
     public AttributeInfo getAttribute() {
-        return AttributeBuilder.createAttribute(this.constantPool, in);
+        return AttributeBuilder.createAttribute(new BuildInfo(this.constantPool, in));
     }
 }

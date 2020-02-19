@@ -7,10 +7,10 @@ package classloader.constantpool.info;
  * Created on 2020-02-15
  */
 public class InvokeDynamicInfo extends ConstantPoolInfo {
-    private short bootstrapMethodAttrIndex;
-    private short nameAndTypeIndex;
+    private int bootstrapMethodAttrIndex;
+    private int nameAndTypeIndex;
 
-    public InvokeDynamicInfo(short bootstrapMethodAttrIndex, short nameAndTypeIndex) {
+    public InvokeDynamicInfo(int bootstrapMethodAttrIndex, int nameAndTypeIndex) {
         this.bootstrapMethodAttrIndex = bootstrapMethodAttrIndex;
         this.nameAndTypeIndex = nameAndTypeIndex;
         super.tag = ConstantPoolInfo.INVOKE_DYNAMIC;

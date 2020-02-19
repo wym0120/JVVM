@@ -7,10 +7,10 @@ package classloader.constantpool.info;
  * Created on 2020-02-15
  */
 public class FieldrefInfo extends ConstantPoolInfo {
-    private short classIndex;
-    private short nameAndTypeIndex;
+    private int classIndex;
+    private int nameAndTypeIndex;
 
-    public FieldrefInfo(short classIndex, short nameAndTypeIndex) {
+    public FieldrefInfo(int classIndex, int nameAndTypeIndex) {
         this.classIndex = classIndex;
         this.nameAndTypeIndex = nameAndTypeIndex;
         super.tag = ConstantPoolInfo.FIELD_REF;
