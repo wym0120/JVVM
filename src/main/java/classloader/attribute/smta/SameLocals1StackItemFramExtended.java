@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -11,10 +11,10 @@ import classloader.BuildInfo;
 public class SameLocals1StackItemFramExtended extends StackMapFrame {
     private int offsetDelta;
     private VerificationTypeInfo[] stack = new VerificationTypeInfo[1];
-    public SameLocals1StackItemFramExtended(int frameType, BuildInfo buildInfo) {
+    public SameLocals1StackItemFramExtended(int frameType, BuildUtil buildUtil) {
         super(frameType);
-        offsetDelta = buildInfo.getU2();
-        stack[0] = VerificationTypeInfo.read(buildInfo);
+        offsetDelta = buildUtil.getU2();
+        stack[0] = VerificationTypeInfo.read(buildUtil);
     }
 
     @Override

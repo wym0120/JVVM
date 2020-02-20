@@ -1,6 +1,6 @@
 package classloader.attribute;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 import lombok.Data;
 
 import java.nio.ByteBuffer;
@@ -22,26 +22,26 @@ public class CodeAttribute extends AttributeInfo {
     private int attributesCount;
     private AttributeInfo[] attributes;
 
-    public CodeAttribute(BuildInfo buildInfo, int index, int length) {
+    public CodeAttribute(BuildUtil buildUtil, int index, int length) {
         super(index, length);
-        maxStack = buildInfo.getU2();
-        maxLocal = buildInfo.getU2();
-        codeLength = (int) buildInfo.getU4();
+        maxStack = buildUtil.getU2();
+        maxLocal = buildUtil.getU2();
+        codeLength = (int) buildUtil.getU4();
         code = new byte[codeLength];
-        ByteBuffer buffer = buildInfo.getByteBuffer();
+        ByteBuffer buffer = buildUtil.getByteBuffer();
         for (int i = 0; i < codeLength; i++) {
             code[i] = buffer.get();
         }
-        exceptionTableLength = buildInfo.getU2();
+        exceptionTableLength = buildUtil.getU2();
         exceptionTable = new ExceptionTable[exceptionTableLength];
         for (int i = 0; i < exceptionTableLength; i++) {
-            exceptionTable[i] = new ExceptionTable(buildInfo.getU2(), buildInfo.getU2(),
-                    buildInfo.getU2(), buildInfo.getU2());
+            exceptionTable[i] = new ExceptionTable(buildUtil.getU2(), buildUtil.getU2(),
+                    buildUtil.getU2(), buildUtil.getU2());
         }
-        attributesCount = buildInfo.getU2();
+        attributesCount = buildUtil.getU2();
         attributes = new AttributeInfo[attributesCount];
         for (int i = 0; i < attributesCount; i++) {
-            attributes[i] = AttributeBuilder.createAttribute(buildInfo);
+            attributes[i] = AttributeBuilder.createAttribute(buildUtil);
         }
     }
 }

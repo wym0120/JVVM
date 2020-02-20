@@ -1,6 +1,6 @@
 package classloader.attribute;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 import classloader.attribute.smta.StackMapTableAttribute;
 import classloader.constantpool.info.ConstantPoolInfo;
 import classloader.constantpool.info.UTF8Info;
@@ -43,7 +43,7 @@ public class AttributeBuilder {
     public static final String SourceFile = "SourceFile";
     public static final String SourceID = "SourceID";
     public static final String StackMap = "StackMap";
-    public static final String StackMapTable = "StackMapTableAttribute";
+    public static final String StackMapTable = "StackMapTable";
     public static final String Synthetic = "Synthetic";
     private static Map<String, Class<? extends AttributeInfo>> standardAttributes;
 
@@ -52,18 +52,20 @@ public class AttributeBuilder {
         standardAttributes.put(ConstantValue, ConstantValueAttr.class);
         standardAttributes.put(Code, CodeAttribute.class);
         standardAttributes.put(StackMapTable, StackMapTableAttribute.class);
+        standardAttributes.put(Exceptions, ExceptionsAttribute.class);
+        standardAttributes.put(BootstrapMethods, BootstrapMethodsAttribute.class);
     }
 
 
-    public static AttributeInfo createAttribute(BuildInfo buildInfo) {
+    public static AttributeInfo createAttribute(BuildUtil buildUtil) {
         if (standardAttributes == null) {
             init();
         }
 
-        int attributeNameAndIndex = buildInfo.getU2();
-        int attributeLength = (int) buildInfo.getU4();
+        int attributeNameAndIndex = buildUtil.getU2();
+        int attributeLength = (int) buildUtil.getU4();
 
-        ConstantPoolInfo constantPoolInfo = buildInfo.getConstantPool().get(attributeNameAndIndex);
+        ConstantPoolInfo constantPoolInfo = buildUtil.getConstantPool().get(attributeNameAndIndex);
 
         if (constantPoolInfo instanceof UTF8Info) {
             String attrName = ((UTF8Info) constantPoolInfo).getString();
@@ -73,15 +75,15 @@ public class AttributeBuilder {
                 try {
                     //get the constructor of this attribute
                     Constructor<? extends AttributeInfo> constructor = attrClz.getDeclaredConstructor(
-                            BuildInfo.class, Integer.TYPE, Integer.TYPE);
-                    return constructor.newInstance(buildInfo, attributeNameAndIndex, attributeLength);
+                            BuildUtil.class, Integer.TYPE, Integer.TYPE);
+                    return constructor.newInstance(buildUtil, attributeNameAndIndex, attributeLength);
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw new UnsupportedOperationException("Error when parsing attribute " + attrName);
                 }
             } else {
                 //default attr info
-                return new AttributeInfo(buildInfo, attributeNameAndIndex, attributeLength);
+                return new AttributeInfo(buildUtil, attributeNameAndIndex, attributeLength);
             }
         } else {
             throw new UnsupportedOperationException("The nameIndex of attribute is not a UTF-8 string!");

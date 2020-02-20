@@ -1,9 +1,8 @@
 package classloader.constantpool.info;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 import com.sun.tools.javac.util.Pair;
 
-import java.io.ByteArrayInputStream;
 import java.nio.ByteBuffer;
 
 /**
@@ -36,7 +35,7 @@ public class ConstantPoolInfo {
      */
     public static Pair<ConstantPoolInfo, Integer> getConstantPoolInfo(byte[] classfile, int ofs) {
         ByteBuffer buffer = ByteBuffer.wrap(classfile, ofs, classfile.length - ofs);
-        BuildInfo in = new BuildInfo(buffer);
+        BuildUtil in = new BuildUtil(buffer);
         ConstantPoolInfo ret;
         int tag = in.getU1();
         int bytesRead = 1;
@@ -127,7 +126,7 @@ public class ConstantPoolInfo {
         return new Pair<>(ret, bytesRead);
     }
 
-    private static byte[] read4Bytes(BuildInfo in) {
+    private static byte[] read4Bytes(BuildUtil in) {
         byte b1 = in.getByteBuffer().get();
         byte b2 = in.getByteBuffer().get();
         byte b3 = in.getByteBuffer().get();

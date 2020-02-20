@@ -1,6 +1,6 @@
 package classloader.attribute;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 import lombok.Data;
 
 import java.nio.ByteBuffer;
@@ -23,8 +23,8 @@ public class AttributeInfo {
         this.attributeLength = attributeLength;
     }
 
-    public AttributeInfo(BuildInfo buildInfo, int index, int length) {
-        ByteBuffer byteBuffer = buildInfo.getByteBuffer();
+    public AttributeInfo(BuildUtil buildUtil, int index, int length) {
+        ByteBuffer byteBuffer = buildUtil.getByteBuffer();
         this.attributeNameAndIndex = index;
         this.attributeLength = length;
         this.info = new byte[this.attributeLength];

@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -11,9 +11,9 @@ import classloader.BuildInfo;
 public class ChopFrame extends StackMapFrame {
     private int offsetDelta;
 
-    public ChopFrame(int frameType, BuildInfo buildInfo) {
+    public ChopFrame(int frameType, BuildUtil buildUtil) {
         super(frameType);
-        offsetDelta = buildInfo.getU2();
+        offsetDelta = buildUtil.getU2();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -25,8 +25,8 @@ public class VerificationTypeInfo {
         this.tag = tag;
     }
 
-    static VerificationTypeInfo read(BuildInfo buildInfo){
-        byte tag = (byte) buildInfo.getU1();
+    static VerificationTypeInfo read(BuildUtil buildUtil){
+        byte tag = (byte) buildUtil.getU1();
         switch (tag) {
             case 0:
             case 1:
@@ -37,9 +37,9 @@ public class VerificationTypeInfo {
             case 6:
                 return new VerificationTypeInfo(tag);
             case 7:
-                return new ObjectVariableInfo(buildInfo);
+                return new ObjectVariableInfo(buildUtil);
             case 8:
-                return new UninitializedVariableInfo(buildInfo);
+                return new UninitializedVariableInfo(buildUtil);
             default:
                 throw new UnsupportedOperationException("unrecognized verification_type_info tag " + tag);
         }

@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -10,8 +10,8 @@ import classloader.BuildInfo;
  */
 public class UninitializedVariableInfo extends VerificationTypeInfo {
     private int offset;
-    public UninitializedVariableInfo(BuildInfo buildInfo) {
+    public UninitializedVariableInfo(BuildUtil buildUtil) {
         super(VerificationTypeInfo.ITEM_Uninitialized);
-        this.offset = buildInfo.getU2();
+        this.offset = buildUtil.getU2();
     }
 }

@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -11,12 +11,12 @@ import classloader.BuildInfo;
 public class AppendFrame extends StackMapFrame {
     private int offsetDelta;
     private VerificationTypeInfo[] locals;
-    public AppendFrame(int frameType, BuildInfo buildInfo) {
+    public AppendFrame(int frameType, BuildUtil buildUtil) {
         super(frameType);
-        offsetDelta = buildInfo.getU2();
+        offsetDelta = buildUtil.getU2();
         locals = new VerificationTypeInfo[frameType - 251];
         for (int i = 0; i < locals.length; i++) {
-            locals[i] = VerificationTypeInfo.read(buildInfo);
+            locals[i] = VerificationTypeInfo.read(buildUtil);
         }
     }
 

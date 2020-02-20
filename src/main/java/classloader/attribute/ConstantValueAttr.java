@@ -1,6 +1,6 @@
 package classloader.attribute;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 import lombok.Data;
 
 /**
@@ -13,8 +13,8 @@ import lombok.Data;
 public class ConstantValueAttr extends AttributeInfo {
     private int constantValueIndex;
 
-    public ConstantValueAttr(BuildInfo buildInfo, int index, int length) {
+    public ConstantValueAttr(BuildUtil buildUtil, int index, int length) {
         super(index, length);
-        constantValueIndex = buildInfo.getU2();
+        constantValueIndex = buildUtil.getU2();
     }
 }

@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -11,23 +11,23 @@ import classloader.BuildInfo;
 public class StackMapFrame {
     protected final int frameType;
 
-    static StackMapFrame read(BuildInfo buildInfo) {
-        int frameType = buildInfo.getU1();
+    static StackMapFrame read(BuildUtil buildUtil) {
+        int frameType = buildUtil.getU1();
         if (frameType <= 63) {
             return new SameFrame(frameType);
         } else if (frameType <= 127) {
-            return new SameLocals1StackItemFrame(frameType, buildInfo);
+            return new SameLocals1StackItemFrame(frameType, buildUtil);
         } else if (frameType <= 246) {
             throw new UnsupportedOperationException("unknown frame_type " + frameType);
         } else if (frameType == 247) {
-            return new SameLocals1StackItemFramExtended(frameType, buildInfo);
+            return new SameLocals1StackItemFramExtended(frameType, buildUtil);
         } else if (frameType <= 250) {
-            return new ChopFrame(frameType, buildInfo);
+            return new ChopFrame(frameType, buildUtil);
         } else if (frameType == 251) {
-            return new SameFramExtended(frameType, buildInfo);
+            return new SameFramExtended(frameType, buildUtil);
         } else {
-            return (frameType <= 254 ? new AppendFrame(frameType, buildInfo)
-                    : new FullFrame(frameType, buildInfo));
+            return (frameType <= 254 ? new AppendFrame(frameType, buildUtil)
+                    : new FullFrame(frameType, buildUtil));
         }
     }
 

@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -10,9 +10,9 @@ import classloader.BuildInfo;
  */
 public class SameFramExtended extends StackMapFrame {
     private int offsetDelta;
-    public SameFramExtended(int frameType, BuildInfo buildInfo) {
+    public SameFramExtended(int frameType, BuildUtil buildUtil) {
         super(frameType);
-        offsetDelta = buildInfo.getU2();
+        offsetDelta = buildUtil.getU2();
     }
 
     @Override

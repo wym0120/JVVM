@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -11,8 +11,8 @@ import classloader.BuildInfo;
 public class ObjectVariableInfo extends VerificationTypeInfo {
     private int cpIndex;
 
-    public ObjectVariableInfo(BuildInfo buildInfo) {
+    public ObjectVariableInfo(BuildUtil buildUtil) {
         super(VerificationTypeInfo.ITEM_Object);
-        cpIndex = buildInfo.getU2();
+        cpIndex = buildUtil.getU2();
     }
 }

@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 import classloader.attribute.AttributeInfo;
 
 /**
@@ -13,12 +13,12 @@ public class StackMapTableAttribute extends AttributeInfo {
     private int numberOfEntries;
     private StackMapFrame[] entries;
 
-    public StackMapTableAttribute(BuildInfo buildInfo, int index, int length) {
+    public StackMapTableAttribute(BuildUtil buildUtil, int index, int length) {
         super(index,length);
-        numberOfEntries = buildInfo.getU2();
+        numberOfEntries = buildUtil.getU2();
         entries = new StackMapFrame[numberOfEntries];
         for (int i = 0; i < entries.length; i++) {
-            entries[i] = StackMapFrame.read(buildInfo);
+            entries[i] = StackMapFrame.read(buildUtil);
         }
 
     }

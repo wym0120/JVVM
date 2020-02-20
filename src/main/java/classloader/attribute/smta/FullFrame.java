@@ -1,6 +1,6 @@
 package classloader.attribute.smta;
 
-import classloader.BuildInfo;
+import classloader.BuildUtil;
 
 /**
  * Description:
@@ -15,18 +15,18 @@ public class FullFrame extends StackMapFrame {
     private int numberOfStackItems;
     private VerificationTypeInfo[] stack;
 
-    public FullFrame(int frameType, BuildInfo buildInfo) {
+    public FullFrame(int frameType, BuildUtil buildUtil) {
         super(frameType);
-        offsetDelta = buildInfo.getU2();
-        numberOfLocals = buildInfo.getU2();
+        offsetDelta = buildUtil.getU2();
+        numberOfLocals = buildUtil.getU2();
         locals = new VerificationTypeInfo[numberOfLocals];
         for (int i = 0; i < locals.length; i++) {
-            locals[i] = VerificationTypeInfo.read(buildInfo);
+            locals[i] = VerificationTypeInfo.read(buildUtil);
         }
-        numberOfStackItems = buildInfo.getU2();
+        numberOfStackItems = buildUtil.getU2();
         stack = new VerificationTypeInfo[numberOfStackItems];
         for (int i = 0; i < stack.length; i++) {
-            stack[i] = VerificationTypeInfo.read(buildInfo);
+            stack[i] = VerificationTypeInfo.read(buildUtil);
         }
     }
 

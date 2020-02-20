@@ -12,15 +12,15 @@ import java.nio.ByteBuffer;
  * Created on 2020-02-18
  */
 @Data
-public class BuildInfo {
+public class BuildUtil {
     private ConstantPool constantPool;
     private ByteBuffer byteBuffer;
 
-    public BuildInfo(ByteBuffer byteBuffer) {
+    public BuildUtil(ByteBuffer byteBuffer) {
         this.byteBuffer = byteBuffer;
     }
 
-    public BuildInfo(ConstantPool constantPool, ByteBuffer byteBuffer) {
+    public BuildUtil(ConstantPool constantPool, ByteBuffer byteBuffer) {
         this.constantPool = constantPool;
         this.byteBuffer = byteBuffer;
     }
