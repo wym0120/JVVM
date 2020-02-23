@@ -3,21 +3,23 @@ package runtime;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class JStack {
-    private static int maxSize = 100;
-    private Stack<JFrame> stack;
+public class ThreadStack {
+    private static int maxSize;
+    private Stack<StackFrame> stack;
     private int currentSize;
 
-    public JStack(){
+    public ThreadStack(int maxSize){
         stack = new Stack<>();
+        ThreadStack.maxSize = maxSize;
     }
+
 
     public static void setMaxSize(int maxSize){
         if(maxSize <= 0)throw new EmptyStackException();
-        JStack.maxSize = maxSize;
+        ThreadStack.maxSize = maxSize;
     }
 
-    public void pushFrame(JFrame frame){
+    public void pushFrame(StackFrame frame){
         if(currentSize >= maxSize){
             throw new StackOverflowError();
         }
@@ -33,7 +35,7 @@ public class JStack {
         currentSize--;
     }
 
-    public JFrame getTopFrame(){
+    public StackFrame getTopFrame(){
         if(currentSize == 0) throw new EmptyStackException();
         return stack.lastElement();
     }

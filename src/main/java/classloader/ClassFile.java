@@ -103,4 +103,17 @@ public class ClassFile {
     public AttributeInfo getAttribute() {
         return AttributeBuilder.createAttribute(new BuildUtil(this.constantPool, in));
     }
+
+    //todo
+    public String getClassName(){
+        return null;
+    }
+
+    public String getSuperClassName(){
+        return null;
+    }
+
+    public String[] getInterfaceNames(){
+        return null;
+    }
 }

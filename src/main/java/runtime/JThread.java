@@ -2,13 +2,13 @@ package runtime;
 
 public class JThread {
     private int pc;
-    private JStack stack;
+    private ThreadStack stack;
 
     public JThread(){
-        stack = new JStack();
+        stack = new ThreadStack();
     }
 
-    public void pushFrame(JFrame frame){
+    public void pushFrame(StackFrame frame){
         stack.pushFrame(frame);
     }
 
@@ -16,7 +16,7 @@ public class JThread {
         stack.popFrame();
     }
 
-    public JFrame getTopFrame(){
+    public StackFrame getTopFrame(){
         return stack.getTopFrame();
     }
 }

@@ -8,6 +8,7 @@ package classloader;
  */
 public class ClassLoader {
     private ClassFile classFile;
+    private ClassFileReader classFileReader;
 
     public ClassLoader(byte[] classFile) {
         if (classFile == null) {

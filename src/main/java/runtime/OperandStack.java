@@ -17,8 +17,9 @@ public class OperandStack {
     private Slot[] slots;
 
     public OperandStack(int maxStackSize) {
-        assert maxStackSize > 0;
-        slots = new Slot[maxStackSize];
+        if( maxStackSize > 0){
+            slots = new Slot[maxStackSize];
+        }
         top = 0;
     }
 

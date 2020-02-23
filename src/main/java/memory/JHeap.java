@@ -1,4 +1,4 @@
-package runtime;
+package memory;
 
 public class JHeap {
 }

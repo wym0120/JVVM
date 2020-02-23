@@ -4,13 +4,10 @@ import runtime.struct.JObject;
 import runtime.struct.Slot;
 import util.BasicTypeUtil;
 
-/**
- * 局部变量表
- * @author WYM
- */
-public class LocalVars {
+public class Vars {
     private Slot[] varSlots;
-    public LocalVars(int maxVarSize){
+
+    public Vars(int maxVarSize){
         assert maxVarSize > 0;
         varSlots = new Slot[maxVarSize];
     }
@@ -56,5 +53,13 @@ public class LocalVars {
 
     public JObject getObjectRef(int index){
         return varSlots[index].getObject();
+    }
+
+    public void setSlot(int index,Slot slot){
+        varSlots[index]=slot;
+    }
+
+    public Slot getSlot(int index){
+        return varSlots[index];
     }
 }
