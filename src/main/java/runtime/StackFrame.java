@@ -7,14 +7,11 @@ public class StackFrame {
     private OperandStack operandStack;
     private Vars localVars;
     private StackFrame lower;
+    private JThread thread;
+    private int nextPC;
 
-    /**
-     * 这两个值是编译器预先计算好的，储存在method_info的code属性中
-     *
-     * @param maxStackSize 最大栈深度
-     * @param maxVarSize   最大局部变量表槽位
-     */
-    public StackFrame(int maxStackSize, int maxVarSize){
+    public StackFrame(JThread thread,int maxStackSize, int maxVarSize){
+        this.thread = thread;
         operandStack = new OperandStack(maxStackSize);
         localVars = new Vars(maxVarSize);
     }

@@ -1,4 +1,5 @@
 import classloader.ClassFileReader;
+import instructions.load.ILoad;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -22,7 +23,7 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(Arrays.toString(classFile));
-    }
 
+    }
 
 }

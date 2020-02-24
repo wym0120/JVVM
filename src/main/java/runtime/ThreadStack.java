@@ -8,9 +8,9 @@ public class ThreadStack {
     private Stack<StackFrame> stack;
     private int currentSize;
 
-    public ThreadStack(int maxSize){
+    public ThreadStack(){
         stack = new Stack<>();
-        ThreadStack.maxSize = maxSize;
+//        ThreadStack.maxSize = maxSize;
     }
 
 
