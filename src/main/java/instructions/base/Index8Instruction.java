@@ -7,9 +7,9 @@ import java.nio.ByteBuffer;
  * @author WYM
  */
 public abstract class Index8Instruction extends Instruction{
-    int index;//byte needs to be cast to unsigned int
+    public int index;//byte needs to be cast to unsigned int
 
     public void fetchOperands(ByteBuffer reader){
-
+        index = (int)reader.get() & 0xFF;
     }
 }

@@ -1,11 +1,10 @@
 import classloader.ClassFileReader;
-import instructions.load.ILoad;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String args[]){
+    public static void main(String[] args){
         CommandLineUtil.initCommandLine(args);
         CommandLineUtil.handleOptions();
         String[] userArgs = CommandLineUtil.readArgs();
@@ -23,7 +22,6 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(Arrays.toString(classFile));
-
     }
 
 }
