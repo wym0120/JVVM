@@ -80,4 +80,15 @@ public class OperandStack {
         return slots[top].getObject();
     }
 
+    public void pushSlot(Slot slot){
+        slots[top] = slot;
+        top++;
+    }
+
+    public Slot popSlot(){
+        top--;
+        if(top<0)throw new EmptyStackException();
+        return slots[top];
+    }
+
 }

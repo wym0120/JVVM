@@ -5,12 +5,13 @@ import runtime.OperandStack;
 import runtime.StackFrame;
 import runtime.struct.Slot;
 
-public class DUP extends NoOperandsInstruction {
+public class SWAP extends NoOperandsInstruction {
     @Override
     public void execute(StackFrame frame) {
         OperandStack stack = frame.getOperandStack();
-        Slot slot = stack.popSlot();
-        stack.pushSlot(slot);
-        stack.pushSlot(slot);
+        Slot slot1 = stack.popSlot();
+        Slot slot2 = stack.popSlot();
+        stack.pushSlot(slot1);
+        stack.pushSlot(slot2);
     }
 }
