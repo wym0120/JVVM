@@ -34,11 +34,15 @@ public class JClass {
         methods = parseMethods(classFile.getMethods());
     }
 
-    private Field[] parseFields(FieldInfo[] info){
+    public boolean isPublic() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_PUBLIC);
+    }
+
+    private Field[] parseFields(FieldInfo[] info) {
         int len = info.length;
         fields = new Field[len];
-        for(int i = 0;i<len;i++){
-            fields[i] = new Field(info[i],this);
+        for (int i = 0; i < len; i++) {
+            fields[i] = new Field(info[i], this);
         }
         return fields;
     }

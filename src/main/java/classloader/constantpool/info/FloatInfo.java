@@ -1,5 +1,7 @@
 package classloader.constantpool.info;
 
+import java.nio.ByteBuffer;
+
 /**
  * Description:
  *
@@ -17,5 +19,9 @@ public class FloatInfo extends ConstantPoolInfo {
         }
         super.tag = ConstantPoolInfo.FLOAT;
 
+    }
+
+    public Float getValue() {
+        return ByteBuffer.wrap(bytes).getFloat();
     }
 }

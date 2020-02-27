@@ -1,5 +1,7 @@
 package classloader.constantpool.info;
 
+import java.nio.ByteBuffer;
+
 /**
  * Description:
  *
@@ -16,5 +18,10 @@ public class IntegerInfo extends ConstantPoolInfo {
                     "Integer constantpool info expects 4 bytes, actual is " + bytes.length);
         }
         super.tag = ConstantPoolInfo.INTEGER;
+    }
+
+    //todo:
+    public Integer getValue() {
+        return ByteBuffer.wrap(bytes).getInt();
     }
 }

@@ -13,4 +13,9 @@ public class ClassInfo extends ConstantPoolInfo {
         this.nameIndex = nameIndex;
         super.tag = ConstantPoolInfo.CLASS;
     }
+
+    //todo:
+    public String getClassName() {
+        return null;
+    }
 }

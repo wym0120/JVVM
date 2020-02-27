@@ -1,6 +1,7 @@
 package classloader;
 
 import classloader.attribute.AttributeInfo;
+import classloader.attribute.CodeAttribute;
 
 import java.nio.ByteBuffer;
 import java.util.function.Supplier;
@@ -30,5 +31,25 @@ public class MethodInfo {
         }
 
 
+    }
+
+    //todo:
+    public short getAccessFlags() {
+        return 0;
+    }
+
+    //todo:
+    public String getName() {
+        return null;
+    }
+
+    //todo:
+    public String getDescriptor() {
+        return null;
+    }
+
+    //todo:
+    public CodeAttribute getCodeAttribute() {
+        return null;
     }
 }

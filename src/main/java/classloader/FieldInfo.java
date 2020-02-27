@@ -28,4 +28,19 @@ public class FieldInfo {
             this.attributes[i] = attributeBuilder.get();
         }
     }
+
+    //todo:
+    public short getAccessFlags() {
+        return 0;
+    }
+
+    //todo:
+    public String getName() {
+        return null;
+    }
+
+    //todo:
+    public String getDescriptor() {
+        return null;
+    }
 }

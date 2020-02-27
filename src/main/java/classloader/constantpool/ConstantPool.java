@@ -39,5 +39,8 @@ public class ConstantPool {
         return info;
     }
 
+    public ConstantPoolInfo[] getInfos() {
+        return infos;
+    }
 
 }

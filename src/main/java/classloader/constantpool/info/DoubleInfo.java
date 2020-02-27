@@ -1,5 +1,9 @@
 package classloader.constantpool.info;
 
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.nio.ByteBuffer;
+
 /**
  * Description:
  *
@@ -24,5 +28,11 @@ public class DoubleInfo extends ConstantPoolInfo {
     @Override
     public int getEntryLength() {
         return 2;
+    }
+
+    //todo:
+    public Double getValue() {
+        byte[] bytes = ArrayUtils.addAll(highBytes, lowBytes);
+        return ByteBuffer.wrap(bytes).getDouble();
     }
 }
