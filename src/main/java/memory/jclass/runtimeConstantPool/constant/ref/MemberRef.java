@@ -1,9 +1,9 @@
-package memory.runtimeConstantPool.constant.ref;
+package memory.jclass.runtimeConstantPool.constant.ref;
 
 import classloader.constantpool.info.MemberRefInfo;
 import com.sun.tools.javac.util.Pair;
 import lombok.Data;
-import memory.runtimeConstantPool.RuntimeConstantPool;
+import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 
 @Data
 public abstract class MemberRef extends SymRef {

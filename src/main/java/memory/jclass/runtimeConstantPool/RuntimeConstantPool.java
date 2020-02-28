@@ -1,10 +1,13 @@
-package memory.runtimeConstantPool;
+package memory.jclass.runtimeConstantPool;
 
 import classloader.constantpool.ConstantPool;
 import classloader.constantpool.info.*;
 import memory.jclass.JClass;
-import memory.runtimeConstantPool.constant.Constant;
-import memory.runtimeConstantPool.constant.wrapper.*;
+import memory.jclass.runtimeConstantPool.constant.Constant;
+import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
 
 import static classloader.constantpool.info.ConstantPoolInfo.*;
 

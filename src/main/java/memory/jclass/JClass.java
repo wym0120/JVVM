@@ -1,12 +1,16 @@
 package memory.jclass;
 
 import classloader.ClassFile;
+import classloader.ClassLoader;
 import classloader.FieldInfo;
 import classloader.MethodInfo;
 import classloader.constantpool.ConstantPool;
-import memory.runtimeConstantPool.RuntimeConstantPool;
+import classpath.EntryType;
+import lombok.Data;
+import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import runtime.Vars;
 
+@Data
 public class JClass {
     private short accessFlags;
     private String name;
@@ -15,14 +19,15 @@ public class JClass {
     private RuntimeConstantPool runtimeConstantPool;
     private Field[] fields;
     private Method[] methods;
-    private ClassLoader classLoader;
+    //    private ClassLoader classLoader;
+    private EntryType loadEntryType;
     private JClass superClass;
     private JClass[] interfaces;
     private int instanceSlotCount;
     private int staticSlotCount;
     private Vars staticVars;
 
-    public JClass(ClassFile classFile){
+    public JClass(ClassFile classFile) {
         this.accessFlags = classFile.getAccessFlags();
         this.name = classFile.getClassName();
         this.superClassName = classFile.getSuperClassName();
@@ -47,16 +52,16 @@ public class JClass {
         return fields;
     }
 
-    private Method[] parseMethods(MethodInfo[] info){
+    private Method[] parseMethods(MethodInfo[] info) {
         int len = info.length;
         methods = new Method[len];
-        for(int i = 0;i<len;i++){
-            methods[i] = new Method(info[i],this);
+        for (int i = 0; i < len; i++) {
+            methods[i] = new Method(info[i], this);
         }
         return methods;
     }
 
     private RuntimeConstantPool parseRuntimeConstantPool(ConstantPool cp){
-        return null;
+        return new RuntimeConstantPool(cp, this);
     }
 }

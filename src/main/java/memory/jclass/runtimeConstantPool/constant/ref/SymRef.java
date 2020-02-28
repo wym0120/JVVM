@@ -1,9 +1,9 @@
-package memory.runtimeConstantPool.constant.ref;
+package memory.jclass.runtimeConstantPool.constant.ref;
 
 import lombok.Data;
 import memory.jclass.JClass;
-import memory.runtimeConstantPool.RuntimeConstantPool;
-import memory.runtimeConstantPool.constant.Constant;
+import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
+import memory.jclass.runtimeConstantPool.constant.Constant;
 
 @Data
 public abstract class SymRef implements Constant {

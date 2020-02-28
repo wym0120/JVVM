@@ -1,7 +1,7 @@
-package memory.runtimeConstantPool.constant.wrapper;
+package memory.jclass.runtimeConstantPool.constant.wrapper;
 
 import lombok.Data;
-import memory.runtimeConstantPool.constant.Constant;
+import memory.jclass.runtimeConstantPool.constant.Constant;
 
 @Data
 public class IntWrapper implements Constant {

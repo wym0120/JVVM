@@ -43,7 +43,7 @@ public class CommandLineUtil {
     }
 
     private static void setExtEntry(String classPath){
-        ClassFileReader.setExtClasspath(classPath);
+        ClassFileReader.setBootAndExtClasspath(classPath);
 
     }
 
@@ -51,22 +51,27 @@ public class CommandLineUtil {
         ClassFileReader.setUserClasspath(classPath);
     }
 
-    public static String[] readArgs(){
+    public static String[] readArgs() {
         String[] ret = new String[0];
-        if (commandLine.getArgs().length>0){
+        if (commandLine.getArgs().length > 0) {
             ret = commandLine.getArgs();
         }
         return ret;
     }
 
-    public static void handleOptions(){
-        if(commandLine.hasOption("h")||commandLine.hasOption("help"))printHelpMessage();
-        if(commandLine.hasOption("v")||commandLine.hasOption("version"))printVersion();
-        if(commandLine.hasOption("cp")||commandLine.hasOption("classpath")) setUserEntry(commandLine.getOptionValue("cp"));
-        if(commandLine.hasOption("Xjre"))setExtEntry(commandLine.getOptionValue("Xjre"));
+    public static void handleOptions() {
+        if (commandLine.hasOption("h") || commandLine.hasOption("help")) printHelpMessage();
+        if (commandLine.hasOption("v") || commandLine.hasOption("version")) printVersion();
+        if (commandLine.hasOption("cp") || commandLine.hasOption("classpath"))
+            setUserEntry(commandLine.getOptionValue("cp"));
+        if (commandLine.hasOption("Xjre")) setExtEntry(commandLine.getOptionValue("Xjre"));
+
+        //todo:set the append path to find classes in java JDK
+        if (commandLine.hasOption("Xbootclasspath/a")) ;
+
         //todo:设置初始堆栈的最大最小
-        if(commandLine.hasOption("Xms"));
-        if(commandLine.hasOption("Xmx"));
+        if (commandLine.hasOption("Xms")) ;
+        if (commandLine.hasOption("Xmx")) ;
     }
 
 

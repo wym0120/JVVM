@@ -1,9 +1,9 @@
-package memory.runtimeConstantPool.constant.ref;
+package memory.jclass.runtimeConstantPool.constant.ref;
 
 import classloader.constantpool.info.MethodrefInfo;
 import lombok.Data;
 import memory.jclass.Method;
-import memory.runtimeConstantPool.RuntimeConstantPool;
+import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 
 @Data
 public class MethodRef extends MemberRef {
