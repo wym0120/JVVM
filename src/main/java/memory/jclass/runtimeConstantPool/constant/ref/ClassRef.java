@@ -1,6 +1,6 @@
 package memory.jclass.runtimeConstantPool.constant.ref;
 
-import classloader.constantpool.info.ClassInfo;
+import classloader.classfileparser.constantpool.info.ClassInfo;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 
 public class ClassRef extends SymRef {

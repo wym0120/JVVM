@@ -1,9 +1,18 @@
 package classloader;
 
-import classpath.EntryType;
+import classloader.classfileparser.ClassFile;
+import classloader.classfilereader.ClassFileReader;
+import classloader.classfilereader.classpath.EntryType;
 import com.sun.tools.javac.util.Pair;
 import memory.MethodArea;
+import memory.jclass.Field;
 import memory.jclass.JClass;
+import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
+import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
+import runtime.Vars;
 
 import java.io.IOException;
 
@@ -28,20 +37,21 @@ public class ClassLoader {
         return classLoader;
     }
 
-
     /**
      * @param className       name of class
      * @param initiatingEntry null value represents load MainClass
      * @throws ClassNotFoundException cnf
      */
-    public void loadClass(String className, EntryType initiatingEntry) throws ClassNotFoundException {
-        if (methodArea.findClass(className) == null) {
+    public JClass loadClass(String className, EntryType initiatingEntry) throws ClassNotFoundException {
+        JClass ret = null;
+        if ((ret = methodArea.findClass(className)) == null) {
             //array and nonarray
-            loadNonArrayClass(className, initiatingEntry);
+            return loadNonArrayClass(className, initiatingEntry);
         }
+        return ret;
     }
 
-    private void loadNonArrayClass(String className, EntryType initiatingEntry) throws ClassNotFoundException {
+    private JClass loadNonArrayClass(String className, EntryType initiatingEntry) throws ClassNotFoundException {
         try {
             Pair<byte[], Integer> res = classFileReader.readClassFile(className, initiatingEntry);
             byte[] data = res.fst;
@@ -50,6 +60,7 @@ public class ClassLoader {
             JClass clazz = defineClass(data, definingEntry);
             //link class
             linkClass(clazz);
+            return clazz;
         } catch (IOException e) {
             e.printStackTrace();
             throw new ClassNotFoundException();
@@ -60,7 +71,7 @@ public class ClassLoader {
 
     }
 
-    private JClass defineClass(byte[] data, EntryType definingEntry) {
+    private JClass defineClass(byte[] data, EntryType definingEntry) throws ClassNotFoundException {
         //todo:create classfile need to handle java.lang.ClassFormatError
         ClassFile classFile = new ClassFile(data);
         JClass clazz = new JClass(classFile);
@@ -71,11 +82,23 @@ public class ClassLoader {
         return clazz;
     }
 
-    private void resolveSuperClass(JClass clazz) {
+    private void resolveSuperClass(JClass clazz) throws ClassNotFoundException {
+        if (clazz.getName().equals("java/lang/Object")) {
+            String superClassName = clazz.getSuperClassName();
+            EntryType initiatingEntry = clazz.getLoadEntryType();
+            clazz.setSuperClass(loadClass(superClassName, initiatingEntry));
+        }
     }
 
-    private void resolveInterfaces(JClass clazz) {
-
+    private void resolveInterfaces(JClass clazz) throws ClassNotFoundException {
+        EntryType initiatingEntry = clazz.getLoadEntryType();
+        String[] interfaceNames = clazz.getInterfaceNames();
+        int interfaceCount = interfaceNames.length;
+        JClass[] interfaces = new JClass[interfaceCount];
+        clazz.setInterfaces(interfaces);
+        for (int i = 0; i < interfaceCount; i++) {
+            interfaces[i] = loadClass(interfaceNames[i], initiatingEntry);
+        }
     }
 
     private void linkClass(JClass clazz) {
@@ -91,6 +114,79 @@ public class ClassLoader {
     }
 
     private void prepare(JClass clazz) {
+        calInstanceFieldSlotIDs(clazz);
+        calStaticFieldSlotIDs(clazz);
+        allocAndInitStaticVars(clazz);
+    }
 
+    private void calInstanceFieldSlotIDs(JClass clazz) {
+        int slotID = 0;
+        if (clazz.getSuperClass() != null) {
+            slotID = clazz.getSuperClass().getInstanceSlotCount();
+        }
+        Field[] fields = clazz.getFields();
+        for (Field f : fields) {
+            if (!f.isStatic()) {
+                f.setSlotID(slotID);
+                slotID++;
+                if (f.isLongOrDouble()) slotID++;
+            }
+        }
+        clazz.setInstanceSlotCount(slotID);
+    }
+
+    private void calStaticFieldSlotIDs(JClass clazz) {
+        int slotID = 0;
+        Field[] fields = clazz.getFields();
+        for (Field f : fields) {
+            if (f.isStatic()) {
+                f.setSlotID(slotID);
+                slotID++;
+                if (f.isLongOrDouble()) slotID++;
+            }
+        }
+        clazz.setStaticSlotCount(slotID);
+    }
+
+    private void allocAndInitStaticVars(JClass clazz) {
+        clazz.setStaticVars(new Vars(clazz.getStaticSlotCount()));
+        Field[] fields = clazz.getFields();
+        for (Field f : fields) {
+            if (f.isStatic() && f.isFinal()) {
+                //load const value from runtimeConstantPool for base type or String
+                Vars staticVars = clazz.getStaticVars();
+                RuntimeConstantPool runtimeConstantPool = clazz.getRuntimeConstantPool();
+                int constantPoolIndex = f.getConstValueIndex();
+                int slotID = f.getSlotID();
+                if (constantPoolIndex > 0) {
+                    switch (f.getDescriptor()) {
+                        case "Z":
+                        case "B":
+                        case "C":
+                        case "S":
+                        case "I":
+                            int intVal = ((IntWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
+                            staticVars.setInt(slotID, intVal);
+                            break;
+                        case "J":
+                            long longVal = ((LongWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
+                            staticVars.setLong(slotID, longVal);
+                            break;
+                        case "D":
+                            double doubleVal = ((DoubleWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
+                            staticVars.setDouble(slotID, doubleVal);
+                            break;
+                        case "F":
+                            float floatVal = ((FloatWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
+                            staticVars.setFloat(slotID, floatVal);
+                            break;
+                        case "Ljava/lang/String;":
+                            //todo:
+                            break;
+
+                    }
+                }
+            }
+        }
     }
 }

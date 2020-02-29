@@ -1,22 +1,20 @@
 package memory.jclass;
 
-import classloader.FieldInfo;
+import classloader.classfileparser.FieldInfo;
+import lombok.Data;
 
-public class Field {
-    private short accessFlags;
-    private String name;
-    private String descriptor;
-    private JClass clazz;
+@Data
+public class Field extends ClassMember {
+    private int slotID;
+    private int constValueIndex;
 
     public Field(FieldInfo info, JClass clazz) {
         this.clazz = clazz;
         accessFlags = info.getAccessFlags();
         name = info.getName();
         descriptor = info.getDescriptor();
-
-    }
-
-    public boolean isPublic() {
-        return 0 != (this.accessFlags & AccessFlags.ACC_PUBLIC);
+        if (info.getConstantValueAttr() != null) {
+            constValueIndex = info.getConstantValueAttr().getConstantValueIndex();
+        }
     }
 }

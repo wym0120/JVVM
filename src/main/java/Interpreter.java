@@ -1,4 +1,4 @@
-import classloader.attribute.CodeAttribute;
+import classloader.classfileparser.attribute.CodeAttribute;
 import runtime.JThread;
 import runtime.StackFrame;
 

@@ -1,13 +1,11 @@
 package memory.jclass;
 
-import classloader.MethodInfo;
-import classloader.attribute.CodeAttribute;
+import classloader.classfileparser.MethodInfo;
+import classloader.classfileparser.attribute.CodeAttribute;
+import lombok.Data;
 
-public class Method {
-    private short accessFlags;
-    private String name;
-    private String descriptor;
-    private JClass clazz;
+@Data
+public class Method extends ClassMember {
     private int maxStack;
     private int maxLocal;
     private byte[] code;
@@ -24,7 +22,4 @@ public class Method {
         code = codeAttribute.getCode();
     }
 
-    public boolean isPublic() {
-        return 0 != (this.accessFlags & AccessFlags.ACC_PUBLIC);
-    }
 }

@@ -1,7 +1,8 @@
 package memory.jclass.runtimeConstantPool;
 
-import classloader.constantpool.ConstantPool;
-import classloader.constantpool.info.*;
+import classloader.classfileparser.constantpool.ConstantPool;
+import classloader.classfileparser.constantpool.info.*;
+import lombok.Data;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.constant.Constant;
 import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
@@ -9,8 +10,9 @@ import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
 
-import static classloader.constantpool.info.ConstantPoolInfo.*;
+import static classloader.classfileparser.constantpool.info.ConstantPoolInfo.*;
 
+@Data
 public class RuntimeConstantPool {
     private JClass clazz;
     private Constant[] constants;

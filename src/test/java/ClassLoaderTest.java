@@ -1,9 +1,3 @@
-import classloader.ClassLoader;
-import org.junit.Test;
-
-import java.io.*;
-import java.util.Scanner;
-
 /**
  * Description:
  * Test for class loader

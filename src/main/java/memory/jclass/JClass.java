@@ -1,11 +1,10 @@
 package memory.jclass;
 
-import classloader.ClassFile;
-import classloader.ClassLoader;
-import classloader.FieldInfo;
-import classloader.MethodInfo;
-import classloader.constantpool.ConstantPool;
-import classpath.EntryType;
+import classloader.classfileparser.ClassFile;
+import classloader.classfileparser.FieldInfo;
+import classloader.classfileparser.MethodInfo;
+import classloader.classfileparser.constantpool.ConstantPool;
+import classloader.classfilereader.classpath.EntryType;
 import lombok.Data;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import runtime.Vars;
@@ -61,7 +60,19 @@ public class JClass {
         return methods;
     }
 
-    private RuntimeConstantPool parseRuntimeConstantPool(ConstantPool cp){
+    private RuntimeConstantPool parseRuntimeConstantPool(ConstantPool cp) {
         return new RuntimeConstantPool(cp, this);
+    }
+
+    public boolean isAccessibleTo(JClass caller) {
+        boolean isPublic = isPublic();
+        boolean inSamePackage = this.getPackageName().equals(caller.getPackageName());
+        return isPublic || inSamePackage;
+    }
+
+    public String getPackageName() {
+        int index = name.lastIndexOf('/');
+        if (index >= 0) return name.substring(0, index);
+        else return "";
     }
 }

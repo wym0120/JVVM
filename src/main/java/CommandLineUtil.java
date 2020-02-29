@@ -1,4 +1,4 @@
-import classloader.ClassFileReader;
+import classloader.classfilereader.ClassFileReader;
 import org.apache.commons.cli.*;
 
 /**
@@ -8,20 +8,21 @@ public class CommandLineUtil {
     private static CommandLine commandLine;
     private static CommandLineParser parser = new DefaultParser();
     private static Options options = new Options();
-    public static void initCommandLine(String args[]){
-        options.addOption("h","help",false,"Print help message");
-        options.addOption("cp","classpath",true,"Specify the user classpath");
-        options.addOption("v","version",false,"Print version and exit");
+
+    public static void initCommandLine(String args[]) {
+        options.addOption("h", "help", false, "Print help message");
+        options.addOption("cp", "classloader/classfilereader/classpath", true, "Specify the user classloader.classfilereader.classpath");
+        options.addOption("v", "version", false, "Print version and exit");
         //todo:留作作业中的扩展
-        //options.addOption("Xbootclasspath",true,"Specify boot classpath");
-        options.addOption("Xjre",true,"Specify extended classpath");
+        //options.addOption("Xbootclasspath",true,"Specify boot classloader.classfilereader.classpath");
+        options.addOption("Xjre", true, "Specify extended classloader.classfilereader.classpath");
 
         //初始化commandline
         try {
-            commandLine = parser.parse(options,args);
+            commandLine = parser.parse(options, args);
         } catch (ParseException e) {
             e.printStackTrace();
-            System.out.println("Unexpected exception"+e.getMessage());
+            System.out.println("Unexpected exception" + e.getMessage());
         }
 
 
@@ -62,7 +63,7 @@ public class CommandLineUtil {
     public static void handleOptions() {
         if (commandLine.hasOption("h") || commandLine.hasOption("help")) printHelpMessage();
         if (commandLine.hasOption("v") || commandLine.hasOption("version")) printVersion();
-        if (commandLine.hasOption("cp") || commandLine.hasOption("classpath"))
+        if (commandLine.hasOption("cp") || commandLine.hasOption("classloader/classfilereader/classpath"))
             setUserEntry(commandLine.getOptionValue("cp"));
         if (commandLine.hasOption("Xjre")) setExtEntry(commandLine.getOptionValue("Xjre"));
 
