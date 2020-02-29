@@ -1,6 +1,7 @@
 package runtime;
 
 import lombok.Data;
+import memory.jclass.Method;
 
 @Data
 public class StackFrame {
@@ -9,9 +10,11 @@ public class StackFrame {
     private StackFrame lower;
     private JThread thread;
     private int nextPC;
+    private Method method;
 
-    public StackFrame(JThread thread,int maxStackSize, int maxVarSize){
+    public StackFrame(JThread thread, Method method, int maxStackSize, int maxVarSize) {
         this.thread = thread;
+        this.method = method;
         operandStack = new OperandStack(maxStackSize);
         localVars = new Vars(maxVarSize);
     }

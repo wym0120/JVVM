@@ -14,7 +14,14 @@ public class FieldRef extends MemberRef {
         super(runtimeConstantPool, fieldrefInfo);
     }
 
-    public void resolveFieldRef() throws ClassNotFoundException {
+    public Field getResolvedFieldRef() throws ClassNotFoundException {
+        if (field == null) {
+            resolveFieldRef();
+        }
+        return field;
+    }
+
+    private void resolveFieldRef() throws ClassNotFoundException {
         JClass D = runtimeConstantPool.getClazz();
         resolveClassRef();
         field = lookUpField(name, descriptor, clazz);

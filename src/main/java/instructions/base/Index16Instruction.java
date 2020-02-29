@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
  * Instructions get operands from runtime constant pool
  */
 public abstract class Index16Instruction extends Instruction{
-    int index; //short value needs to be cast to unsigned int
+    public int index; //short value needs to be cast to unsigned int
 
     public void fetchOperands(ByteBuffer reader){
         index = (int) reader.getShort() & 0xFFFF;

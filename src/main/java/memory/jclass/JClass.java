@@ -5,9 +5,11 @@ import classloader.classfileparser.FieldInfo;
 import classloader.classfileparser.MethodInfo;
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfilereader.classpath.EntryType;
+import com.sun.crypto.provider.JceKeyStore;
 import lombok.Data;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import runtime.Vars;
+import runtime.struct.JObject;
 
 @Data
 public class JClass {
@@ -18,7 +20,6 @@ public class JClass {
     private RuntimeConstantPool runtimeConstantPool;
     private Field[] fields;
     private Method[] methods;
-    //    private ClassLoader classLoader;
     private EntryType loadEntryType;
     private JClass superClass;
     private JClass[] interfaces;
@@ -40,6 +41,14 @@ public class JClass {
 
     public boolean isPublic() {
         return 0 != (this.accessFlags & AccessFlags.ACC_PUBLIC);
+    }
+
+    public boolean isInterface() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_INTERFACE);
+    }
+
+    public boolean isAbstract() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_ABSTRACT);
     }
 
     private Field[] parseFields(FieldInfo[] info) {
@@ -74,5 +83,49 @@ public class JClass {
         int index = name.lastIndexOf('/');
         if (index >= 0) return name.substring(0, index);
         else return "";
+    }
+
+    public JObject newObject() {
+        return new JObject(this);
+    }
+
+    public boolean isAssignableFrom(JClass other) {
+        //todo:complete this func after implement array object!!!!!
+        JClass s = other;
+        JClass t = this;
+        if (s == t) return true;
+        if (!t.isInterface()) {
+            return s.isSubClassOf(t);
+        } else {
+            return s.isImplementOf(t);
+        }
+    }
+
+    private boolean isSubClassOf(JClass otherClass) {
+        JClass superClass = this.getSuperClass();
+        while (superClass != null) {
+            if (superClass == otherClass) return true;
+            superClass = superClass.getSuperClass();
+        }
+        return false;
+    }
+
+    private boolean isImplementOf(JClass otherInterface) {
+        JClass superClass = this;
+        while (superClass != null) {
+            for (JClass i : this.getInterfaces()) {
+                if (i == otherInterface || i.isSubInterfaceOf(otherInterface)) return true;
+            }
+            superClass = this.getSuperClass();
+        }
+        return false;
+    }
+
+    private boolean isSubInterfaceOf(JClass otherInterface) {
+        JClass[] superInterfaces = this.getInterfaces();
+        for (JClass i : superInterfaces) {
+            if (i == otherInterface || i.isSubInterfaceOf(otherInterface)) return true;
+        }
+        return false;
     }
 }
