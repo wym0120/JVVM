@@ -7,6 +7,6 @@ import runtime.struct.JObject;
 public class ACONST_NULL extends NoOperandsInstruction {
     @Override
     public void execute(StackFrame frame) {
-        frame.getOperandStack().pushObjectRef(new JObject(true));
+        frame.getOperandStack().pushObjectRef(new JObject(null, true));
     }
 }
