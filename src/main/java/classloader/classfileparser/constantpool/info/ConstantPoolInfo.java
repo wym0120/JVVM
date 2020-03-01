@@ -1,6 +1,7 @@
 package classloader.classfileparser.constantpool.info;
 
 import classloader.classfileparser.BuildUtil;
+import classloader.classfileparser.constantpool.ConstantPool;
 import com.sun.tools.javac.util.Pair;
 
 import java.nio.ByteBuffer;
@@ -27,13 +28,17 @@ public class ConstantPoolInfo {
     public static final byte METHOD_TYPE = 16;
     public static final byte INVOKE_DYNAMIC = 18;
     protected byte tag;
+    protected ConstantPool myCP;
 
+    public ConstantPoolInfo(ConstantPool myCP) {
+        this.myCP = myCP;
+    }
 
     /**
      * return the constant pool info instance and
      * the number of bytes read by this method
      */
-    public static Pair<ConstantPoolInfo, Integer> getConstantPoolInfo(byte[] classfile, int ofs) {
+    public static Pair<ConstantPoolInfo, Integer> getConstantPoolInfo(ConstantPool constantPool, byte[] classfile, int ofs) {
         ByteBuffer buffer = ByteBuffer.wrap(classfile, ofs, classfile.length - ofs);
         BuildUtil in = new BuildUtil(buffer);
         ConstantPoolInfo ret;
@@ -41,81 +46,80 @@ public class ConstantPoolInfo {
         int bytesRead = 1;
         switch (tag) {
             case CLASS:
-                ret = new ClassInfo(in.getU2());
+                ret = new ClassInfo(constantPool, in.getU2());
                 bytesRead += 2;
                 break;
             case FIELD_REF: {
-                ret = new FieldrefInfo(in.getU2(), in.getU2());
+                ret = new FieldrefInfo(constantPool, in.getU2(), in.getU2());
                 bytesRead += 4;
                 break;
             }
             case METHOD_REF: {
-                ret = new MethodrefInfo(in.getU2(), in.getU2());
+                ret = new MethodrefInfo(constantPool, in.getU2(), in.getU2());
                 bytesRead += 4;
                 break;
             }
-            case INTERFACE_METHOD_REF:
-            {
-                ret = new InterfaceMethodrefInfo(in.getU2(), in.getU2());
+            case INTERFACE_METHOD_REF: {
+                ret = new InterfaceMethodrefInfo(constantPool, in.getU2(), in.getU2());
                 bytesRead += 4;
                 break;
             }
-            case STRING:{
-                ret = new StringInfo(in.getU2());
+            case STRING: {
+                ret = new StringInfo(constantPool, in.getU2());
                 bytesRead += 2;
                 break;
             }
 
-            case INTEGER:{
-                ret = new IntegerInfo(read4Bytes(in));
+            case INTEGER: {
+                ret = new IntegerInfo(constantPool, read4Bytes(in));
                 bytesRead += 4;
                 break;
             }
 
-            case FLOAT:{
-                ret = new FloatInfo(read4Bytes(in));
+            case FLOAT: {
+                ret = new FloatInfo(constantPool, read4Bytes(in));
                 bytesRead += 4;
                 break;
             }
 
-            case LONG:{
-                ret = new LongInfo(read4Bytes(in), read4Bytes(in));
+            case LONG: {
+                ret = new LongInfo(constantPool, read4Bytes(in), read4Bytes(in));
                 bytesRead += 8;
                 break;
             }
 
-            case DOUBLE:{
-                ret = new DoubleInfo(read4Bytes(in), read4Bytes(in));
+            case DOUBLE: {
+                ret = new DoubleInfo(constantPool, read4Bytes(in), read4Bytes(in));
                 bytesRead += 8;
                 break;
             }
-            case NAME_AND_TYPE:{
-                ret = new NameAndTypeInfo(in.getU2(), in.getU2());
+            case NAME_AND_TYPE: {
+                ret = new NameAndTypeInfo(constantPool, in.getU2(), in.getU2());
                 bytesRead += 4;
                 break;
             }
 
-            case UTF8:{
-                Pair<UTF8Info, Integer> utf8InfoIntegerPair = UTF8Info.getInstance(classfile, in.getByteBuffer().position());
+            case UTF8: {
+                Pair<UTF8Info, Integer> utf8InfoIntegerPair = UTF8Info.getInstance(constantPool, classfile, in.getByteBuffer().position());
                 ret = utf8InfoIntegerPair.fst;
                 bytesRead += utf8InfoIntegerPair.snd;
                 break;
             }
 
-            case METHOD_HANDLE:{
-                ret = new MethodHandleInfo(in.getU1(), in.getU2());
+            case METHOD_HANDLE: {
+                ret = new MethodHandleInfo(constantPool, in.getU1(), in.getU2());
                 bytesRead += 3;
                 break;
             }
 
-            case METHOD_TYPE:{
-                ret = new MethodTypeInfo(in.getU2());
+            case METHOD_TYPE: {
+                ret = new MethodTypeInfo(constantPool, in.getU2());
                 bytesRead += 2;
                 break;
             }
 
-            case INVOKE_DYNAMIC:{
-                ret = new InvokeDynamicInfo(in.getU2(), in.getU2());
+            case INVOKE_DYNAMIC: {
+                ret = new InvokeDynamicInfo(constantPool, in.getU2(), in.getU2());
                 bytesRead += 4;
                 break;
             }
@@ -134,7 +138,7 @@ public class ConstantPoolInfo {
         return new byte[]{b1, b2, b3, b4};
     }
 
-    public int getEntryLength(){
+    public int getEntryLength() {
         return 1;
     }
 

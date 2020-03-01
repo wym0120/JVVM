@@ -1,5 +1,6 @@
 package classloader.classfileparser.constantpool.info;
 
+import classloader.classfileparser.constantpool.ConstantPool;
 import com.sun.tools.javac.util.Pair;
 
 /**
@@ -12,19 +13,19 @@ public class InterfaceMethodrefInfo extends MemberRefInfo {
     private int classIndex;
     private int nameAndTypeIndex;
 
-    public InterfaceMethodrefInfo(int classIndex, int nameAndTypeIndex) {
+    public InterfaceMethodrefInfo(ConstantPool constantPool, int classIndex, int nameAndTypeIndex) {
+        super(constantPool);
         this.classIndex = classIndex;
         this.nameAndTypeIndex = nameAndTypeIndex;
         super.tag = ConstantPoolInfo.INTERFACE_METHOD_REF;
     }
 
-    //todo
     public String getClassName() {
-        return null;
+        return getClassName(classIndex);
     }
 
-    //todo
+
     public Pair<String, String> getNameAndDescriptor() {
-        return null;
+        return ((NameAndTypeInfo) myCP.get(nameAndTypeIndex)).getNameAndDescriptor();
     }
 }

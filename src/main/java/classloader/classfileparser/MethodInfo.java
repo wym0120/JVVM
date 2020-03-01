@@ -2,6 +2,8 @@ package classloader.classfileparser;
 
 import classloader.classfileparser.attribute.AttributeInfo;
 import classloader.classfileparser.attribute.CodeAttribute;
+import classloader.classfileparser.constantpool.ConstantPool;
+import classloader.classfileparser.constantpool.info.UTF8Info;
 
 import java.nio.ByteBuffer;
 import java.util.function.Supplier;
@@ -15,11 +17,13 @@ import java.util.function.Supplier;
 public class MethodInfo {
     private int accessFlags;
     private int nameIndex;
+    private String name;
     private int descriptorIndex;
+    private String descriptor;
     private int attributesCount;
     private AttributeInfo[] attributes;
 
-    public MethodInfo(Supplier<AttributeInfo> attributeBuilder, ByteBuffer in) {
+    public MethodInfo(ConstantPool constantPool, Supplier<AttributeInfo> attributeBuilder, ByteBuffer in) {
         BuildUtil info = new BuildUtil(in);
         accessFlags = info.getU2();
         nameIndex = info.getU2();
@@ -29,26 +33,27 @@ public class MethodInfo {
         for (int i = 0; i < attributes.length; i++) {
             attributes[i] = attributeBuilder.get();
         }
-
-
+        this.name = ((UTF8Info) constantPool.get(this.nameIndex)).getString();
+        this.descriptor = ((UTF8Info) constantPool.get(this.descriptorIndex)).getString();
     }
 
-    //todo:
+
     public short getAccessFlags() {
-        return 0;
+        return (short) (accessFlags & 0xFFFF);
     }
 
-    //todo:
+
     public String getName() {
-        return null;
+        return name;
     }
 
-    //todo:
+
     public String getDescriptor() {
-        return null;
+        return descriptor;
     }
 
     //todo:
+    //XXX: 这是啥玩意儿？
     public CodeAttribute getCodeAttribute() {
         return null;
     }

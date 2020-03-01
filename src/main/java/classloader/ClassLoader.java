@@ -72,6 +72,7 @@ public class ClassLoader {
     }
 
     private JClass defineClass(byte[] data, EntryType definingEntry) throws ClassNotFoundException {
+        //XXX: 这是啥玩意儿？
         //todo:create classfile need to handle java.lang.ClassFormatError
         ClassFile classFile = new ClassFile(data);
         JClass clazz = new JClass(classFile);

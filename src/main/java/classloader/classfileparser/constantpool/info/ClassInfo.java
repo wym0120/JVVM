@@ -1,5 +1,9 @@
 package classloader.classfileparser.constantpool.info;
 
+import classloader.classfileparser.constantpool.ConstantPool;
+
+import java.util.Optional;
+
 /**
  * Description:
  *
@@ -9,13 +13,20 @@ package classloader.classfileparser.constantpool.info;
 public class ClassInfo extends ConstantPoolInfo {
     private int nameIndex;
 
-    public ClassInfo(int nameIndex) {
+    public ClassInfo(ConstantPool constantPool, int nameIndex) {
+        super(constantPool);
         this.nameIndex = nameIndex;
         super.tag = ConstantPoolInfo.CLASS;
     }
 
-    //todo:
+
     public String getClassName() {
-        return null;
+        return ((UTF8Info) myCP.get(nameIndex)).getString();
+
+    }
+
+    @Override
+    public String toString() {
+        return getClassName();
     }
 }

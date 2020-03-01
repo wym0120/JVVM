@@ -71,7 +71,7 @@ public class ClassFile {
         this.methodsCount = in.getShort();
         this.methods = new MethodInfo[0xFFFF & this.methodsCount];
         for (int i = 0; i < this.methods.length; i++) {
-            this.methods[i] = new MethodInfo(this.attrBuilder, in);
+            this.methods[i] = new MethodInfo(this.constantPool,this.attrBuilder, in);
         }
     }
 
@@ -79,7 +79,7 @@ public class ClassFile {
         this.fieldsCount = in.getShort();
         this.fields = new FieldInfo[0xFFFF & this.fieldsCount];
         for (int i = 0; i < this.fields.length; i++) {
-            this.fields[i] = new FieldInfo(this.attrBuilder, in);
+            this.fields[i] = new FieldInfo(this.constantPool,this.attrBuilder, in);
         }
     }
 

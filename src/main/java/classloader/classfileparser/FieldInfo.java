@@ -2,6 +2,8 @@ package classloader.classfileparser;
 
 import classloader.classfileparser.attribute.AttributeInfo;
 import classloader.classfileparser.attribute.ConstantValueAttr;
+import classloader.classfileparser.constantpool.ConstantPool;
+import classloader.classfileparser.constantpool.info.UTF8Info;
 
 import java.nio.ByteBuffer;
 import java.util.function.Supplier;
@@ -15,11 +17,13 @@ import java.util.function.Supplier;
 public class FieldInfo {
     private short accessFlags;
     private short nameIndex;
+    private String name;
     private short descriptorIndex;
+    private String descriptor;
     private short attributesCount;
     private AttributeInfo[] attributes;
 
-    public FieldInfo(Supplier<AttributeInfo> attributeBuilder, ByteBuffer in) {
+    public FieldInfo(ConstantPool constantPool, Supplier<AttributeInfo> attributeBuilder, ByteBuffer in) {
         this.accessFlags = in.getShort();
         this.nameIndex = in.getShort();
         this.descriptorIndex = in.getShort();
@@ -28,24 +32,28 @@ public class FieldInfo {
         for (int i = 0; i < attributesCount; i++) {
             this.attributes[i] = attributeBuilder.get();
         }
+        this.name = ((UTF8Info) constantPool.get(this.nameIndex)).getString();
+        this.descriptor = ((UTF8Info) constantPool.get(this.descriptorIndex)).getString();
+
     }
 
-    //todo:
+
     public short getAccessFlags() {
-        return 0;
+        return accessFlags;
     }
 
-    //todo:
+
     public String getName() {
-        return null;
+        return name;
     }
 
-    //todo:
+
     public String getDescriptor() {
-        return null;
+        return descriptor;
     }
 
     //todo:
+    //XXX: 这是个啥玩意儿？？
     public ConstantValueAttr getConstantValueAttr() {
         return null;
     }

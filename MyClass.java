@@ -1,7 +1,10 @@
 
 
+interface foo{
 
-public class MyClass {
+}
+
+public class MyClass implements foo {
     public static final int i = 3;
     static long l = 3l;
     static final long fl = l;

@@ -1,5 +1,6 @@
 package classloader.classfileparser.constantpool.info;
 
+import classloader.classfileparser.constantpool.ConstantPool;
 import com.sun.tools.javac.util.Pair;
 
 import java.nio.ByteBuffer;
@@ -15,7 +16,8 @@ public class UTF8Info extends ConstantPoolInfo {
     private byte[] bytes;
     private String myString;
 
-    public UTF8Info(int length, byte[] bytes) {
+    public UTF8Info(ConstantPool constantPool, int length, byte[] bytes) {
+        super(constantPool);
         this.length = length;
         this.bytes = bytes;
         if (bytes.length != length) {
@@ -26,14 +28,14 @@ public class UTF8Info extends ConstantPoolInfo {
         super.tag = ConstantPoolInfo.UTF8;
     }
 
-    static Pair<UTF8Info, Integer> getInstance(byte[] in, int offset) {
+    static Pair<UTF8Info, Integer> getInstance(ConstantPool constantPool, byte[] in, int offset) {
         ByteBuffer buffer = ByteBuffer.wrap(in, offset, in.length - offset);
         int length = 0xFFFF & (int) buffer.getShort();
         byte[] bytes = new byte[length];
         for (int i = 0; i < length; i++) {
             bytes[i] = buffer.get();
         }
-        return Pair.of(new UTF8Info(length, bytes), 2 + length);
+        return Pair.of(new UTF8Info(constantPool, length, bytes), 2 + length);
     }
 
     public String getString() {

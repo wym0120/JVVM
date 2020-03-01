@@ -1,5 +1,7 @@
 package classloader.classfileparser.constantpool.info;
 
+import classloader.classfileparser.constantpool.ConstantPool;
+
 /**
  * Description:
  *
@@ -10,7 +12,8 @@ public class MethodHandleInfo extends ConstantPoolInfo{
     private int referenceKind;
     private int referenceIndex;
 
-    public MethodHandleInfo(int referenceKind, int referenceIndex) {
+    public MethodHandleInfo(ConstantPool constantPool, int referenceKind, int referenceIndex) {
+        super(constantPool);
         this.referenceKind = referenceKind;
         this.referenceIndex = referenceIndex;
         super.tag = ConstantPoolInfo.METHOD_HANDLE;

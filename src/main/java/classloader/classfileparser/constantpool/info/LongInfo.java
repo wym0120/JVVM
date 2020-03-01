@@ -1,5 +1,6 @@
 package classloader.classfileparser.constantpool.info;
 
+import classloader.classfileparser.constantpool.ConstantPool;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.nio.ByteBuffer;
@@ -13,14 +14,19 @@ import java.nio.ByteBuffer;
 public class LongInfo extends ConstantPoolInfo {
     private byte[] highBytes;
     private byte[] lowBytes;
+    private long value;
 
-    public LongInfo(byte[] highBytes, byte[] lowBytes) {
+    public LongInfo(ConstantPool constantPool, byte[] highBytes, byte[] lowBytes) {
+        super(constantPool);
         this.highBytes = highBytes;
         this.lowBytes = lowBytes;
         if (lowBytes.length != 4 || highBytes.length != 4) {
             throw new UnsupportedOperationException(
                     "Long constantpool info expects 8 bytes, actual is " + lowBytes.length + " " + highBytes.length);
         }
+        this.value = ByteBuffer
+                .wrap(ArrayUtils.addAll(highBytes, lowBytes))
+                .getLong();
         super.tag = ConstantPoolInfo.LONG;
 
     }
@@ -30,9 +36,8 @@ public class LongInfo extends ConstantPoolInfo {
         return 2;
     }
 
-    //todo:
+
     public Long getValue() {
-        byte[] bytes = ArrayUtils.addAll(highBytes, lowBytes);
-        return ByteBuffer.wrap(bytes).getLong();
+        return value;
     }
 }

@@ -1,5 +1,7 @@
 package classloader.classfileparser.constantpool.info;
 
+import classloader.classfileparser.constantpool.ConstantPool;
+
 import java.nio.ByteBuffer;
 
 /**
@@ -10,18 +12,21 @@ import java.nio.ByteBuffer;
  */
 public class IntegerInfo extends ConstantPoolInfo {
     private byte[] bytes;
+    private int value;
 
-    public IntegerInfo(byte[] bytes) {
+    public IntegerInfo(ConstantPool constantPool, byte[] bytes) {
+        super(constantPool);
         this.bytes = bytes;
         if (bytes.length != 4) {
             throw new UnsupportedOperationException(
                     "Integer constantpool info expects 4 bytes, actual is " + bytes.length);
         }
+        this.value = ByteBuffer.wrap(bytes).getInt();
         super.tag = ConstantPoolInfo.INTEGER;
     }
 
-    //todo:
+
     public Integer getValue() {
-        return ByteBuffer.wrap(bytes).getInt();
+        return value;
     }
 }
