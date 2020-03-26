@@ -55,6 +55,7 @@ public class RuntimeConstantPool {
                     break;
 
                 case METHOD_REF:
+                    //TODO add symbolic reference to method here
                     break;
 
                 case INTERFACE_METHOD_REF:
