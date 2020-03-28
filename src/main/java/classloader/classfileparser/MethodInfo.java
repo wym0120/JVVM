@@ -22,6 +22,8 @@ public class MethodInfo {
     private String descriptor;
     private int attributesCount;
     private AttributeInfo[] attributes;
+    private CodeAttribute code;
+
 
     public MethodInfo(ConstantPool constantPool, Supplier<AttributeInfo> attributeBuilder, ByteBuffer in) {
         BuildUtil info = new BuildUtil(in);
@@ -52,9 +54,18 @@ public class MethodInfo {
         return descriptor;
     }
 
-    //todo:
-    //XXX: 这是啥玩意儿？
+
     public CodeAttribute getCodeAttribute() {
-        return null;
+        if (code == null) {
+            for (AttributeInfo attribute : attributes) {
+                if(attribute instanceof CodeAttribute){
+                    code = (CodeAttribute)attribute;
+                    return code;
+                }
+            }
+            throw new UnsupportedOperationException("No code attribute!");
+        }else{
+            return code;
+        }
     }
 }

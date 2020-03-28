@@ -5,11 +5,12 @@ import classloader.classfileparser.FieldInfo;
 import classloader.classfileparser.MethodInfo;
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfilereader.classpath.EntryType;
-import com.sun.crypto.provider.JceKeyStore;
 import lombok.Data;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import runtime.Vars;
 import runtime.struct.JObject;
+
+import java.util.Optional;
 
 @Data
 public class JClass {
@@ -39,6 +40,15 @@ public class JClass {
         methods = parseMethods(classFile.getMethods());
     }
 
+    public Optional<Method> resolveMethod(String name, String descriptor) {
+        for (Method m : methods) {
+            if (m.getDescriptor().equals(descriptor) && m.getName().equals(name)) {
+                return Optional.of(m);
+            }
+        }
+        return Optional.empty();
+    }
+
     public boolean isPublic() {
         return 0 != (this.accessFlags & AccessFlags.ACC_PUBLIC);
     }
@@ -49,6 +59,10 @@ public class JClass {
 
     public boolean isAbstract() {
         return 0 != (this.accessFlags & AccessFlags.ACC_ABSTRACT);
+    }
+
+    public boolean isAccSuper() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_SUPER);
     }
 
     private Field[] parseFields(FieldInfo[] info) {
@@ -128,4 +142,5 @@ public class JClass {
         }
         return false;
     }
+
 }
