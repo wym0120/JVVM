@@ -84,7 +84,7 @@ public class ClassLoader {
     }
 
     private void resolveSuperClass(JClass clazz) throws ClassNotFoundException {
-        if (clazz.getName().equals("java/lang/Object")) {
+        if (!clazz.getName().equals("java/lang/Object")) {
             String superClassName = clazz.getSuperClassName();
             EntryType initiatingEntry = clazz.getLoadEntryType();
             clazz.setSuperClass(loadClass(superClassName, initiatingEntry));
