@@ -1,5 +1,6 @@
 package memory.jclass;
 
+import classloader.ClassLoader;
 import classloader.classfileparser.ClassFile;
 import classloader.classfileparser.FieldInfo;
 import classloader.classfileparser.MethodInfo;
@@ -8,8 +9,11 @@ import classloader.classfilereader.classpath.EntryType;
 import lombok.Data;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import runtime.Vars;
+import runtime.struct.ArrayObject;
 import runtime.struct.NonArrayObject;
+import runtime.struct.array.*;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @Data
@@ -41,10 +45,6 @@ public class JClass {
         methods = parseMethods(classFile.getMethods());
     }
 
-    public NonArrayObject newObject() {
-        return new NonArrayObject(this);
-    }
-
     public Optional<Method> resolveMethod(String name, String descriptor) {
         for (Method m : methods) {
             if (m.getDescriptor().equals(descriptor) && m.getName().equals(name)) {
@@ -74,6 +74,59 @@ public class JClass {
 
     private RuntimeConstantPool parseRuntimeConstantPool(ConstantPool cp) {
         return new RuntimeConstantPool(cp, this);
+    }
+
+    public NonArrayObject newObject() {
+        return new NonArrayObject(this);
+    }
+
+    public ArrayObject newArrayObject(int len){
+        if(this.name.charAt(0)!='[')throw new RuntimeException("This Class is not array: "+this.name);
+        switch (this.name){
+            case "[Z":return new BooleanArrayObject(len);
+            case "[B":return new ByteArrayObject(len);
+            case "[C":return new CharArrayObject(len);
+            case "[S":return new ShortArrayObject(len);
+            case "[I":return new IntArrayObject(len);
+            case "[J":return new LongArrayObject(len);
+            case "[F":return new FloatArrayObject(len);
+            case "[D":return new DoubleArrayObject(len);
+            default:return new RefArrayObject(len);
+        }
+    }
+
+    /**
+     * use for anewarray inst
+     * @return
+     */
+    public JClass getArrayClass(){
+        //get descriptor
+        HashMap<String,String> primitiveType = new HashMap<>();
+        primitiveType.put("void","V");
+        primitiveType.put("boolean","Z");
+        primitiveType.put("byte","B");
+        primitiveType.put("short","S");
+        primitiveType.put("char","C");
+        primitiveType.put("int","I");
+        primitiveType.put("long","J");
+        primitiveType.put("float","F");
+        primitiveType.put("double","D");
+        String arrayClassName;
+        if(this.name.charAt(0) == '['){
+            arrayClassName = this.name;
+        }else if(primitiveType.get(this.name)!=null){
+            arrayClassName = primitiveType.get(this.name);
+        }else{
+            arrayClassName = "L" + this.name + ";";
+        }
+        //generate array class name
+        arrayClassName = "["+arrayClassName;
+        try {
+            return ClassLoader.getInstance().loadClass(arrayClassName,this.loadEntryType);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("Cannot load arrayClass:"+arrayClassName);
     }
 
     public void initStart() {
