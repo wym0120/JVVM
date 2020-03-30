@@ -45,6 +45,11 @@ public class JClass {
         methods = parseMethods(classFile.getMethods());
     }
 
+    //used for new array class!!!
+    public JClass(){
+
+    }
+
     public Optional<Method> resolveMethod(String name, String descriptor) {
         for (Method m : methods) {
             if (m.getDescriptor().equals(descriptor) && m.getName().equals(name)) {
