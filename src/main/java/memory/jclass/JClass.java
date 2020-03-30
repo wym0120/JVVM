@@ -8,7 +8,7 @@ import classloader.classfilereader.classpath.EntryType;
 import lombok.Data;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import runtime.Vars;
-import runtime.struct.JObject;
+import runtime.struct.NonArrayObject;
 
 import java.util.Optional;
 
@@ -41,8 +41,8 @@ public class JClass {
         methods = parseMethods(classFile.getMethods());
     }
 
-    public JObject newObject() {
-        return new JObject(this);
+    public NonArrayObject newObject() {
+        return new NonArrayObject(this);
     }
 
     public Optional<Method> resolveMethod(String name, String descriptor) {

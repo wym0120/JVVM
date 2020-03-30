@@ -8,7 +8,7 @@ import memory.jclass.runtimeConstantPool.constant.ref.FieldRef;
 import runtime.OperandStack;
 import runtime.StackFrame;
 import runtime.Vars;
-import runtime.struct.JObject;
+import runtime.struct.NonArrayObject;
 
 public class GETFIELD extends Index16Instruction {
     @Override
@@ -23,7 +23,7 @@ public class GETFIELD extends Index16Instruction {
                 throw new IncompatibleClassChangeError();
             }
             OperandStack stack = frame.getOperandStack();
-            JObject ref = stack.popObjectRef();
+            NonArrayObject ref = (NonArrayObject) stack.popObjectRef();
             //todo:nullpointerException need to be check whether set JObject isNull field can trigger this exception!!!!!!
             if (ref.isNull()) {
                 throw new NullPointerException();

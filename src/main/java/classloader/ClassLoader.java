@@ -5,6 +5,7 @@ import classloader.classfilereader.ClassFileReader;
 import classloader.classfilereader.classpath.EntryType;
 import com.sun.tools.javac.util.Pair;
 import memory.MethodArea;
+import memory.jclass.AccessFlags;
 import memory.jclass.Field;
 import memory.jclass.InitState;
 import memory.jclass.JClass;
@@ -46,7 +47,9 @@ public class ClassLoader {
     public JClass loadClass(String className, EntryType initiatingEntry) throws ClassNotFoundException {
         JClass ret = null;
         if ((ret = methodArea.findClass(className)) == null) {
-            //array and nonarray
+            if (className.charAt(0) == '[') {
+                return loadArrayClass(className, initiatingEntry);
+            }
             return loadNonArrayClass(className, initiatingEntry);
         }
         return ret;
@@ -68,7 +71,21 @@ public class ClassLoader {
         }
     }
 
-    private void loadArrayClass() {
+    private JClass loadArrayClass(String className, EntryType initiatingEntry) {
+        JClass ret = new JClass();
+        ret.setAccessFlags((short) AccessFlags.ACC_PUBLIC);
+        ret.setName(className);
+        ret.setInitState(InitState.SUCCESS);
+        methodArea.addClass(ret.getName(), ret);
+        try {
+            ret.setSuperClass(loadNonArrayClass("java/lang/Object", initiatingEntry));
+            JClass[] interfaces = {loadNonArrayClass("java/lang/Cloneable", initiatingEntry)
+                    , loadNonArrayClass("java/io/Serializable", initiatingEntry)};
+            ret.setInterfaces(interfaces);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return ret;
 
     }
 

@@ -7,7 +7,6 @@ import memory.jclass.runtimeConstantPool.constant.Constant;
 import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
 import runtime.StackFrame;
 import runtime.Vars;
-import runtime.struct.JObject;
 import runtime.struct.Slot;
 
 /**

@@ -8,8 +8,7 @@ import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import memory.jclass.runtimeConstantPool.constant.ref.FieldRef;
 import runtime.OperandStack;
 import runtime.StackFrame;
-import runtime.Vars;
-import runtime.struct.JObject;
+import runtime.struct.NonArrayObject;
 
 public class PUTFIELD extends Index16Instruction {
     @Override
@@ -33,7 +32,7 @@ public class PUTFIELD extends Index16Instruction {
             String descriptor = field.getDescriptor();
             int slotID = field.getSlotID();
             OperandStack stack = frame.getOperandStack();
-            JObject ref = null;
+            NonArrayObject ref = null;
             switch (descriptor.charAt(0)) {
                 case 'Z':
                 case 'B':
@@ -41,7 +40,7 @@ public class PUTFIELD extends Index16Instruction {
                 case 'S':
                 case 'I':
                     int intVal = stack.popInt();
-                    ref = stack.popObjectRef();
+                    ref = (NonArrayObject) stack.popObjectRef();
                     //todo:nullpointerException need to be check whether set JObject isNull field can trigger this exception!!!!!!
                     if (ref.isNull()) {
                         throw new NullPointerException();
@@ -50,7 +49,7 @@ public class PUTFIELD extends Index16Instruction {
                     break;
                 case 'F':
                     float floatVal = stack.popFloat();
-                    ref = stack.popObjectRef();
+                    ref = (NonArrayObject) stack.popObjectRef();
                     if (ref.isNull()) {
                         throw new NullPointerException();
                     }
@@ -58,7 +57,7 @@ public class PUTFIELD extends Index16Instruction {
                     break;
                 case 'J':
                     long longValue = stack.popLong();
-                    ref = stack.popObjectRef();
+                    ref = (NonArrayObject) stack.popObjectRef();
                     if (ref.isNull()) {
                         throw new NullPointerException();
                     }
@@ -66,7 +65,7 @@ public class PUTFIELD extends Index16Instruction {
                     break;
                 case 'D':
                     double doubleValue = stack.popDouble();
-                    ref = stack.popObjectRef();
+                    ref = (NonArrayObject) stack.popObjectRef();
                     if (ref.isNull()) {
                         throw new NullPointerException();
                     }
@@ -74,8 +73,8 @@ public class PUTFIELD extends Index16Instruction {
                     break;
                 case 'L':
                 case '[':
-                    JObject refVal = stack.popObjectRef();
-                    ref = stack.popObjectRef();
+                    NonArrayObject refVal = (NonArrayObject) stack.popObjectRef();
+                    ref = (NonArrayObject) stack.popObjectRef();
                     if (ref.isNull()) {
                         throw new NullPointerException();
                     }

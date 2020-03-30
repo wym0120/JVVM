@@ -1,14 +1,17 @@
 package runtime;
 
+import lombok.Data;
+
+@Data
 public class JThread {
     private int pc;
     private ThreadStack stack;
 
-    public JThread(){
+    public JThread() {
         stack = new ThreadStack();
     }
 
-    public void pushFrame(StackFrame frame){
+    public void pushFrame(StackFrame frame) {
         stack.pushFrame(frame);
     }
 

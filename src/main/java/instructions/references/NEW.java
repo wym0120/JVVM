@@ -5,7 +5,7 @@ import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import memory.jclass.runtimeConstantPool.constant.ref.ClassRef;
 import runtime.StackFrame;
-import runtime.struct.JObject;
+import runtime.struct.NonArrayObject;
 
 public class NEW extends Index16Instruction {
     @Override
@@ -17,7 +17,7 @@ public class NEW extends Index16Instruction {
             if (clazz.isInterface() || clazz.isAbstract()) {
                 throw new InstantiationError();
             }
-            JObject ref = clazz.newObject();
+            NonArrayObject ref = clazz.newObject();
             frame.getOperandStack().pushObjectRef(ref);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
