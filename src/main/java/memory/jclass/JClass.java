@@ -27,6 +27,7 @@ public class JClass {
     private int instanceSlotCount;
     private int staticSlotCount;
     private Vars staticVars;
+    private InitState initState;
 
     public JClass(ClassFile classFile) {
         this.accessFlags = classFile.getAccessFlags();
@@ -40,6 +41,10 @@ public class JClass {
         methods = parseMethods(classFile.getMethods());
     }
 
+    public JObject newObject() {
+        return new JObject(this);
+    }
+
     public Optional<Method> resolveMethod(String name, String descriptor) {
         for (Method m : methods) {
             if (m.getDescriptor().equals(descriptor) && m.getName().equals(name)) {
@@ -47,22 +52,6 @@ public class JClass {
             }
         }
         return Optional.empty();
-    }
-
-    public boolean isPublic() {
-        return 0 != (this.accessFlags & AccessFlags.ACC_PUBLIC);
-    }
-
-    public boolean isInterface() {
-        return 0 != (this.accessFlags & AccessFlags.ACC_INTERFACE);
-    }
-
-    public boolean isAbstract() {
-        return 0 != (this.accessFlags & AccessFlags.ACC_ABSTRACT);
-    }
-
-    public boolean isAccSuper() {
-        return 0 != (this.accessFlags & AccessFlags.ACC_SUPER);
     }
 
     private Field[] parseFields(FieldInfo[] info) {
@@ -87,10 +76,8 @@ public class JClass {
         return new RuntimeConstantPool(cp, this);
     }
 
-    public boolean isAccessibleTo(JClass caller) {
-        boolean isPublic = isPublic();
-        boolean inSamePackage = this.getPackageName().equals(caller.getPackageName());
-        return isPublic || inSamePackage;
+    public void initStart() {
+//        this.initState = InitState.BUSY;
     }
 
     public String getPackageName() {
@@ -99,8 +86,26 @@ public class JClass {
         else return "";
     }
 
-    public JObject newObject() {
-        return new JObject(this);
+    public boolean isPublic() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_PUBLIC);
+    }
+
+    public boolean isInterface() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_INTERFACE);
+    }
+
+    public boolean isAbstract() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_ABSTRACT);
+    }
+
+    public boolean isAccSuper() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_SUPER);
+    }
+
+    public boolean isAccessibleTo(JClass caller) {
+        boolean isPublic = isPublic();
+        boolean inSamePackage = this.getPackageName().equals(caller.getPackageName());
+        return isPublic || inSamePackage;
     }
 
     public boolean isAssignableFrom(JClass other) {

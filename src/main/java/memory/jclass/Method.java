@@ -20,9 +20,11 @@ public class Method extends ClassMember {
         name = info.getName();
         descriptor = info.getDescriptor();
         CodeAttribute codeAttribute = info.getCodeAttribute();
-        maxLocal = codeAttribute.getMaxLocal();
-        maxStack = codeAttribute.getMaxStack();
-        code = codeAttribute.getCode();
+        if (codeAttribute != null) {
+            maxLocal = codeAttribute.getMaxLocal();
+            maxStack = codeAttribute.getMaxStack();
+            code = codeAttribute.getCode();
+        }
         name = info.getName();
         descriptor = info.getDescriptor();
         argc = calculateArgcFromDescriptor(descriptor);

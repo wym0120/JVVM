@@ -6,10 +6,10 @@ import memory.jclass.Method;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 
 @Data
-public class InterfaceRef extends MemberRef {
+public class InterfaceMethodRef extends MemberRef {
     private Method method;
 
-    public InterfaceRef(RuntimeConstantPool runtimeConstantPool, InterfaceMethodrefInfo interfaceMethodrefInfo) {
+    public InterfaceMethodRef(RuntimeConstantPool runtimeConstantPool, InterfaceMethodrefInfo interfaceMethodrefInfo) {
         super(runtimeConstantPool, interfaceMethodrefInfo);
         //method
     }

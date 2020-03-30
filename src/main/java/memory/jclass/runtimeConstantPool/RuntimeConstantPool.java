@@ -5,6 +5,10 @@ import classloader.classfileparser.constantpool.info.*;
 import lombok.Data;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.constant.Constant;
+import memory.jclass.runtimeConstantPool.constant.ref.ClassRef;
+import memory.jclass.runtimeConstantPool.constant.ref.FieldRef;
+import memory.jclass.runtimeConstantPool.constant.ref.InterfaceMethodRef;
+import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
 import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
@@ -49,17 +53,23 @@ public class RuntimeConstantPool {
                     break;
 
                 case CLASS:
+                    ClassInfo classInfo = (ClassInfo) info;
+                    constants[i] = new ClassRef(this, classInfo);
                     break;
 
                 case FIELD_REF:
+                    FieldrefInfo fieldrefInfo = (FieldrefInfo) info;
+                    constants[i] = new FieldRef(this, fieldrefInfo);
                     break;
 
                 case METHOD_REF:
-
-                    //TODO add symbolic reference to method here
+                    MethodrefInfo methodrefInfo = (MethodrefInfo) info;
+                    constants[i] = new MethodRef(this, methodrefInfo);
                     break;
 
                 case INTERFACE_METHOD_REF:
+                    InterfaceMethodrefInfo interfaceMethodrefInfo = (InterfaceMethodrefInfo) info;
+                    constants[i] = new InterfaceMethodRef(this, interfaceMethodrefInfo);
                     break;
 
                 default:

@@ -6,6 +6,7 @@ import classloader.classfilereader.classpath.EntryType;
 import com.sun.tools.javac.util.Pair;
 import memory.MethodArea;
 import memory.jclass.Field;
+import memory.jclass.InitState;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
@@ -72,7 +73,6 @@ public class ClassLoader {
     }
 
     private JClass defineClass(byte[] data, EntryType definingEntry) throws ClassNotFoundException {
-        //XXX: 这是啥玩意儿？
         //todo:create classfile need to handle java.lang.ClassFormatError
         ClassFile classFile = new ClassFile(data);
         JClass clazz = new JClass(classFile);
@@ -118,6 +118,7 @@ public class ClassLoader {
         calInstanceFieldSlotIDs(clazz);
         calStaticFieldSlotIDs(clazz);
         allocAndInitStaticVars(clazz);
+        clazz.setInitState(InitState.PREPARED);
     }
 
     private void calInstanceFieldSlotIDs(JClass clazz) {
