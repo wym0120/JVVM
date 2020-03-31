@@ -189,21 +189,59 @@ public class JClass {
         return 0 != (this.accessFlags & AccessFlags.ACC_SUPER);
     }
 
+    public boolean isArray() {
+        return this.name.charAt(0) == '[';
+    }
+
+    public boolean isJObjectClass() {
+        return this.name.equals("java/lang/Object");
+    }
+
+    public boolean isJlCloneable() {
+        return this.name.equals("java/lang/Cloneable");
+    }
+
+    public boolean isJIOSerializable() {
+        return this.name.equals("java/io/Serializable");
+    }
+
     public boolean isAccessibleTo(JClass caller) {
         boolean isPublic = isPublic();
         boolean inSamePackage = this.getPackageName().equals(caller.getPackageName());
         return isPublic || inSamePackage;
     }
 
+    //refer to jvm8 6.5 instanceof inst
     public boolean isAssignableFrom(JClass other) {
-        //todo:complete this func after implement array object!!!!!
         JClass s = other;
         JClass t = this;
         if (s == t) return true;
-        if (!t.isInterface()) {
-            return s.isSubClassOf(t);
+        if (!s.isArray()) {
+            if (!s.isInterface()) {
+                if (!t.isInterface()) {
+                    return s.isSubClassOf(t);
+                } else {
+                    return s.isImplementOf(t);
+                }
+            } else {
+                if (!t.isInterface()) {
+                    return t.isJObjectClass();
+                } else {
+                    return t.isSuperInterfaceOf(s);
+                }
+            }
         } else {
-            return s.isImplementOf(t);
+            if (!t.isArray()) {
+                if (!t.isInterface()) {
+                    return t.isJObjectClass();
+                } else {
+                    return t.isJIOSerializable() || t.isJlCloneable();
+                }
+            } else {
+                JClass sc = s.getComponentClass();
+                JClass tc = t.getComponentClass();
+                return sc == tc || t.isJIOSerializable();
+            }
         }
     }
 
@@ -235,4 +273,7 @@ public class JClass {
         return false;
     }
 
+    private boolean isSuperInterfaceOf(JClass otherInterface) {
+        return otherInterface.isSubInterfaceOf(this);
+    }
 }
