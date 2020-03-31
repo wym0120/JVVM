@@ -106,32 +106,61 @@ public class JClass {
      */
     public JClass getArrayClass(){
         //get descriptor
-        HashMap<String,String> primitiveType = new HashMap<>();
-        primitiveType.put("void","V");
-        primitiveType.put("boolean","Z");
-        primitiveType.put("byte","B");
-        primitiveType.put("short","S");
-        primitiveType.put("char","C");
-        primitiveType.put("int","I");
-        primitiveType.put("long","J");
-        primitiveType.put("float","F");
-        primitiveType.put("double","D");
+
         String arrayClassName;
-        if(this.name.charAt(0) == '['){
+        if (this.name.charAt(0) == '[') {
             arrayClassName = this.name;
-        }else if(primitiveType.get(this.name)!=null){
-            arrayClassName = primitiveType.get(this.name);
-        }else{
+        } else if (getPrimitiveType() != null) {
+            arrayClassName = getPrimitiveType();
+        } else {
             arrayClassName = "L" + this.name + ";";
         }
         //generate array class name
-        arrayClassName = "["+arrayClassName;
+        arrayClassName = "[" + arrayClassName;
         try {
-            return ClassLoader.getInstance().loadClass(arrayClassName,this.loadEntryType);
+            return ClassLoader.getInstance().loadClass(arrayClassName, this.loadEntryType);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        throw new RuntimeException("Cannot load arrayClass:"+arrayClassName);
+        throw new RuntimeException("Cannot load arrayClass:" + arrayClassName);
+    }
+
+    public JClass getComponentClass() {
+        if (this.name.charAt(0) != '[') throw new RuntimeException("Invalid Array:" + this.name);
+        ClassLoader loader = ClassLoader.getInstance();
+        String componentTypeDescriptor = this.name.substring(1);
+        String classToLoad = null;
+        if (componentTypeDescriptor.charAt(0) == '[') {
+            classToLoad = componentTypeDescriptor;
+        } else if (componentTypeDescriptor.charAt(0) == 'L') {
+            //remove first and last char 'L' and ';'
+            classToLoad = componentTypeDescriptor.substring(1, componentTypeDescriptor.length() - 1);
+        } else if (getPrimitiveType() != null) {
+            classToLoad = getPrimitiveType();
+        }
+        try {
+            return loader.loadClass(classToLoad, this.loadEntryType);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("Cannot load arrayClass:" + classToLoad);
+    }
+
+    /**
+     * @return null if this classname is not a primitive type
+     */
+    private String getPrimitiveType() {
+        HashMap<String, String> primitiveType = new HashMap<>();
+        primitiveType.put("void", "V");
+        primitiveType.put("boolean", "Z");
+        primitiveType.put("byte", "B");
+        primitiveType.put("short", "S");
+        primitiveType.put("char", "C");
+        primitiveType.put("int", "I");
+        primitiveType.put("long", "J");
+        primitiveType.put("float", "F");
+        primitiveType.put("double", "D");
+        return primitiveType.get(this.name);
     }
 
     public void initStart() {
