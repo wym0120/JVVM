@@ -10,6 +10,8 @@ import runtime.Vars;
 import runtime.struct.JObject;
 import runtime.struct.Slot;
 
+import java.nio.ByteBuffer;
+
 /**
  * Description:
  *
@@ -17,6 +19,14 @@ import runtime.struct.Slot;
  * Created on 2020-03-29
  */
 public class INVOKE_INTERFACE extends Index16Instruction {
+
+    @Override
+    public void fetchOperands(ByteBuffer reader) {
+        super.fetchOperands(reader);
+        reader.get();
+        reader.get();
+    }
+
     @Override
     public void execute(StackFrame frame) {
         JClass currentClz = frame.getMethod().getClazz();

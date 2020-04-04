@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class JThread {
-    private int pc;
     private ThreadStack stack;
 
     public JThread() {

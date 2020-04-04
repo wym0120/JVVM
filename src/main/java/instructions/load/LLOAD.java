@@ -4,7 +4,7 @@ import instructions.base.Index8Instruction;
 import instructions.base.Instruction;
 import runtime.StackFrame;
 
-public class LLoad extends Index8Instruction {
+public class LLOAD extends Index8Instruction {
     @Override
     public void execute(StackFrame frame) {
         long val = frame.getLocalVars().getLong(index);

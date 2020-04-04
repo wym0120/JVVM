@@ -19,7 +19,4 @@ public class StackFrame {
         localVars = new Vars(maxVarSize);
     }
 
-    public void revertNextPC() {
-        this.nextPC = this.thread.getPc();
-    }
 }

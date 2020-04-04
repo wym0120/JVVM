@@ -19,6 +19,10 @@ public class ThreadStack {
         ThreadStack.maxSize = maxSize;
     }
 
+    public boolean isEmpty(){
+        return currentSize == 0;
+    }
+
     public void pushFrame(StackFrame frame){
         if(currentSize >= maxSize){
             throw new StackOverflowError();
@@ -36,7 +40,7 @@ public class ThreadStack {
     }
 
     public StackFrame getTopFrame(){
-        if(currentSize == 0) throw new EmptyStackException();
+        if(currentSize == 0) return null;
         return stack.lastElement();
     }
 }
