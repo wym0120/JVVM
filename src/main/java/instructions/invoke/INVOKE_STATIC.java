@@ -1,6 +1,7 @@
 package instructions.invoke;
 
 import instructions.base.Index16Instruction;
+import memory.jclass.InitState;
 import memory.jclass.JClass;
 import memory.jclass.Method;
 import memory.jclass.runtimeConstantPool.constant.Constant;
@@ -19,6 +20,14 @@ public class INVOKE_STATIC extends Index16Instruction {
     @Override
     public void execute(StackFrame frame) {
         Method method = getMethod(frame);
+
+        //check class whether init
+        JClass currentClazz = method.getClazz();
+        if (currentClazz.getInitState() == InitState.PREPARED) {
+            frame.setNextPC(frame.getNextPC() - 2);
+            currentClazz.initClass(frame.getThread(), currentClazz);
+            return;
+        }
 
         Slot[] args = copyArguments(frame, method);
 

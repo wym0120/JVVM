@@ -1,6 +1,7 @@
 package instructions.references;
 
 import instructions.base.Index16Instruction;
+import memory.jclass.InitState;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import memory.jclass.runtimeConstantPool.constant.ref.ClassRef;
@@ -14,6 +15,15 @@ public class NEW extends Index16Instruction {
         ClassRef classRef = (ClassRef) runtimeConstantPool.getConstant(index);
         try {
             JClass clazz = classRef.getResolvedClass();
+
+            //check class whether init
+            if (clazz.getInitState() == InitState.PREPARED) {
+                //todo:test whether 2 is revert 2 bytes here
+                frame.setNextPC(frame.getNextPC() - 2);
+                clazz.initClass(frame.getThread(), clazz);
+                return;
+            }
+
             if (clazz.isInterface() || clazz.isAbstract()) {
                 throw new InstantiationError();
             }

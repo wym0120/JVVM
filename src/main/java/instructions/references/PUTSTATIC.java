@@ -2,6 +2,7 @@ package instructions.references;
 
 import instructions.base.Index16Instruction;
 import memory.jclass.Field;
+import memory.jclass.InitState;
 import memory.jclass.JClass;
 import memory.jclass.Method;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
@@ -21,6 +22,14 @@ public class PUTSTATIC extends Index16Instruction {
         try {
             field = fieldRef.getResolvedFieldRef();
             JClass targetClazz = field.getClazz();
+
+            //check class whether init
+            if (targetClazz.getInitState() == InitState.PREPARED) {
+                frame.setNextPC(frame.getNextPC() - 2);
+                targetClazz.initClass(frame.getThread(), targetClazz);
+                return;
+            }
+
             if (!field.isStatic()) {
                 throw new IncompatibleClassChangeError();
             }

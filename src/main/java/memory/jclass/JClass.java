@@ -8,6 +8,8 @@ import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfilereader.classpath.EntryType;
 import lombok.Data;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
+import runtime.JThread;
+import runtime.StackFrame;
 import runtime.Vars;
 import runtime.struct.ArrayObject;
 import runtime.struct.NonArrayObject;
@@ -163,9 +165,80 @@ public class JClass {
         return primitiveType.get(this.name);
     }
 
-    public void initStart() {
-//        this.initState = InitState.BUSY;
+    /**
+     * Class Init Methods
+     */
+
+    //if in multi-thread, jclass need a initstate lock
+    private void initStart() {
+        this.initState = InitState.BUSY;
     }
+
+    private void initSucceed() {
+        this.initState = InitState.SUCCESS;
+    }
+
+    private void initFail() {
+        this.initState = InitState.FAIL;
+    }
+
+    public void initClass(JThread thread, JClass clazz) {
+        initStart();
+        invokeClinit(thread, clazz);
+        initSuperClass(thread, clazz);
+        initSucceed();
+    }
+
+    private void invokeClinit(JThread thread, JClass clazz) {
+        Method clinit = clazz.getClinitMethod();
+        if (clinit != null) {
+            StackFrame frame = new StackFrame(thread, clinit, clinit.getMaxStack(), clinit.getMaxLocal());
+            thread.pushFrame(frame);
+        }
+    }
+
+    private void initSuperClass(JThread thread, JClass clazz) {
+        if (!clazz.isInterface()) {
+            JClass superClass = clazz.getSuperClass();
+            if (superClass != null && superClass.getInitState() == InitState.PREPARED) {
+                initClass(thread, superClass);
+            }
+        }
+    }
+
+    /**
+     * search method in class and its superclass
+     *
+     * @return
+     */
+    private Method getMethod(String name, String descriptor, boolean isStatic) {
+        JClass clazz = this;
+        while (clazz != null) {
+            Method[] methods = clazz.getMethods();
+            for (Method m : methods) {
+                if (m.getDescriptor().equals(descriptor)
+                        && m.getName().equals(name)
+                        && m.isStatic() == isStatic) {
+                    return m;
+                }
+            }
+            clazz = clazz.getSuperClass();
+        }
+        return null;
+    }
+
+    private Method getClinitMethod() {
+        return getMethod("<clinit>", "()V", true);
+    }
+
+    public Method getMainMethod() {
+        return getMethod("main", "([Ljava/lang/String;)V", true);
+    }
+
+
+    /**
+     * Get extra Info
+     */
 
     public String getPackageName() {
         int index = name.lastIndexOf('/');
