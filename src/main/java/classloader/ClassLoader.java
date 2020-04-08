@@ -124,9 +124,6 @@ public class ClassLoader {
         prepare(clazz);
     }
 
-    /**
-     * todo:homework
-     */
     private void verify(JClass clazz) {
         //do nothing
     }

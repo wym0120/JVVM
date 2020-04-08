@@ -2,6 +2,7 @@ package classloader.classfilereader;
 
 import classloader.classfilereader.classpath.*;
 import com.sun.tools.javac.util.Pair;
+import lombok.Data;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +12,7 @@ import java.io.IOException;
  * @author WYM
  * This class is the simulated implementation of Java Classloader.
  */
+@Data
 public class ClassFileReader {
     private static ClassFileReader reader = new ClassFileReader();
     private static final String FILE_SEPARATOR = File.separator;
@@ -37,6 +39,18 @@ public class ClassFileReader {
 
     public static void setUserClasspath(String classpath) {
         userClasspath = chooseEntryType(classpath);
+    }
+
+    public static String getUserClasspath() {
+        return userClasspath.getClasspath();
+    }
+
+    public static String getXjrePath() {
+        return extClasspath.getClasspath();
+    }
+
+    public static String getXbootPath() {
+        return bootClasspath.getClasspath();
     }
 
     /**
