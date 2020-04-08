@@ -1,20 +1,15 @@
-import classloader.classfileparser.ClassFile;
 import classloader.classfilereader.ClassFileReader;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ClassfileReaderTest {
+public class ClassFileReaderTest {
     public static List<String> targets;
     public static ClassFileReader reader;
 

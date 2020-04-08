@@ -54,7 +54,7 @@ public class ClassFileReader {
     }
 
     /**
-     * select Entry by type of classloader.classfilereader.classpath
+     * select Entry by type of classpath
      */
     public static Entry chooseEntryType(String classpath) {
         if (classpath.contains(PATH_SEPARATOR)) {
