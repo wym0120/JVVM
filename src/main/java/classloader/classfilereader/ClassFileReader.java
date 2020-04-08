@@ -65,26 +65,10 @@ public class ClassFileReader {
         }
         if (classpath.endsWith(".jar") || classpath.endsWith(".JAR")
                 || classpath.endsWith(".zip") || classpath.endsWith(".ZIP")) {
-            return new ZipEntry(classpath);
+            return new ArchivedEntry(classpath);
         }
         return new DirEntry(classpath);
     }
-
-//    public Pair<byte[],Integer> readClassFile(String className) throws IOException, ClassNotFoundException {
-//        checkCorrectClasspath();
-//        String realClassName = className + ".class";
-//        byte[] data;
-//        if ((data = bootClasspath.readClass(realClassName)) != null && data.length!=0) {
-//            return new Pair<>(data,EntryType.BOOT_ENTRY);
-//        }
-//        if ((data = extClasspath.readClass(realClassName)) != null && data.length!=0) {
-//            return new Pair<>(data,EntryType.EXT_ENTRY);
-//        }
-//        if((data = userClasspath.readClass(realClassName)) != null && data.length!=0){
-//            return new Pair<>(data,EntryType.USER_ENTRY);
-//        }
-//        throw new ClassNotFoundException();
-//    }
 
     public Pair<byte[], Integer> readClassFile(String className, EntryType type) throws IOException, ClassNotFoundException {
         int value = (type == null) ? EntryType.USER_ENTRY : type.getValue();
@@ -92,17 +76,17 @@ public class ClassFileReader {
         String realClassName = className + ".class";
         byte[] data;
         if (value >= EntryType.BOOT_ENTRY) {
-            if ((data = bootClasspath.readClass(realClassName)) != null && data.length != 0) {
+            if ((data = bootClasspath.readClass(realClassName)) != null) {
                 return new Pair<>(data, EntryType.BOOT_ENTRY);
             }
         }
         if (value >= EntryType.EXT_ENTRY) {
-            if ((data = extClasspath.readClass(realClassName)) != null && data.length != 0) {
+            if ((data = extClasspath.readClass(realClassName)) != null) {
                 return new Pair<>(data, EntryType.EXT_ENTRY);
             }
         }
         if (value >= EntryType.USER_ENTRY) {
-            if ((data = userClasspath.readClass(realClassName)) != null && data.length != 0) {
+            if ((data = userClasspath.readClass(realClassName)) != null) {
                 return new Pair<>(data, EntryType.USER_ENTRY);
             }
         }

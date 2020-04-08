@@ -25,7 +25,7 @@ public class DirEntry extends Entry{
         if (file.isFile() && file.exists()) {
             return IOUtil.readFileByBytes(new FileInputStream(truePath));
         } else{
-            throw new FileNotFoundException(truePath);
+            return null;
         }
 
     }
