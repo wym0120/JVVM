@@ -1,22 +1,28 @@
-/**
- * Description:
- * Test for class loader
- *
- * @author xxz
- * Created on 2020-02-10
- */
+import classloader.ClassLoader;
+import classloader.classfilereader.ClassFileReader;
+import memory.jclass.JClass;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.io.File;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ClassLoaderTest {
-//    ClassLoader loader ;
-//
-//    @Test
-//    public void test() throws IOException {
-//        System.out.println("Hi JVVM");
-//        File file = new File("MyClass.class");
-//        byte[] bytes = new byte[(int) file.length()];
-//        FileInputStream in = new FileInputStream(file);
-//        int num = in.read(bytes);
-//        assert num == file.length();
-//        loader = new ClassLoader(bytes);
-//    }
+    private static ClassLoader loader;
+
+    @BeforeAll
+    static void init() {
+        loader = ClassLoader.getInstance();
+        String testPath = String.join(File.separator, "src", "test", "testfile");
+        ClassFileReader.setUserClasspath(testPath);
+    }
+
+    @Test
+    void JClassTest() {
+        JClass helloWorldClass = assertDoesNotThrow(() -> {
+            return loader.loadClass("HelloWorld", null);
+        });
+
+    }
 }

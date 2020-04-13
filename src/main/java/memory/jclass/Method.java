@@ -9,8 +9,6 @@ public class Method extends ClassMember {
     private int maxStack;
     private int maxLocal;
     private int argc;
-    private String name;
-    private String descriptor;
     private byte[] code;
 
 
@@ -19,14 +17,13 @@ public class Method extends ClassMember {
         accessFlags = info.getAccessFlags();
         name = info.getName();
         descriptor = info.getDescriptor();
+
         CodeAttribute codeAttribute = info.getCodeAttribute();
         if (codeAttribute != null) {
             maxLocal = codeAttribute.getMaxLocal();
             maxStack = codeAttribute.getMaxStack();
             code = codeAttribute.getCode();
         }
-        name = info.getName();
-        descriptor = info.getDescriptor();
         argc = calculateArgcFromDescriptor(descriptor);
     }
 
@@ -37,8 +34,10 @@ public class Method extends ClassMember {
         int idx = descriptor.indexOf('(');
         assert idx != -1;
         int cnt = 0;
-        while (idx < length) {
-            switch (chars[idx++]) {
+        //todo : check fix correctly
+        while (idx + 1 < length) {
+//        while (idx < length) {
+            switch (chars[++idx]) {
                 case 'B':
                 case 'C':
                 case 'D':
