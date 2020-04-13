@@ -58,14 +58,14 @@ public class MethodInfo {
     public CodeAttribute getCodeAttribute() {
         if (code == null) {
             for (AttributeInfo attribute : attributes) {
-                if(attribute instanceof CodeAttribute){
-                    code = (CodeAttribute)attribute;
+                if (attribute instanceof CodeAttribute) {
+                    code = (CodeAttribute) attribute;
                     return code;
                 }
             }
-            throw new UnsupportedOperationException("No code attribute!");
-        }else{
-            return code;
+//            throw new UnsupportedOperationException("No code attribute!");
         }
+        return code;
+
     }
 }

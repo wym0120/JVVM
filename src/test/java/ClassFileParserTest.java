@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Optional;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,6 +18,8 @@ public class ClassFileParserTest {
     @BeforeAll
     static void init() {
         reader = ClassFileReader.getInstance();
+        String testPath = String.join(File.separator, "src", "test", "testfile");
+        ClassFileReader.setUserClasspath(testPath);
     }
 
     @DisplayName("validate result of parsing java.lang.Object")
@@ -36,22 +39,56 @@ public class ClassFileParserTest {
         assertEquals(78, objectClass.getConstantPoolCount());
         assertEquals(0, objectClass.getSuperClass());
         assertEquals(0, objectClass.getFieldsCount());
-
-        System.out.println(objectClass.getClassName());
-        System.out.println(objectClass.getSuperClassName());
-        System.out.println(Arrays.toString(objectClass.getInterfaceNames()));
+        assertEquals(className, objectClass.getClassName().replace('/', File.separatorChar));
+        assertThrows(UnsupportedOperationException.class, () -> System.out.println(objectClass.getSuperClassName()));
+        assertEquals(0, objectClass.getInterfacesCount());
+        for (String name : objectClass.getInterfaceNames()) System.out.println(name);
+        System.out.println();
         System.out.println("Method info : ");
         Arrays.stream(objectClass.getMethods())
                 .forEach(m -> {
-                    System.out.println(m.getName());
-                    System.out.println(m.getDescriptor());
-                    System.out.println(Arrays.toString(m.getCodeAttribute().getCode()));
+                    System.out.println("name: " + m.getName() + "    descriptor: " + m.getDescriptor());
+                    if (m.getCodeAttribute() != null) {
+                        byte[] code = Optional.ofNullable(m.getCodeAttribute().getCode()).orElse(new byte[0]);
+                        for (int bytecode : code) System.out.print(String.format("0x%08X", bytecode & 0xFF) + ", ");
+                    }
+                    System.out.println();
+                    System.out.println();
                 });
     }
 
     @DisplayName("validate result of parsing HelloWorld.class")
     @Test
     void parseHelloWorld() {
+        String className = "HelloWorld";
 
+        byte[] content = assertDoesNotThrow(() -> {
+            return reader.readClassFile(className, null).fst;
+        });
+
+        ClassFile objectClass = assertDoesNotThrow(() -> {
+            return new ClassFile(content);
+        });
+        assertEquals(0, objectClass.getMinorVersion());
+        assertEquals(52, objectClass.getMajorVersion());
+        assertEquals(AccessFlags.ACC_PUBLIC | AccessFlags.ACC_SUPER, objectClass.getAccessFlags());
+        assertEquals(29, objectClass.getConstantPoolCount());
+        assertEquals(6, objectClass.getSuperClass());
+        assertEquals(0, objectClass.getFieldsCount());
+        assertEquals(className, objectClass.getClassName().replace('/', File.separatorChar));
+        assertEquals("java/lang/Object", objectClass.getSuperClassName());
+        assertEquals(0, objectClass.getInterfacesCount());
+        for (String name : objectClass.getInterfaceNames()) System.out.println(name);
+        System.out.println();
+        System.out.println("Method info : ");
+        Arrays.stream(objectClass.getMethods())
+                .forEach(m -> {
+                    System.out.println("name: " + m.getName() + "    descriptor: " + m.getDescriptor());
+                    if (m.getCodeAttribute() != null) {
+                        byte[] code = Optional.ofNullable(m.getCodeAttribute().getCode()).orElse(new byte[0]);
+                        for (int bytecode : code) System.out.print(String.format("0x%08X", bytecode & 0xFF) + ", ");
+                    }
+                    System.out.println();
+                });
     }
 }

@@ -3,6 +3,8 @@ package classloader.classfileparser;
 import classloader.classfileparser.attribute.AttributeBuilder;
 import classloader.classfileparser.attribute.AttributeInfo;
 import classloader.classfileparser.constantpool.ConstantPool;
+import classloader.classfileparser.constantpool.info.ClassInfo;
+import classloader.classfileparser.constantpool.info.UTF8Info;
 import com.sun.tools.javac.util.Pair;
 import lombok.Data;
 
@@ -104,18 +106,23 @@ public class ClassFile {
         return AttributeBuilder.createAttribute(new BuildUtil(this.constantPool, in));
     }
 
-    // todo:format : java/lang/Object
     public String getClassName(){
-        return null;
+        return ((ClassInfo) constantPool.get(thisClass)).getClassName();
     }
 
-    // todo:format : java/lang/Object
     public String getSuperClassName(){
-        return null;
+        return ((ClassInfo) constantPool.get(superClass)).getClassName();
     }
 
-    // todo:format : java/lang/Object
-    public String[] getInterfaceNames(){
-        return null;
+    public String[] getInterfaceNames() {
+        String[] ret = new String[interfacesCount];
+        for (int i = 0; i < interfacesCount; i++) {
+            ret[i] = ((ClassInfo) constantPool.get(interfaces[i])).getClassName();
+        }
+        return ret;
+    }
+
+    private String getUTF8(int index) {
+        return ((UTF8Info) constantPool.get(index)).getString();
     }
 }
