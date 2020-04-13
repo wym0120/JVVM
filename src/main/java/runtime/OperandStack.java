@@ -1,29 +1,28 @@
 package runtime;
 
+import lombok.Data;
 import runtime.struct.JObject;
 import runtime.struct.Slot;
-import util.BasicTypeUtil;
 
 import java.util.EmptyStackException;
 
-/**
- * 操作数栈
- *
- * @author WYM
- */
+@Data
 public class OperandStack {
-    //表示栈顶位置
     private int top;
+    private int maxStackSize;
     private Slot[] slots;
 
     public OperandStack(int maxStackSize) {
         if( maxStackSize > 0){
+            this.maxStackSize = maxStackSize;
             slots = new Slot[maxStackSize];
+            for (int i = 0; i < maxStackSize; i++) slots[i] = new Slot();
         }
         top = 0;
     }
 
     public void pushInt(int value) {
+        if (top >= maxStackSize) throw new StackOverflowError();
         slots[top].setValue(value);
         top++;
     }
@@ -35,17 +34,19 @@ public class OperandStack {
     }
 
     public void pushFloat(float value) {
-        slots[top].setValue(BasicTypeUtil.float2int(value));
+        if (top >= maxStackSize) throw new StackOverflowError();
+        slots[top].setValue(Float.floatToIntBits(value));
         top++;
     }
 
     public float popFloat() {
         top--;
         if (top < 0) throw new EmptyStackException();
-        return BasicTypeUtil.int2float(slots[top].getValue());
+        return Float.intBitsToFloat(slots[top].getValue());
     }
 
     public void pushLong(long value) {
+        if (top + 1 >= maxStackSize) throw new StackOverflowError();
         int low = (int) value;
         int high = (int) (value >> 32);
         slots[top].setValue(low);
@@ -70,6 +71,7 @@ public class OperandStack {
     }
 
     public void pushObjectRef(JObject ref){
+        if (top >= maxStackSize) throw new StackOverflowError();
         slots[top].setObject(ref);
         top++;
     }
@@ -81,6 +83,7 @@ public class OperandStack {
     }
 
     public void pushSlot(Slot slot){
+        if (top >= maxStackSize) throw new StackOverflowError();
         slots[top] = slot;
         top++;
     }

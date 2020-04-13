@@ -8,22 +8,20 @@ public class ThreadStack {
     private Stack<StackFrame> stack;
     private int currentSize;
 
-    public ThreadStack(){
+    static {
+        //todo:you can reset this value by implementing -Xss
+        maxSize = 64 * 1024;//use linux x86_64 default value 256KB
+    }
+
+    public ThreadStack() {
         stack = new Stack<>();
-//        ThreadStack.maxSize = maxSize;
     }
 
-
-    public static void setMaxSize(int maxSize){
-        if(maxSize <= 0)throw new EmptyStackException();
-        ThreadStack.maxSize = maxSize;
-    }
-
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return currentSize == 0;
     }
 
-    public void pushFrame(StackFrame frame){
+    public void pushFrame(StackFrame frame) {
         if(currentSize >= maxSize){
             throw new StackOverflowError();
         }

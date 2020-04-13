@@ -30,22 +30,22 @@ public class ClassFileParserTest {
             return reader.readClassFile(className, null).fst;
         });
 
-        ClassFile objectClass = assertDoesNotThrow(() -> {
+        ClassFile clazz = assertDoesNotThrow(() -> {
             return new ClassFile(content);
         });
-        assertEquals(0, objectClass.getMinorVersion());
-        assertEquals(52, objectClass.getMajorVersion());
-        assertEquals(AccessFlags.ACC_PUBLIC | AccessFlags.ACC_SUPER, objectClass.getAccessFlags());
-        assertEquals(78, objectClass.getConstantPoolCount());
-        assertEquals(0, objectClass.getSuperClass());
-        assertEquals(0, objectClass.getFieldsCount());
-        assertEquals(className, objectClass.getClassName().replace('/', File.separatorChar));
-        assertThrows(UnsupportedOperationException.class, () -> System.out.println(objectClass.getSuperClassName()));
-        assertEquals(0, objectClass.getInterfacesCount());
-        for (String name : objectClass.getInterfaceNames()) System.out.println(name);
+        assertEquals(0, clazz.getMinorVersion());
+        assertEquals(52, clazz.getMajorVersion());
+        assertEquals(AccessFlags.ACC_PUBLIC | AccessFlags.ACC_SUPER, clazz.getAccessFlags());
+        assertEquals(78, clazz.getConstantPoolCount());
+        assertEquals(0, clazz.getSuperClass());
+        assertEquals(0, clazz.getFieldsCount());
+        assertEquals(className, clazz.getClassName().replace('/', File.separatorChar));
+        assertThrows(UnsupportedOperationException.class, () -> System.out.println(clazz.getSuperClassName()));
+        assertEquals(0, clazz.getInterfacesCount());
+        for (String name : clazz.getInterfaceNames()) System.out.println(name);
         System.out.println();
         System.out.println("Method info : ");
-        Arrays.stream(objectClass.getMethods())
+        Arrays.stream(clazz.getMethods())
                 .forEach(m -> {
                     System.out.println("name: " + m.getName() + "    descriptor: " + m.getDescriptor());
                     if (m.getCodeAttribute() != null) {
@@ -66,22 +66,22 @@ public class ClassFileParserTest {
             return reader.readClassFile(className, null).fst;
         });
 
-        ClassFile objectClass = assertDoesNotThrow(() -> {
+        ClassFile clazz = assertDoesNotThrow(() -> {
             return new ClassFile(content);
         });
-        assertEquals(0, objectClass.getMinorVersion());
-        assertEquals(52, objectClass.getMajorVersion());
-        assertEquals(AccessFlags.ACC_PUBLIC | AccessFlags.ACC_SUPER, objectClass.getAccessFlags());
-        assertEquals(29, objectClass.getConstantPoolCount());
-        assertEquals(6, objectClass.getSuperClass());
-        assertEquals(0, objectClass.getFieldsCount());
-        assertEquals(className, objectClass.getClassName().replace('/', File.separatorChar));
-        assertEquals("java/lang/Object", objectClass.getSuperClassName());
-        assertEquals(0, objectClass.getInterfacesCount());
-        for (String name : objectClass.getInterfaceNames()) System.out.println(name);
+        assertEquals(0, clazz.getMinorVersion());
+        assertEquals(52, clazz.getMajorVersion());
+        assertEquals(AccessFlags.ACC_PUBLIC | AccessFlags.ACC_SUPER, clazz.getAccessFlags());
+        assertEquals(29, clazz.getConstantPoolCount());
+        assertEquals(6, clazz.getSuperClass());
+        assertEquals(0, clazz.getFieldsCount());
+        assertEquals(className, clazz.getClassName().replace('/', File.separatorChar));
+        assertEquals("java/lang/Object", clazz.getSuperClassName());
+        assertEquals(0, clazz.getInterfacesCount());
+        for (String name : clazz.getInterfaceNames()) System.out.println(name);
         System.out.println();
         System.out.println("Method info : ");
-        Arrays.stream(objectClass.getMethods())
+        Arrays.stream(clazz.getMethods())
                 .forEach(m -> {
                     System.out.println("name: " + m.getName() + "    descriptor: " + m.getDescriptor());
                     if (m.getCodeAttribute() != null) {

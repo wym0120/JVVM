@@ -55,6 +55,7 @@ public class MethodInfo {
     }
 
 
+    //todo: handle exception correctly
     public CodeAttribute getCodeAttribute() {
         if (code == null) {
             for (AttributeInfo attribute : attributes) {
