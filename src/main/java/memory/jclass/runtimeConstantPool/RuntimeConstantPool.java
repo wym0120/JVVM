@@ -24,8 +24,9 @@ public class RuntimeConstantPool {
     public RuntimeConstantPool(ConstantPool constantPool, JClass clazz) {
         this.clazz = clazz;
         ConstantPoolInfo[] infos = constantPool.getInfos();
-        constants = new Constant[infos.length];
-        for (int i = 0; i < infos.length; i++) {
+        int length = infos.length - 1;//real num of constant pool item is length-1
+        constants = new Constant[length];
+        for (int i = 0; i < length; i++) {
             ConstantPoolInfo info = infos[i];
             switch (info.getTag()) {
                 case INTEGER:

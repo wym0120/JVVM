@@ -38,7 +38,10 @@ public class JClass {
     public JClass(ClassFile classFile) {
         this.accessFlags = classFile.getAccessFlags();
         this.name = classFile.getClassName();
-        this.superClassName = classFile.getSuperClassName();
+        if (!this.name.equals("java/lang/Object")) {
+            // index of super class of java/lang/Object is 0
+            this.superClassName = classFile.getSuperClassName();
+        }
         this.interfaceNames = classFile.getInterfaceNames();
         this.fields = parseFields(classFile.getFields());
         this.methods = parseMethods(classFile.getMethods());

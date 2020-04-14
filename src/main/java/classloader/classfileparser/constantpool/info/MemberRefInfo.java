@@ -15,7 +15,7 @@ public abstract class MemberRefInfo extends ConstantPoolInfo {
     public abstract String getClassName();
 
     protected String getClassName(int idx) {
-        return ((UTF8Info) myCP.get(idx)).getString();
+        return ((ClassInfo) myCP.get(idx)).getClassName();
     }
 
 

@@ -15,7 +15,9 @@ import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
 import runtime.Vars;
+import util.PathUtil;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -102,7 +104,7 @@ public class ClassLoader {
 
     private void resolveSuperClass(JClass clazz) throws ClassNotFoundException {
         if (!clazz.getName().equals("java/lang/Object")) {
-            String superClassName = clazz.getSuperClassName();
+            String superClassName = PathUtil.transform(clazz.getSuperClassName());
             EntryType initiatingEntry = clazz.getLoadEntryType();
             clazz.setSuperClass(loadClass(superClassName, initiatingEntry));
         }
@@ -115,7 +117,7 @@ public class ClassLoader {
         JClass[] interfaces = new JClass[interfaceCount];
         clazz.setInterfaces(interfaces);
         for (int i = 0; i < interfaceCount; i++) {
-            interfaces[i] = loadClass(interfaceNames[i], initiatingEntry);
+            interfaces[i] = loadClass(PathUtil.transform(interfaceNames[i]), initiatingEntry);
         }
     }
 

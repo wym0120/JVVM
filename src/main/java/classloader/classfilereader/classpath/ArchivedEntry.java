@@ -1,6 +1,7 @@
 package classloader.classfilereader.classpath;
 
 import util.IOUtil;
+import util.PathUtil;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -32,9 +33,7 @@ public class ArchivedEntry extends Entry {
         Enumeration<? extends ZipEntry> entries = zipFile.entries();
         while (entries.hasMoreElements()) {
             ZipEntry ze = entries.nextElement();
-            String pathName = ze.getName();
-            //work for both linux and Windows, getName method in windows will return abc/def rather than abc\def
-            if (pathName.contains("/")) pathName = pathName.replace("/", this.FILE_SEPARATOR);
+            String pathName = PathUtil.transform(ze.getName());
             if (pathName.equals(className)) {
                 return IOUtil.readFileByBytes(zipFile.getInputStream(ze));
             }
