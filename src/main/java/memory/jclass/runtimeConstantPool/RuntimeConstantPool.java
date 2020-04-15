@@ -3,6 +3,8 @@ package memory.jclass.runtimeConstantPool;
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfileparser.constantpool.info.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.constant.Constant;
 import memory.jclass.runtimeConstantPool.constant.ref.ClassRef;
@@ -16,7 +18,8 @@ import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
 
 import static classloader.classfileparser.constantpool.info.ConstantPoolInfo.*;
 
-@Data
+@Setter
+@Getter
 public class RuntimeConstantPool {
     private JClass clazz;
     private Constant[] constants;

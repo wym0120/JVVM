@@ -1,10 +1,14 @@
 package memory;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.JClass;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Data
 public class MethodArea {
     private static MethodArea methodArea = new MethodArea();
 
@@ -24,5 +28,9 @@ public class MethodArea {
 
     public void addClass(String className, JClass clazz) {
         classMap.put(className, clazz);
+    }
+
+    public static Map<String, JClass> getClassMap() {
+        return classMap;
     }
 }

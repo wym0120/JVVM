@@ -1,10 +1,14 @@
 import classloader.ClassLoader;
 import classloader.classfilereader.ClassFileReader;
+import memory.MethodArea;
 import memory.jclass.JClass;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,11 +22,47 @@ public class ClassLoaderTest {
         ClassFileReader.setUserClasspath(testPath);
     }
 
-    @Test
-    void JClassTest() {
-        JClass helloWorldClass = assertDoesNotThrow(() -> {
-            return loader.loadClass("HelloWorld", null);
+    @ParameterizedTest
+    @ValueSource(strings = {"HelloWorld", "Dog"})
+    void loadNonArrayClassTest(String className) {
+        assertDoesNotThrow(() -> {
+            loader.loadClass(className, null);
         });
+    }
 
+    @AfterAll
+    static void printAll() {
+        MethodArea.getClassMap().values().forEach(ClassLoaderTest::printInfo);
+    }
+
+    private static void printInfo(JClass clazz) {
+        System.out.println("Class Name: " + clazz.getName());
+        System.out.println("Package Name: " + clazz.getPackageName());
+        System.out.println("Superclass Name: " + clazz.getSuperClassName());
+        System.out.println("Name of interfaces: ");
+        Arrays.stream(clazz.getInterfaceNames()).forEach(System.out::printf);
+        System.out.println();
+        System.out.println("Field Info: ");
+        Arrays.stream(clazz.getMethods()).forEach(f -> System.out.println(
+                "Field Name:" + f.getName() +
+                        " descriptor:" + f.getDescriptor() +
+                        " accessFlag:" + f.getAccessFlags()));
+        System.out.println();
+        System.out.println("Method Info:");
+        Arrays.stream(clazz.getMethods()).forEach(m -> System.out.println(
+                "Method Name:" + m.getName() +
+                        " descriptor:" + m.getDescriptor() +
+                        " accessFlag:" + m.getAccessFlags() +
+                        " maxStack: " + m.getMaxLocal() +
+                        " maxLocal: " + m.getMaxLocal()));
+        System.out.println();
+        System.out.println("Init State: " + clazz.getInitState());
+        System.out.println("Access Flags:" + String.format("0x%08X", clazz.getAccessFlags()));
+        System.out.println("Load by: " + clazz.getLoadEntryType().getValue());
+        System.out.println("Count of instances slot: " + clazz.getInstanceSlotCount());
+        System.out.println("Count of static slot: " + clazz.getStaticSlotCount());
+        System.out.println();
+        ColorUtil.printBlue("------------------------------------------------------------------------------------------------------");
+        System.out.println();
     }
 }
