@@ -7,6 +7,8 @@ import classloader.classfileparser.MethodInfo;
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfilereader.classpath.EntryType;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import runtime.JThread;
 import runtime.StackFrame;
@@ -18,7 +20,8 @@ import runtime.struct.array.*;
 import java.util.HashMap;
 import java.util.Optional;
 
-@Data
+@Getter
+@Setter
 public class JClass {
     private short accessFlags;
     private String name;
@@ -41,6 +44,8 @@ public class JClass {
         if (!this.name.equals("java/lang/Object")) {
             // index of super class of java/lang/Object is 0
             this.superClassName = classFile.getSuperClassName();
+        } else {
+            this.superClassName = "";
         }
         this.interfaceNames = classFile.getInterfaceNames();
         this.fields = parseFields(classFile.getFields());

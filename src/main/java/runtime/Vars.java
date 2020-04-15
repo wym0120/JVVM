@@ -8,7 +8,7 @@ public class Vars {
     private int maxSize;
 
     public Vars(int maxVarSize) {
-        assert maxVarSize > 0;
+        assert maxVarSize >= 0;
         maxSize = maxVarSize;
         varSlots = new Slot[maxVarSize];
         for (int i = 0; i < maxVarSize; i++) varSlots[i] = new Slot();
