@@ -11,10 +11,7 @@ import memory.jclass.runtimeConstantPool.constant.ref.ClassRef;
 import memory.jclass.runtimeConstantPool.constant.ref.FieldRef;
 import memory.jclass.runtimeConstantPool.constant.ref.InterfaceMethodRef;
 import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
-import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
-import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
-import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
-import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.*;
 
 import static classloader.classfileparser.constantpool.info.ConstantPoolInfo.*;
 
@@ -54,6 +51,11 @@ public class RuntimeConstantPool {
                     constants[i] = new DoubleWrapper(doubleInfo.getValue());
                     //double value takes two slots
                     i++;
+                    break;
+
+                case STRING:
+                    StringInfo stringInfo = (StringInfo) info;
+                    constants[i] = new StringWrapper(stringInfo.getStringValue());
                     break;
 
                 case CLASS:
