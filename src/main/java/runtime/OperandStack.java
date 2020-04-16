@@ -13,11 +13,10 @@ public class OperandStack {
     private Slot[] slots;
 
     public OperandStack(int maxStackSize) {
-        if( maxStackSize > 0){
-            this.maxStackSize = maxStackSize;
-            slots = new Slot[maxStackSize];
-            for (int i = 0; i < maxStackSize; i++) slots[i] = new Slot();
-        }
+        assert maxStackSize >= 0;
+        this.maxStackSize = maxStackSize;
+        slots = new Slot[maxStackSize];
+        for (int i = 0; i < maxStackSize; i++) slots[i] = new Slot();
         top = 0;
     }
 

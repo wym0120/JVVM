@@ -1,8 +1,12 @@
 package runtime;
 
+import lombok.Getter;
+import lombok.Setter;
 import runtime.struct.JObject;
 import runtime.struct.Slot;
 
+@Getter
+@Setter
 public class Vars {
     private Slot[] varSlots;
     private int maxSize;

@@ -20,6 +20,7 @@ import runtime.JThread;
 import runtime.StackFrame;
 
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Interpreter {
@@ -263,13 +264,13 @@ public class Interpreter {
             //fetch and decode
             int opcode = codeReader.get() & 0xff;
             Instruction instruction = decode(opcode);
-            System.out.println(instruction.getClass());
             instruction.fetchOperands(codeReader);
             //set nextPC to reader's position
             int nextPC = codeReader.position();
             thread.getTopFrame().setNextPC(nextPC);
             StackFrame oriTop = thread.getTopFrame();
             instruction.execute(oriTop);
+            PrintInfo(thread, instruction);
             //check whether there's a new frame
             //and whether there's more frame to exec
             StackFrame newTop = thread.getTopFrame();
@@ -286,9 +287,33 @@ public class Interpreter {
     private Instruction decode(int opcode) {
         Instruction instruction = opMap.get(opcode);
         if (instruction == null) {
-            throw new UnsupportedOperationException("Unsupported instruction " + opcode);
+            throw new UnsupportedOperationException("Unsupported instruction " + String.format("0x%08X", opcode));
         }
         return instruction;
+    }
+
+    private void PrintInfo(JThread thread, Instruction instruction) {
+        String classNameOfInst = instruction.getClass().toString();
+        System.out.println(classNameOfInst.substring(classNameOfInst.lastIndexOf(".") + 1));
+        System.out.println("After exec");
+        System.out.println();
+        StackFrame frame = thread.getStack().getTopFrame();
+        System.out.println("Current method:" + frame.getMethod().getName());
+        System.out.println("Contents in operand stack:");
+        Arrays.stream(frame.getOperandStack().getSlots())
+                .forEach(s -> {
+                    if (s.getObject() != null) System.out.println("value = " + s.getValue());
+                    else System.out.println("Object ref = " + s.getObject());
+                });
+        System.out.println();
+        System.out.println("Contents in local var:");
+        Arrays.stream(frame.getLocalVars().getVarSlots())
+                .forEach(s -> {
+                    if (s.getObject() != null) System.out.println("value = " + s.getValue());
+                    else System.out.println("Object ref = " + s.getObject());
+                });
+        System.out.println();
+        System.out.println("----------------------------------------------------------------------");
     }
 
 

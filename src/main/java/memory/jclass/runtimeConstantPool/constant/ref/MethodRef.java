@@ -19,8 +19,8 @@ public class MethodRef extends MemberRef {
         super(runtimeConstantPool, methodrefInfo);
     }
 
-    public Method resolveMethodRef(JClass clz) {
-        resolve(clz);
+    public Method resolveMethodRef(JClass clazz) {
+        resolve(clazz);
         return method;
     }
 
@@ -51,6 +51,7 @@ public class MethodRef extends MemberRef {
                 return;
             } else {
                 optionalMethod = currentClazz.resolveMethod(name, descriptor);
+                //todo: bug !!! find but not get
             }
 
         }

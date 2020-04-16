@@ -35,7 +35,7 @@ public class ClassLoaderTest {
         MethodArea.getClassMap().values().forEach(ClassLoaderTest::printInfo);
     }
 
-    private static void printInfo(JClass clazz) {
+    public static void printInfo(JClass clazz) {
         System.out.println("Class Name: " + clazz.getName());
         System.out.println("Package Name: " + clazz.getPackageName());
         System.out.println("Superclass Name: " + clazz.getSuperClassName());
