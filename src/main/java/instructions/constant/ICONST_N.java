@@ -3,6 +3,7 @@ package instructions.constant;
 import instructions.base.NoOperandsInstruction;
 import runtime.StackFrame;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ICONST_N extends NoOperandsInstruction {
@@ -10,7 +11,7 @@ public class ICONST_N extends NoOperandsInstruction {
     private static int[] valid = {-1,0,1,2,3,4,5};
 
     public ICONST_N(int val){
-        if (!Arrays.asList(valid).contains(val))throw new IllegalArgumentException();
+        if (!(val >= valid[0] && val <= valid[valid.length - 1])) throw new IllegalArgumentException();
         this.val = val;
     }
 

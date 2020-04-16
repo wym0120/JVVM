@@ -263,6 +263,7 @@ public class Interpreter {
             //fetch and decode
             int opcode = codeReader.get() & 0xff;
             Instruction instruction = decode(opcode);
+            System.out.println(instruction.getClass());
             instruction.fetchOperands(codeReader);
             //set nextPC to reader's position
             int nextPC = codeReader.position();

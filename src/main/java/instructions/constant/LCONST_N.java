@@ -10,7 +10,7 @@ public class LCONST_N  extends NoOperandsInstruction {
     private static long[] valid = {0L,1L};
 
     public LCONST_N(int val){
-        if (!Arrays.asList(valid).contains(val))throw new IllegalArgumentException();
+        if (!(val >= valid[0] && val <= valid[valid.length - 1])) throw new IllegalArgumentException();
         this.val = val;
     }
 
