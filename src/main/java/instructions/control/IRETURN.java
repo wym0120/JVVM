@@ -17,8 +17,5 @@ public class IRETURN extends NoOperandsInstruction {
         JThread thread = frame.getThread();
         thread.popFrame();
         thread.getTopFrame().getOperandStack().pushInt(value);
-
-        //TODO HOW to change PC??
-
     }
 }
