@@ -46,29 +46,27 @@ public class MethodRef extends MemberRef {
              currentClazz != null;
              currentClazz = currentClazz.getSuperClass()) {
 
+            optionalMethod = currentClazz.resolveMethod(name, descriptor);
+
             if (optionalMethod.isPresent()) {
                 method = optionalMethod.get();
                 return;
-            } else {
-                optionalMethod = currentClazz.resolveMethod(name, descriptor);
-                //todo: bug !!! find but not get
             }
 
         }
 
-        if (!optionalMethod.isPresent()) {
-            JClass[] ifs = clazz.getInterfaces();
-            Stack<JClass> interfaces = new Stack<>();
-            interfaces.addAll(Arrays.asList(ifs));
-            while (!interfaces.isEmpty()) {
-                JClass clz = interfaces.pop();
-                optionalMethod = clz.resolveMethod(name, descriptor);
-                if (optionalMethod.isPresent()) {
-                    method = optionalMethod.get();
-                    return;
-                }
-                interfaces.addAll(Arrays.asList(clz.getInterfaces()));
+        //if not found in class hierarchy
+        JClass[] ifs = clazz.getInterfaces();
+        Stack<JClass> interfaces = new Stack<>();
+        interfaces.addAll(Arrays.asList(ifs));
+        while (!interfaces.isEmpty()) {
+            JClass clz = interfaces.pop();
+            optionalMethod = clz.resolveMethod(name, descriptor);
+            if (optionalMethod.isPresent()) {
+                method = optionalMethod.get();
+                return;
             }
+            interfaces.addAll(Arrays.asList(clz.getInterfaces()));
         }
 
 
