@@ -2,6 +2,7 @@ import instructions.base.Instruction;
 import instructions.base.OpCode;
 import instructions.comparison.*;
 import instructions.constant.*;
+import instructions.control.IRETURN;
 import instructions.conversion.*;
 import instructions.extended.IFNONNULL;
 import instructions.extended.IFNULL;
@@ -204,7 +205,7 @@ public class Interpreter {
 
 //TODO        opMap.put(OpCode.TABLESWITCH, new TABLESWITCH());
 //TODO        opMap.put(OpCode.LOOKUPSWITCH, new LOOKUPSWITCH());
-//TODO        opMap.put(OpCode.IRETURN, new IRETURN());
+        opMap.put(OpCode.IRETURN, new IRETURN());
 //TODO        opMap.put(OpCode.LRETURN, new LRETURN());
 //TODO        opMap.put(OpCode.FRETURN, new FRETURN());
 //TODO        opMap.put(OpCode.DRETURN, new DRETURN());
