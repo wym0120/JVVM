@@ -2,7 +2,7 @@ import instructions.base.Instruction;
 import instructions.base.OpCode;
 import instructions.comparison.*;
 import instructions.constant.*;
-import instructions.control.IRETURN;
+import instructions.control.*;
 import instructions.conversion.*;
 import instructions.extended.IFNONNULL;
 import instructions.extended.IFNULL;
@@ -23,6 +23,8 @@ import runtime.StackFrame;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import static instructions.base.OpCode.RETURN_;
 
 public class Interpreter {
     private ByteBuffer codeReader;
@@ -206,11 +208,11 @@ public class Interpreter {
 //TODO        opMap.put(OpCode.TABLESWITCH, new TABLESWITCH());
 //TODO        opMap.put(OpCode.LOOKUPSWITCH, new LOOKUPSWITCH());
         opMap.put(OpCode.IRETURN, new IRETURN());
-//TODO        opMap.put(OpCode.LRETURN, new LRETURN());
-//TODO        opMap.put(OpCode.FRETURN, new FRETURN());
-//TODO        opMap.put(OpCode.DRETURN, new DRETURN());
-//TODO        opMap.put(OpCode.ARETURN, new ARETURN());
-//TODO        opMap.put(OpCode.RETURN_, new RETURN_());
+        opMap.put(OpCode.LRETURN, new LRETURN());
+        opMap.put(OpCode.FRETURN, new FRETURN());
+        opMap.put(OpCode.DRETURN, new DRETURN());
+//        opMap.put(OpCode.ARETURN, new ARETURN());
+        opMap.put(RETURN_, new RETURN());
         opMap.put(OpCode.GETSTATIC, new GETSTATIC());
         opMap.put(OpCode.PUTSTATIC, new PUTSTATIC());
         opMap.put(OpCode.GETFIELD, new GETFIELD());

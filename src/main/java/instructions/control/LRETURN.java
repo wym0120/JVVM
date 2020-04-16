@@ -1,0 +1,21 @@
+package instructions.control;
+
+import instructions.base.NoOperandsInstruction;
+import runtime.JThread;
+import runtime.StackFrame;
+
+/**
+ * Description:
+ *
+ * @author xxz
+ * Created on 2020-03-09
+ */
+public class LRETURN extends NoOperandsInstruction {
+    @Override
+    public void execute(StackFrame frame) {
+        long value = frame.getOperandStack().popLong();
+        JThread thread = frame.getThread();
+        thread.popFrame();
+        thread.getTopFrame().getOperandStack().pushLong(value);
+    }
+}
