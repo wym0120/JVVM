@@ -257,6 +257,7 @@ public class Interpreter {
      */
     private void initCodeReader(JThread thread) {
         byte[] code = thread.getTopFrame().getMethod().getCode();
+        //todo:debug doSomething get code occurs NPE!!!!!
         codeReader = ByteBuffer.wrap(code);
         int nextPC = thread.getTopFrame().getNextPC();
         codeReader.position(nextPC);
@@ -303,22 +304,21 @@ public class Interpreter {
         System.out.println("After exec");
         System.out.println();
         StackFrame frame = thread.getStack().getTopFrame();
-//        System.out.println("Current method:" + frame.getMethod().getClazz().getName() + ":"+ frame.getMethod().getName());
         ColorUtil.printYellow(("Methods in current thread:"));
         thread.getStack().getStack().forEach(m -> System.out.println(m.getMethod().getClazz().getName() + " : " + m.getMethod().getName()));
         System.out.println();
         System.out.println("Contents in operand stack:");
         Arrays.stream(frame.getOperandStack().getSlots())
                 .forEach(s -> {
-                    if (s.getObject() != null) System.out.println("value = " + s.getValue());
-                    else System.out.println("Object ref = " + s.getObject());
+                    if (s.getObject() == null) System.out.println("value = " + s.getValue());
+                    else System.out.println("Object ref to -> " + s.getObject().getClazz().getName());
                 });
         System.out.println();
         System.out.println("Contents in local var:");
         Arrays.stream(frame.getLocalVars().getVarSlots())
                 .forEach(s -> {
-                    if (s.getObject() != null) System.out.println("value = " + s.getValue());
-                    else System.out.println("Object ref = " + s.getObject());
+                    if (s.getObject() == null) System.out.println("value = " + s.getValue());
+                    else System.out.println("Object ref to -> " + s.getObject().getClazz().getName());
                 });
         System.out.println();
         ColorUtil.printBlue("----------------------------------------------------------------------");

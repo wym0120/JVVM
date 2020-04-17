@@ -16,29 +16,20 @@ import runtime.struct.Slot;
  * @author xxz
  * Created on 2020-03-28
  */
-public class INVOKE_STATIC extends Index16Instruction {
+public class INVOKE_STATIC extends INVOKE_BASE {
     @Override
     public void execute(StackFrame frame) {
-        Method method = getMethod(frame);
+        Method toInvoke = getMethod(frame);
 
         //check class whether init
-        JClass currentClazz = method.getClazz();
+        JClass currentClazz = toInvoke.getClazz();
         if (currentClazz.getInitState() == InitState.PREPARED) {
-            frame.setNextPC(frame.getNextPC() - 2);
+            frame.setNextPC(frame.getNextPC() - 3);//opcode + operand = 3bytes
             currentClazz.initClass(frame.getThread(), currentClazz);
             return;
         }
 
-        Slot[] args = copyArguments(frame, method);
-
-        StackFrame newFrame = new StackFrame(frame.getThread(), method,
-                method.getMaxStack(), method.getMaxLocal());
-        Vars localVars = newFrame.getLocalVars();
-        for (int i = 0; i < args.length; i++) {
-            localVars.setSlot(i, args[i]);
-        }
-
-        frame.getThread().pushFrame(newFrame);
+        invokeMethod(frame, toInvoke);
     }
 
     private Slot[] copyArguments(StackFrame frame, Method method) {
@@ -50,10 +41,4 @@ public class INVOKE_STATIC extends Index16Instruction {
         return argv;
     }
 
-    private Method getMethod(StackFrame frame) {
-        JClass currentClz = frame.getMethod().getClazz();
-        Constant methodRef = currentClz.getRuntimeConstantPool().getConstant(super.index);
-        assert methodRef instanceof MethodRef;
-        return ((MethodRef) methodRef).resolveMethodRef();
-    }
 }

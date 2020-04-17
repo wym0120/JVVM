@@ -18,10 +18,12 @@ public class MethodRef extends MemberRef {
         super(runtimeConstantPool, methodrefInfo);
     }
 
-    public Method resolveMethodRef(JClass clazz) {
-        resolve(clazz);
-        return method;
-    }
+    //todo:I think this is useless but maybe have some bugs here!!!!
+
+//    public Method resolveMethodRef(JClass clazz) {
+//        resolve(clazz);
+//        return method;
+//    }
 
     public Method resolveMethodRef() {
         if (method == null) {
