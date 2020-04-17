@@ -34,16 +34,15 @@ public class Method extends ClassMember {
         int idx = descriptor.indexOf('(');
         assert idx != -1;
         int cnt = 0;
-        //todo : check fix correctly
         while (idx + 1 < length) {
-//        while (idx < length) {
             switch (chars[++idx]) {
-                case 'B':
-                case 'C':
+                case 'J':
                 case 'D':
+                    cnt++;
                 case 'F':
                 case 'I':
-                case 'J':
+                case 'B':
+                case 'C':
                 case 'S':
                 case 'Z':
                     cnt++;

@@ -18,8 +18,7 @@ public class NEW extends Index16Instruction {
 
             //check class whether init
             if (clazz.getInitState() == InitState.PREPARED) {
-                //todo:test whether 2 is revert 2 bytes here
-                frame.setNextPC(frame.getNextPC() - 2);
+                frame.setNextPC(frame.getNextPC() - 3);//opcode + operand = 3bytes
                 clazz.initClass(frame.getThread(), clazz);
                 return;
             }

@@ -1,5 +1,5 @@
 
-public class Student extends People implements Play {
+public class Student extends People {
     private static int value1;
     private static double value2;
     private boolean hasHomework;
@@ -29,21 +29,21 @@ public class Student extends People implements Play {
         return a + b;
     }
 
-    @Override
-    public void playGame() {
-        if (value1 >= 0) {
-            if (value1 < 3) {
-                if (value2 <= 4.0) {
-                    if (value2 > 3) {
-                        if (value2 + value1 == 5.5) {
-                            double res = value1 + value2 - value1 / value2 * value1;
-                            System.out.println(res);
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    @Override
+//    public void playGame() {
+//        if (value1 >= 0) {
+//            if (value1 < 3) {
+//                if (value2 <= 4.0) {
+//                    if (value2 > 3) {
+//                        if (value2 + value1 == 5.5) {
+//                            double res = value1 + value2 - value1 / value2 * value1;
+//                            System.out.println(res);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     public static void main(String[] args) {
         setValue();//invokeStatic
@@ -55,10 +55,17 @@ public class Student extends People implements Play {
         }
         xxz = (Student) xxz;//checkcast
         xxz.solveMathProblem();//invokeVirtual
-        if (!xxz.hasHomework) xxz.playGame();//invokeInterface
+        if (!xxz.hasHomework) xxz.playGame();
         int value1 = Student.value1;//getStatic
         Student.value1 = value1 += 1;//setStatic
+        xxz.doExtra();
+        Play a = xxz;
+        a.doExtra();
 
+    }
+
+    @Override
+    public void doExtra() {
 
     }
 }

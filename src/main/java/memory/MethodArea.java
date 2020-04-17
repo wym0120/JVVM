@@ -23,7 +23,12 @@ public class MethodArea {
     }
 
     public JClass findClass(String className) {
-        return classMap.getOrDefault(className, null);
+        if (classMap.keySet().stream().anyMatch(name -> name.equals(className))) {
+            return classMap.get(className);
+        } else {
+            return null;
+        }
+//        return classMap.getOrDefault(className, null);
     }
 
     public void addClass(String className, JClass clazz) {

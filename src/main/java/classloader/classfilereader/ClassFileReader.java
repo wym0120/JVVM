@@ -3,6 +3,7 @@ package classloader.classfilereader;
 import classloader.classfilereader.classpath.*;
 import com.sun.tools.javac.util.Pair;
 import lombok.Data;
+import util.PathUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -74,6 +75,7 @@ public class ClassFileReader {
         int value = (type == null) ? EntryType.USER_ENTRY : type.getValue();
         checkCorrectClasspath();
         String realClassName = className + ".class";
+        realClassName = PathUtil.transform(realClassName);
         byte[] data;
         if (value >= EntryType.BOOT_ENTRY) {
             if ((data = bootClasspath.readClass(realClassName)) != null) {

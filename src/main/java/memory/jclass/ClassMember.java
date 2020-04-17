@@ -25,6 +25,10 @@ public abstract class ClassMember {
         return 0 != (accessFlags & AccessFlags.ACC_STATIC);
     }
 
+    public boolean isNative() {
+        return 0 != (accessFlags & AccessFlags.ACC_NATIVE);
+    }
+
     public boolean isFinal() {
         return 0 != (accessFlags & AccessFlags.ACC_FINAL);
     }

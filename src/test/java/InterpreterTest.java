@@ -20,12 +20,15 @@ public class InterpreterTest {
     @BeforeAll
     static void init() {
         loader = ClassLoader.getInstance();
-        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
+//        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
+        String testPath = String.join(File.separator, "build", "classes", "java", "test");
         ClassFileReader.setUserClasspath(testPath);
+
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"Student"})
+//    @ValueSource(strings = {"Student"})
+    @ValueSource(strings = {"minimal/A"})
     void Interpret(String className) {
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);

@@ -1,3 +1,5 @@
+package util;
+
 public class ColorUtil {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -12,4 +14,9 @@ public class ColorUtil {
     public static void printBlue(String message) {
         System.out.println(ANSI_BLUE + message + ANSI_RESET);
     }
+
+    public static void printYellow(String message) {
+        System.out.println(ANSI_YELLOW + message + ANSI_RESET);
+    }
+
 }

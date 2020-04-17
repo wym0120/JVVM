@@ -25,7 +25,7 @@ public class PUTSTATIC extends Index16Instruction {
 
             //check class whether init
             if (targetClazz.getInitState() == InitState.PREPARED) {
-                frame.setNextPC(frame.getNextPC() - 2);
+                frame.setNextPC(frame.getNextPC() - 3);//opcode + operand = 3bytes
                 targetClazz.initClass(frame.getThread(), targetClazz);
                 return;
             }

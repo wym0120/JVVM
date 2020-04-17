@@ -19,10 +19,12 @@ import instructions.stack.*;
 import instructions.store.*;
 import runtime.JThread;
 import runtime.StackFrame;
+import util.ColorUtil;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import static instructions.base.OpCode.RETURN_;
 
@@ -301,7 +303,10 @@ public class Interpreter {
         System.out.println("After exec");
         System.out.println();
         StackFrame frame = thread.getStack().getTopFrame();
-        System.out.println("Current method:" + frame.getMethod().getName());
+//        System.out.println("Current method:" + frame.getMethod().getClazz().getName() + ":"+ frame.getMethod().getName());
+        ColorUtil.printYellow(("Methods in current thread:"));
+        thread.getStack().getStack().forEach(m -> System.out.println(m.getMethod().getClazz().getName() + " : " + m.getMethod().getName()));
+        System.out.println();
         System.out.println("Contents in operand stack:");
         Arrays.stream(frame.getOperandStack().getSlots())
                 .forEach(s -> {
@@ -316,7 +321,7 @@ public class Interpreter {
                     else System.out.println("Object ref = " + s.getObject());
                 });
         System.out.println();
-        System.out.println("----------------------------------------------------------------------");
+        ColorUtil.printBlue("----------------------------------------------------------------------");
     }
 
 

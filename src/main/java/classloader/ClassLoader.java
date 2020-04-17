@@ -104,7 +104,8 @@ public class ClassLoader {
 
     private void resolveSuperClass(JClass clazz) throws ClassNotFoundException {
         if (!clazz.getName().equals("java/lang/Object")) {
-            String superClassName = PathUtil.transform(clazz.getSuperClassName());
+//            String superClassName = PathUtil.transform(clazz.getSuperClassName());
+            String superClassName = clazz.getSuperClassName();
             EntryType initiatingEntry = clazz.getLoadEntryType();
             clazz.setSuperClass(loadClass(superClassName, initiatingEntry));
         }
@@ -117,7 +118,7 @@ public class ClassLoader {
         JClass[] interfaces = new JClass[interfaceCount];
         clazz.setInterfaces(interfaces);
         for (int i = 0; i < interfaceCount; i++) {
-            interfaces[i] = loadClass(PathUtil.transform(interfaceNames[i]), initiatingEntry);
+            interfaces[i] = loadClass(interfaceNames[i], initiatingEntry);
         }
     }
 

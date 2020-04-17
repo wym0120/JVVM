@@ -6,7 +6,6 @@ import classloader.classfileparser.FieldInfo;
 import classloader.classfileparser.MethodInfo;
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfilereader.classpath.EntryType;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
@@ -178,12 +177,12 @@ public class JClass {
      */
 
     //if in multi-thread, jclass need a initstate lock
-    private void initStart() {
-        this.initState = InitState.BUSY;
+    private void initStart(JClass clazz) {
+        clazz.initState = InitState.BUSY;
     }
 
-    private void initSucceed() {
-        this.initState = InitState.SUCCESS;
+    private void initSucceed(JClass clazz) {
+        clazz.initState = InitState.SUCCESS;
     }
 
     private void initFail() {
@@ -191,13 +190,13 @@ public class JClass {
     }
 
     public void initClass(JThread thread, JClass clazz) {
-        initStart();
-        invokeClinit(thread, clazz);
+        initStart(clazz);
+        scheduleClinit(thread, clazz);
         initSuperClass(thread, clazz);
-        initSucceed();
+        initSucceed(clazz);
     }
 
-    private void invokeClinit(JThread thread, JClass clazz) {
+    private void scheduleClinit(JThread thread, JClass clazz) {
         Method clinit = clazz.getClinitMethod();
         if (clinit != null) {
             StackFrame frame = new StackFrame(thread, clinit, clinit.getMaxStack(), clinit.getMaxLocal());
@@ -219,28 +218,25 @@ public class JClass {
      *
      * @return
      */
-    private Method getMethod(String name, String descriptor, boolean isStatic) {
+    private Method getMethodInClass(String name, String descriptor, boolean isStatic) {
         JClass clazz = this;
-        while (clazz != null) {
-            Method[] methods = clazz.getMethods();
-            for (Method m : methods) {
-                if (m.getDescriptor().equals(descriptor)
-                        && m.getName().equals(name)
-                        && m.isStatic() == isStatic) {
-                    return m;
-                }
+        Method[] methods = clazz.getMethods();
+        for (Method m : methods) {
+            if (m.getDescriptor().equals(descriptor)
+                    && m.getName().equals(name)
+                    && m.isStatic() == isStatic) {
+                return m;
             }
-            clazz = clazz.getSuperClass();
         }
         return null;
     }
 
     private Method getClinitMethod() {
-        return getMethod("<clinit>", "()V", true);
+        return getMethodInClass("<clinit>", "()V", true);
     }
 
     public Method getMainMethod() {
-        return getMethod("main", "([Ljava/lang/String;)V", true);
+        return getMethodInClass("main", "([Ljava/lang/String;)V", true);
     }
 
 

@@ -1,4 +1,4 @@
-public abstract class People {
+public abstract class People implements Play {
     public int age;
     public String name;
 
@@ -12,5 +12,9 @@ public abstract class People {
             }
         }
         return sum;
+    }
+
+    public void playGame() {
+
     }
 }

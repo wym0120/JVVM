@@ -9,8 +9,7 @@ import memory.jclass.runtimeConstantPool.constant.Constant;
 @Data
 public abstract class SymRef implements Constant {
     public RuntimeConstantPool runtimeConstantPool;
-    //format : java/lang/Object
-    public String className;
+    public String className;    //format : java/lang/Object
     public JClass clazz;
 
     public JClass getResolvedClass() throws ClassNotFoundException {

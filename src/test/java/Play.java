@@ -1,3 +1,3 @@
-public interface Play {
+public interface Play extends Extra {
     public void playGame();
 }

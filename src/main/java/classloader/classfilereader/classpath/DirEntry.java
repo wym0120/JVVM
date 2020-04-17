@@ -1,6 +1,7 @@
 package classloader.classfilereader.classpath;
 
 import util.IOUtil;
+import util.PathUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +21,7 @@ public class DirEntry extends Entry{
     public byte[] readClass(String className) throws IOException {
         File dir = new File(classpath);
         String absDirPath = dir.getAbsolutePath();
-        String truePath = String.join(FILE_SEPARATOR,absDirPath,className);
+        String truePath = PathUtil.transform(String.join(FILE_SEPARATOR, absDirPath, className));
         File file = new File(truePath);
         if (file.isFile() && file.exists()) {
             return IOUtil.readFileByBytes(new FileInputStream(truePath));

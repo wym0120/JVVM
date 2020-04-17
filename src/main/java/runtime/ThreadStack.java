@@ -1,8 +1,13 @@
 package runtime;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.EmptyStackException;
 import java.util.Stack;
 
+@Setter
+@Getter
 public class ThreadStack {
     private static int maxSize;
     private Stack<StackFrame> stack;
