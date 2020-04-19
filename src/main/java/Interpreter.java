@@ -276,13 +276,13 @@ public class Interpreter {
             thread.getTopFrame().setNextPC(nextPC);
             StackFrame oriTop = thread.getTopFrame();
             instruction.execute(oriTop);
-            PrintInfo(thread, instruction);
             //check whether there's a new frame
             //and whether there's more frame to exec
             StackFrame newTop = thread.getTopFrame();
             if (newTop == null) {
                 return;
             }
+            PrintInfo(thread, instruction);
             if (oriTop != newTop) {
                 initCodeReader(thread);
             }

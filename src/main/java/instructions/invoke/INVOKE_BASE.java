@@ -12,19 +12,10 @@ import runtime.StackFrame;
 import runtime.struct.Slot;
 
 public abstract class INVOKE_BASE extends Index16Instruction {
-    public void invokeMethod(StackFrame caller, Method method) {
-        //prepare new frame
-        JThread thread = caller.getThread();
-        StackFrame newFrame = new StackFrame(thread, method, method.getMaxStack(), method.getMaxLocal());
-        thread.pushFrame(newFrame);
-
-        //pass arguments
-        int argc = method.getArgc();
-        for (int i = argc - 1; i >= 0; i--) {
-            Slot slot = caller.getOperandStack().popSlot();
-            newFrame.getLocalVars().setSlot(i, slot);
-        }
-
+    public void invokeMethod(StackFrame callerFrame, StackFrame calleeFrame, Method method) {
+        JThread thread = callerFrame.getThread();
+        thread.pushFrame(calleeFrame);
+        calleeFrame.setMethod(method);
         //hack native register
         if (method.isNative()) {
             if (method.getName().equals("registerNatives")) {
@@ -36,6 +27,24 @@ public abstract class INVOKE_BASE extends Index16Instruction {
                         + method.descriptor);
             }
         }
+    }
+
+    /**
+     * create frame & pass args
+     */
+    public StackFrame initializeFrame(StackFrame caller, Method method) {
+        //prepare new frame
+        JThread thread = caller.getThread();
+        StackFrame newFrame = new StackFrame(thread, method, method.getMaxStack(), method.getMaxLocal());
+
+
+        //pass arguments
+        int argc = method.getArgc();
+        for (int i = argc - 1; i >= 0; i--) {
+            Slot slot = caller.getOperandStack().popSlot();
+            newFrame.getLocalVars().setSlot(i, slot);
+        }
+        return newFrame;
     }
 
     public Method getMethod(StackFrame frame) {

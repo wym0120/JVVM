@@ -19,14 +19,18 @@ public class InterfaceMethodRef extends MemberRef {
         //method
     }
 
+    public Method resolveInterfaceMethodRef(JClass clazz) {
+        resolve(clazz);
+        return method;
+    }
+
     public Method resolveInterfaceMethodRef() {
-        if (method == null) {
-            try {
-                resolveClassRef();
-                resolve(clazz);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+        try {
+            resolveClassRef();
+            resolve(clazz);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return method;
     }

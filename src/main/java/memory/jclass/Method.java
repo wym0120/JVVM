@@ -33,12 +33,15 @@ public class Method extends ClassMember {
         assert length != -1;
         int idx = descriptor.indexOf('(');
         assert idx != -1;
+        //skip the index of '('
+        idx++;
         int cnt = 0;
         while (idx + 1 < length) {
-            switch (chars[++idx]) {
+            switch (chars[idx++]) {
                 case 'J':
                 case 'D':
                     cnt++;
+                    //fall through
                 case 'F':
                 case 'I':
                 case 'B':

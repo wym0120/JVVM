@@ -1,13 +1,9 @@
 package instructions.invoke;
 
-import instructions.base.Index16Instruction;
 import memory.jclass.InitState;
 import memory.jclass.JClass;
 import memory.jclass.Method;
-import memory.jclass.runtimeConstantPool.constant.Constant;
-import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
 import runtime.StackFrame;
-import runtime.Vars;
 import runtime.struct.Slot;
 
 /**
@@ -29,7 +25,7 @@ public class INVOKE_STATIC extends INVOKE_BASE {
             return;
         }
 
-        invokeMethod(frame, toInvoke);
+        invokeMethod(frame, initializeFrame(frame, toInvoke), toInvoke);
     }
 
     private Slot[] copyArguments(StackFrame frame, Method method) {

@@ -3,6 +3,7 @@ import classloader.classfilereader.ClassFileReader;
 import memory.MethodArea;
 import memory.jclass.JClass;
 import memory.jclass.Method;
+import minimal.A;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +13,7 @@ import runtime.StackFrame;
 
 import java.io.File;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class InterpreterTest {
     private static ClassLoader loader;
@@ -21,7 +22,8 @@ public class InterpreterTest {
     static void init() {
         loader = ClassLoader.getInstance();
 //        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
-        String testPath = String.join(File.separator, "build", "classes", "java", "test");
+//        String testPath = String.join(File.separator, "build", "classes", "java", "test");
+        String testPath = String.join(File.separator, "out", "test", "classes" );
         ClassFileReader.setUserClasspath(testPath);
 
     }
@@ -30,6 +32,7 @@ public class InterpreterTest {
 //    @ValueSource(strings = {"Student"})
     @ValueSource(strings = {"minimal/A"})
     void Interpret(String className) {
+        A a = new A();
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);
         });

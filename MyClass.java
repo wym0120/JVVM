@@ -53,5 +53,8 @@ public class MyClass extends A implements bar {
         B.AM();
     }
 
+    public void testDouble(double a){
+        System.out.println(a);
+    }
 
 }

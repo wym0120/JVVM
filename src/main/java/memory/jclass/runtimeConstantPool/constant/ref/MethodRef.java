@@ -19,11 +19,12 @@ public class MethodRef extends MemberRef {
     }
 
     //todo:I think this is useless but maybe have some bugs here!!!!
+    //of course! YOU SILLY YOUNG MAN!
 
-//    public Method resolveMethodRef(JClass clazz) {
-//        resolve(clazz);
-//        return method;
-//    }
+    public Method resolveMethodRef(JClass clazz) {
+        resolve(clazz);
+        return method;
+    }
 
     public Method resolveMethodRef() {
         if (method == null) {
