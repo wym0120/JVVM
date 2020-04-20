@@ -50,6 +50,18 @@ public class INVOKE_INTERFACE extends Index16Instruction {
         StackFrame newFrame = prepareNewFrame(frame, argc, argv, objectRef, toInvoke);
 
         frame.getThread().pushFrame(newFrame);
+
+        if (method.isNative()) {
+            if (method.getName().equals("registerNatives")) {
+                frame.getThread().popFrame();
+            } else {
+                System.out.println("Native method:"
+                        + method.getClazz().getName()
+                        + method.name
+                        + method.descriptor);
+                frame.getThread().popFrame();
+            }
+        }
     }
 
 

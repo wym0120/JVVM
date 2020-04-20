@@ -282,7 +282,11 @@ public class Interpreter {
             if (newTop == null) {
                 return;
             }
-            PrintInfo(thread, instruction);
+            try {
+                PrintInfo(thread, instruction);
+            } catch (Exception e) {
+                //ignore
+            }
             if (oriTop != newTop) {
                 initCodeReader(thread);
             }
@@ -299,6 +303,7 @@ public class Interpreter {
     }
 
     private void PrintInfo(JThread thread, Instruction instruction) {
+        ColorUtil.printYellow("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         String classNameOfInst = instruction.getClass().toString();
         System.out.println(classNameOfInst.substring(classNameOfInst.lastIndexOf(".") + 1));
         System.out.println("After exec");

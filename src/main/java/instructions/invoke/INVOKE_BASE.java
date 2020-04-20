@@ -25,8 +25,10 @@ public abstract class INVOKE_BASE extends Index16Instruction {
                         + method.getClazz().getName()
                         + method.name
                         + method.descriptor);
+                thread.popFrame();
             }
         }
+
     }
 
     /**

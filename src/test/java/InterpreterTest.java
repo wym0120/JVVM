@@ -46,6 +46,15 @@ public class InterpreterTest {
 
     @AfterAll
     static void printAll() {
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("* * * * * * TEST FINISHED * * * * * * * * * *");
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * * *");
+        System.out.println("* * * * * * * * * * * * * * * * * * * * * * *");
         MethodArea.getClassMap().values().forEach(ClassLoaderTest::printInfo);
     }
 }
