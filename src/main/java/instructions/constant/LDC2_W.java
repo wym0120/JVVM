@@ -13,7 +13,7 @@ public class LDC2_W extends Index16Instruction {
         OperandStack stack = frame.getOperandStack();
         Constant constant = frame.getMethod().getClazz().getRuntimeConstantPool().getConstant(index);
         if (constant instanceof LongWrapper) stack.pushLong(((LongWrapper) constant).getValue());
-        if (constant instanceof DoubleWrapper) stack.pushDouble(((DoubleWrapper) constant).getValue());
-        throw new ClassFormatError();
+        else if (constant instanceof DoubleWrapper) stack.pushDouble(((DoubleWrapper) constant).getValue());
+        else throw new ClassFormatError();
     }
 }

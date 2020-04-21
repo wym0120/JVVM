@@ -21,16 +21,16 @@ public class InterpreterTest {
     @BeforeAll
     static void init() {
         loader = ClassLoader.getInstance();
-//        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
+        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
 //        String testPath = String.join(File.separator, "build", "classes", "java", "test");
-        String testPath = String.join(File.separator, "out", "test", "classes" );
+//        String testPath = String.join(File.separator, "out", "test", "classes" );
         ClassFileReader.setUserClasspath(testPath);
 
     }
 
     @ParameterizedTest
-//    @ValueSource(strings = {"Student"})
-    @ValueSource(strings = {"minimal/A"})
+    @ValueSource(strings = {"Student"})
+//    @ValueSource(strings = {"minimal/A"})
     void Interpret(String className) {
         A a = new A();
         JClass clazz = assertDoesNotThrow(() -> {
