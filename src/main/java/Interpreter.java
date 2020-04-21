@@ -257,7 +257,6 @@ public class Interpreter {
      */
     private void initCodeReader(JThread thread) {
         byte[] code = thread.getTopFrame().getMethod().getCode();
-        //todo:debug doSomething get code occurs NPE!!!!!
         codeReader = ByteBuffer.wrap(code);
         int nextPC = thread.getTopFrame().getNextPC();
         codeReader.position(nextPC);

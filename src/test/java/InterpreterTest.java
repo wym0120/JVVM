@@ -38,7 +38,7 @@ public class InterpreterTest {
         });
         JThread thread = new JThread();
         Method main = clazz.getMainMethod();
-        StackFrame mainFrame = new StackFrame(thread, main, main.getMaxStack(), main.getMaxStack());
+        StackFrame mainFrame = new StackFrame(thread, main, main.getMaxStack(), main.getMaxLocal());
         thread.pushFrame(mainFrame);
         Interpreter interpreter = new Interpreter();
         interpreter.interpret(thread);
