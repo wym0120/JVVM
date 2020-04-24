@@ -12,9 +12,9 @@ public class DUP2 extends NoOperandsInstruction {
         OperandStack stack = frame.getOperandStack();
         Slot slot1 = stack.popSlot();
         Slot slot2 = stack.popSlot();
-        stack.pushSlot(slot2);
-        stack.pushSlot(slot1);
-        stack.pushSlot(slot2);
-        stack.pushSlot(slot1);
+        stack.pushSlot(slot2.clone());
+        stack.pushSlot(slot1.clone());
+        stack.pushSlot(slot2.clone());
+        stack.pushSlot(slot1.clone());
     }
 }
