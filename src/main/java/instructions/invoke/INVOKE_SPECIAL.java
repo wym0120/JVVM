@@ -45,9 +45,9 @@ public class INVOKE_SPECIAL extends Index16Instruction {
         Slot slot = new Slot();
         slot.setObject(thisRef);
         localVars.setSlot(0, slot);
-
+        int argc = method.getArgc();
         for (int i = 1; i < args.length + 1; i++) {
-            localVars.setSlot(i, args[i - 1]);
+            localVars.setSlot(i, args[argc - i]);
         }
 
         frame.getThread().pushFrame(newFrame);

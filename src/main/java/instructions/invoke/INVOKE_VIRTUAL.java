@@ -61,7 +61,7 @@ public class INVOKE_VIRTUAL extends Index16Instruction {
         thisSlot.setObject(objectRef);
         localVars.setSlot(0, thisSlot);
         for (int i = 1; i < argc + 1; i++) {
-            localVars.setSlot(i, argv[i - 1]);
+            localVars.setSlot(i, argv[argc - i]);
         }
         return newFrame;
     }
