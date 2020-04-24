@@ -47,10 +47,8 @@ public class MyClass extends A implements bar {
     static float f = 3.0f;
 
     public static void main(String args[]) {
-        MyClass.l = 2;
-        System.out.println("Hello world");
-        new MyClass().M();
-        B.AM();
+        Integer[][] a=new Integer[3][3];
+        a[0][5]=3;
     }
 
     public void testDouble(double a){
