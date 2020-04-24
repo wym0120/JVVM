@@ -7,7 +7,7 @@ public class ArrayObject extends JObject {
     protected int len;
 
     public ArrayObject(int len){
-        if(len<0)
+        if(len<0) throw new NegativeArraySizeException();
         this.len = len;
     }
 }

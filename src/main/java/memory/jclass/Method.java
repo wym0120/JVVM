@@ -29,14 +29,14 @@ public class Method extends ClassMember {
 
     private int calculateArgcFromDescriptor(String descriptor) {
         char[] chars = descriptor.toCharArray();
-        int length = descriptor.lastIndexOf(')');
-        assert length != -1;
+        int maxIndex = descriptor.lastIndexOf(')');
+        assert maxIndex != -1;
         int idx = descriptor.indexOf('(');
         assert idx != -1;
         //skip the index of '('
         idx++;
         int cnt = 0;
-        while (idx + 1 < length) {
+        while (idx + 1 <= maxIndex) {
             switch (chars[idx++]) {
                 case 'J':
                 case 'D':
@@ -52,7 +52,7 @@ public class Method extends ClassMember {
                     break;
                 case 'L':
                     cnt++;
-                    while (idx < length && chars[idx++] != ';') ;
+                    while (idx < maxIndex && chars[idx++] != ';') ;
                     break;
                 case '[':
                     break;
