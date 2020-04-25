@@ -92,7 +92,6 @@ public class ClassLoader {
     }
 
     private JClass defineClass(byte[] data, EntryType definingEntry) throws ClassNotFoundException {
-        //todo:create classfile need to handle java.lang.ClassFormatError
         ClassFile classFile = new ClassFile(data);
         JClass clazz = new JClass(classFile);
         clazz.setLoadEntryType(definingEntry);
@@ -199,8 +198,9 @@ public class ClassLoader {
                             float floatVal = ((FloatWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
                             staticVars.setFloat(slotID, floatVal);
                             break;
-                        case "Ljava/lang/String;":
-                            //todo:
+//                        case "Ljava/lang/String;":
+//                            break;
+                        default:
                             break;
 
                     }

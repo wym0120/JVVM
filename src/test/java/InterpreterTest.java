@@ -22,8 +22,8 @@ public class InterpreterTest {
     static void init() {
         loader = ClassLoader.getInstance();
 //        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
-//        String testPath = String.join(File.separator, "build", "classes", "java", "test");
-        String testPath = String.join(File.separator, "out", "test", "classes" );
+        String testPath = String.join(File.separator, "build", "classes", "java", "test");
+//        String testPath = String.join(File.separator, "out", "test", "classes" );
         ClassFileReader.setUserClasspath(testPath);
 
     }

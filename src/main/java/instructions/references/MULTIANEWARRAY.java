@@ -25,9 +25,8 @@ public class MULTIANEWARRAY extends Instruction {
         try {
             JClass arrClass = ref.getResolvedClass();
             OperandStack stack = frame.getOperandStack();
-            Integer[] lenArr = popAndCheck(stack, dimensions);
-            Queue<Integer> lenQueue = new LinkedList<>(Arrays.asList(lenArr));
-            ArrayObject arr = createMultiDimensionArray(lenQueue, arrClass);
+            int[] lenArr = popAndCheck(stack, dimensions);
+            ArrayObject arr = createMultiDimensionArray(0, lenArr, arrClass);
             stack.pushObjectRef(arr);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -41,8 +40,8 @@ public class MULTIANEWARRAY extends Instruction {
      * @param dimensions dimension of array
      * @return array of length
      */
-    private Integer[] popAndCheck(OperandStack stack, int dimensions) {
-        Integer[] lenArr = new Integer[dimensions];
+    private int[] popAndCheck(OperandStack stack, int dimensions) {
+        int[] lenArr = new int[dimensions];
         for (int i = dimensions - 1; i >= 0; i--) {
             lenArr[i] = stack.popInt();
             if (lenArr[i] < 0) throw new NegativeArraySizeException();
@@ -50,13 +49,14 @@ public class MULTIANEWARRAY extends Instruction {
         return lenArr;
     }
 
-    private ArrayObject createMultiDimensionArray(Queue<Integer> lenQueue, JClass arrClass) {
-        int len = lenQueue.poll();
+    private ArrayObject createMultiDimensionArray(int index, int[] lenArray, JClass arrClass) {
+        int len = lenArray[index];
+        index++;
         ArrayObject arr = arrClass.newArrayObject(len);
-        if (!(lenQueue.peek() == null)) {
+        if (index <= lenArray.length - 1) {
             //todo: test whether arr is a ref array
             for (int i = 0; i < arr.getLen(); i++) {
-                ((RefArrayObject) arr).getArray()[i] = createMultiDimensionArray(lenQueue, arrClass.getComponentClass());
+                ((RefArrayObject) arr).getArray()[i] = createMultiDimensionArray(index, lenArray, arrClass.getComponentClass());
             }
         }
         return arr;
