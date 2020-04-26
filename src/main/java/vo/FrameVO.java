@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class FrameVO {
     //operandStack[0] is the bottom of this stack
-    private ArrayList<String> operadStack;
+    private ArrayList<String> operandStack;
 
     private ArrayList<String> localVars;
 

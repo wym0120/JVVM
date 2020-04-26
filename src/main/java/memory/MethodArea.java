@@ -1,8 +1,6 @@
 package memory;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import memory.jclass.JClass;
 
 import java.util.HashMap;
@@ -28,7 +26,6 @@ public class MethodArea {
         } else {
             return null;
         }
-//        return classMap.getOrDefault(className, null);
     }
 
     public void addClass(String className, JClass clazz) {
