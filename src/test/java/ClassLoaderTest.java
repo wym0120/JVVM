@@ -11,7 +11,7 @@ import util.ColorUtil;
 import java.io.File;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class ClassLoaderTest {
     private static ClassLoader loader;
@@ -37,31 +37,36 @@ public class ClassLoaderTest {
     }
 
     public static void printInfo(JClass clazz) {
-        System.out.println("Class Name: " + clazz.getName());
-        System.out.println("Package Name: " + clazz.getPackageName());
-        System.out.println("Superclass Name: " + clazz.getSuperClassName());
-        System.out.println("Name of interfaces: ");
-        Arrays.stream(clazz.getInterfaceNames()).forEach(System.out::printf);
-        System.out.println();
-        System.out.println("Field Info: ");
-        Arrays.stream(clazz.getMethods()).forEach(f -> System.out.println(
-                "Field Name:" + f.getName() +
-                        " descriptor:" + f.getDescriptor() +
-                        " accessFlag:" + f.getAccessFlags()));
-        System.out.println();
-        System.out.println("Method Info:");
-        Arrays.stream(clazz.getMethods()).forEach(m -> System.out.println(
-                "Method Name:" + m.getName() +
-                        " descriptor:" + m.getDescriptor() +
-                        " accessFlag:" + m.getAccessFlags() +
-                        " maxStack: " + m.getMaxLocal() +
-                        " maxLocal: " + m.getMaxLocal()));
-        System.out.println();
-        System.out.println("Init State: " + clazz.getInitState());
-        System.out.println("Access Flags:" + String.format("0x%08X", clazz.getAccessFlags()));
-        System.out.println("Load by: " + clazz.getLoadEntryType().getValue());
-        System.out.println("Count of instances slot: " + clazz.getInstanceSlotCount());
-        System.out.println("Count of static slot: " + clazz.getStaticSlotCount());
+        //judge array or nonarray
+        boolean isNonArrayClass = clazz.getName().charAt(0) != '[';
+        if (!isNonArrayClass) {
+            System.out.println("Class Name: " + clazz.getName());
+        } else {
+            System.out.println("Package Name: " + clazz.getPackageName());
+            System.out.println("Superclass Name: " + clazz.getSuperClassName());
+            System.out.println("Name of interfaces: ");
+            Arrays.stream(clazz.getInterfaceNames()).forEach(System.out::printf);
+            System.out.println();
+            System.out.println("Field Info: ");
+            Arrays.stream(clazz.getMethods()).forEach(f -> System.out.println(
+                    "Field Name:" + f.getName() +
+                            " descriptor:" + f.getDescriptor() +
+                            " accessFlag:" + f.getAccessFlags()));
+            System.out.println();
+            System.out.println("Method Info:");
+            Arrays.stream(clazz.getMethods()).forEach(m -> System.out.println(
+                    "Method Name:" + m.getName() +
+                            " descriptor:" + m.getDescriptor() +
+                            " accessFlag:" + m.getAccessFlags() +
+                            " maxStack: " + m.getMaxLocal() +
+                            " maxLocal: " + m.getMaxLocal()));
+            System.out.println();
+            System.out.println("Init State: " + clazz.getInitState());
+            System.out.println("Access Flags:" + String.format("0x%08X", clazz.getAccessFlags()));
+            System.out.println("Load by: " + clazz.getLoadEntryType().getValue());
+            System.out.println("Count of instances slot: " + clazz.getInstanceSlotCount());
+            System.out.println("Count of static slot: " + clazz.getStaticSlotCount());
+        }
         System.out.println();
         ColorUtil.printBlue("------------------------------------------------------------------------------------------------------");
         System.out.println();

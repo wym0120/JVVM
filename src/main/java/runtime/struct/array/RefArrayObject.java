@@ -8,8 +8,8 @@ import runtime.struct.JObject;
 public class RefArrayObject extends ArrayObject {
     private JObject[] array;
 
-    public RefArrayObject(int len){
-        super(len);
+    public RefArrayObject(int len, String type) {
+        super(len, type);
         array = new JObject[len];
     }
 }

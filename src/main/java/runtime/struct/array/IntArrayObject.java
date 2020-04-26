@@ -7,8 +7,8 @@ import runtime.struct.ArrayObject;
 public class IntArrayObject extends ArrayObject {
     private int[] array;
 
-    public IntArrayObject(int len){
-        super(len);
+    public IntArrayObject(int len, String type) {
+        super(len, type);
         array = new int[len];
     }
 }

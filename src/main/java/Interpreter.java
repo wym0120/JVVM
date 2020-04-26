@@ -19,12 +19,14 @@ import instructions.stack.*;
 import instructions.store.*;
 import runtime.JThread;
 import runtime.StackFrame;
+import runtime.struct.ArrayObject;
+import runtime.struct.NonArrayObject;
+import runtime.struct.Slot;
 import util.ColorUtil;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 import static instructions.base.OpCode.RETURN_;
 
@@ -213,7 +215,7 @@ public class Interpreter {
         opMap.put(OpCode.LRETURN, new LRETURN());
         opMap.put(OpCode.FRETURN, new FRETURN());
         opMap.put(OpCode.DRETURN, new DRETURN());
-//        opMap.put(OpCode.ARETURN, new ARETURN());
+        opMap.put(OpCode.ARETURN, new ARETURN());
         opMap.put(RETURN_, new RETURN());
         opMap.put(OpCode.GETSTATIC, new GETSTATIC());
         opMap.put(OpCode.PUTSTATIC, new PUTSTATIC());
@@ -281,11 +283,11 @@ public class Interpreter {
             if (newTop == null) {
                 return;
             }
-            try {
-                PrintInfo(thread, instruction);
-            } catch (Exception e) {
-                //ignore
-            }
+            PrintInfo(oriTop, newTop, thread, instruction);
+//            try {
+//            } catch (Exception e) {
+//                //ignore
+//            }
             if (oriTop != newTop) {
                 initCodeReader(thread);
             }
@@ -301,32 +303,41 @@ public class Interpreter {
         return instruction;
     }
 
-    private void PrintInfo(JThread thread, Instruction instruction) {
-        ColorUtil.printYellow("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+    private void PrintInfo(StackFrame ori, StackFrame next, JThread thread, Instruction instruction) {
+        String langSpace = "    ";
         String classNameOfInst = instruction.getClass().toString();
-        System.out.println(classNameOfInst.substring(classNameOfInst.lastIndexOf(".") + 1));
-        System.out.println("After exec");
+        System.out.println("After " + classNameOfInst.substring(classNameOfInst.lastIndexOf(".") + 1) + " exec:");
+        ColorUtil.printYellow(("    Methods in current thread:"));
+        thread.getStack().getStack().forEach(m -> System.out.println(langSpace + m.getMethod().getClazz().getName() + " : " + m.getMethod().getName()));
         System.out.println();
-        StackFrame frame = thread.getStack().getTopFrame();
-        ColorUtil.printYellow(("Methods in current thread:"));
-        thread.getStack().getStack().forEach(m -> System.out.println(m.getMethod().getClazz().getName() + " : " + m.getMethod().getName()));
+        ColorUtil.printYellow(langSpace + "Contents in operand stack:");
+        printVars(ori.getOperandStack().getSlots());
         System.out.println();
-        System.out.println("Contents in operand stack:");
-        Arrays.stream(frame.getOperandStack().getSlots())
-                .forEach(s -> {
-                    if (s.getObject() == null) System.out.println("value = " + s.getValue());
-                    else System.out.println("Object ref to -> " + s.getObject().getClazz().getName());
-                });
+        ColorUtil.printYellow(langSpace + "Contents in local var:");
+        printVars(ori.getLocalVars().getVarSlots());
         System.out.println();
-        System.out.println("Contents in local var:");
-        Arrays.stream(frame.getLocalVars().getVarSlots())
-                .forEach(s -> {
-                    if (s.getObject() == null) System.out.println("value = " + s.getValue());
-                    else System.out.println("Object ref to -> " + s.getObject().getClazz().getName());
-                });
-        System.out.println();
+
+        if (ori == next) {
+            ColorUtil.printCyan("Next frame doesn't change.Method is still " + ori.getMethod().getClazz().getName() + " : " + ori.getMethod().getName());
+        } else {
+            ColorUtil.printRed("Next frame changed.Method is " + next.getMethod().getClazz().getName() + " : " + next.getMethod().getName());
+        }
         ColorUtil.printBlue("----------------------------------------------------------------------");
     }
 
+    private void printVars(Slot[] vars) {
+        String langSpace = "    ";
+        Arrays.stream(vars)
+                .forEach(s -> {
+                    assert s != null;
+                    if (s.getValue() != null) System.out.println(langSpace + "value = " + s.getValue());
+                    else if (s.getObject() != null) {
+                        if (s.getObject() instanceof NonArrayObject)
+                            System.out.println(langSpace + "Object ref to -> " + s.getObject().getClazz().getName());
+                        else if (s.getObject() instanceof ArrayObject)
+                            System.out.println(langSpace + "Object ref to -> " + ((ArrayObject) s.getObject()).getType());
+                    }
+                });
+    }
 
 }

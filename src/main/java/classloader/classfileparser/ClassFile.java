@@ -56,7 +56,6 @@ public class ClassFile {
         parseFields();
         parseMethods();
         parseAttributes();
-        System.out.println();
 
     }
 

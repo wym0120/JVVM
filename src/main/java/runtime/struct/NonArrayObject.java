@@ -9,11 +9,6 @@ public class NonArrayObject extends JObject {
 
     private Vars fields;
 
-    protected NonArrayObject(){
-
-    }
-
-
     public NonArrayObject(JClass clazz) {
         assert clazz != null;
         this.clazz = clazz;

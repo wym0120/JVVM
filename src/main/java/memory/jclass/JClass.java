@@ -97,15 +97,24 @@ public class JClass {
     public ArrayObject newArrayObject(int len){
         if(this.name.charAt(0)!='[')throw new RuntimeException("This Class is not array: "+this.name);
         switch (this.name){
-            case "[Z":return new BooleanArrayObject(len);
-            case "[B":return new ByteArrayObject(len);
-            case "[C":return new CharArrayObject(len);
-            case "[S":return new ShortArrayObject(len);
-            case "[I":return new IntArrayObject(len);
-            case "[J":return new LongArrayObject(len);
-            case "[F":return new FloatArrayObject(len);
-            case "[D":return new DoubleArrayObject(len);
-            default:return new RefArrayObject(len);
+            case "[Z":
+                return new BooleanArrayObject(len, this.name);
+            case "[B":
+                return new ByteArrayObject(len, this.name);
+            case "[C":
+                return new CharArrayObject(len, this.name);
+            case "[S":
+                return new ShortArrayObject(len, this.name);
+            case "[I":
+                return new IntArrayObject(len, this.name);
+            case "[J":
+                return new LongArrayObject(len, this.name);
+            case "[F":
+                return new FloatArrayObject(len, this.name);
+            case "[D":
+                return new DoubleArrayObject(len, this.name);
+            default:
+                return new RefArrayObject(len, this.name);
         }
     }
 

@@ -2,7 +2,6 @@ package memory.jclass.runtimeConstantPool;
 
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfileparser.constantpool.info.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.JClass;
@@ -11,7 +10,10 @@ import memory.jclass.runtimeConstantPool.constant.ref.ClassRef;
 import memory.jclass.runtimeConstantPool.constant.ref.FieldRef;
 import memory.jclass.runtimeConstantPool.constant.ref.InterfaceMethodRef;
 import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
-import memory.jclass.runtimeConstantPool.constant.wrapper.*;
+import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
 
 import static classloader.classfileparser.constantpool.info.ConstantPoolInfo.*;
 
@@ -53,10 +55,11 @@ public class RuntimeConstantPool {
                     i++;
                     break;
 
-                case STRING:
-                    StringInfo stringInfo = (StringInfo) info;
-                    constants[i] = new StringWrapper(stringInfo.getStringValue());
-                    break;
+                //not support String class in current version
+//                case STRING:
+//                    StringInfo stringInfo = (StringInfo) info;
+//                    constants[i] = new StringWrapper(stringInfo.getStringValue());
+//                    break;
 
                 case CLASS:
                     ClassInfo classInfo = (ClassInfo) info;

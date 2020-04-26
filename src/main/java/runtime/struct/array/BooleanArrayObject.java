@@ -7,8 +7,8 @@ import runtime.struct.ArrayObject;
 public class BooleanArrayObject extends ArrayObject {
     private boolean[] array;
 
-    public BooleanArrayObject(int len){
-        super(len);
+    public BooleanArrayObject(int len, String type) {
+        super(len, type);
         array = new boolean[len];
     }
 }

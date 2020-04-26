@@ -7,8 +7,8 @@ import runtime.struct.ArrayObject;
 public class ShortArrayObject extends ArrayObject {
     private short[] array;
 
-    public ShortArrayObject(int len){
-        super(len);
+    public ShortArrayObject(int len, String type) {
+        super(len, type);
         array = new short[len];
     }
 }

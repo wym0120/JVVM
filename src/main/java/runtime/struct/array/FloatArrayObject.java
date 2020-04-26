@@ -7,8 +7,8 @@ import runtime.struct.ArrayObject;
 public class FloatArrayObject extends ArrayObject {
     private float[] array;
 
-    public FloatArrayObject(int len){
-        super(len);
+    public FloatArrayObject(int len, String type) {
+        super(len, type);
         array = new float[len];
     }
 }

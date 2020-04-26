@@ -7,8 +7,8 @@ import runtime.struct.ArrayObject;
 public class ByteArrayObject extends ArrayObject {
     private byte[] array;
 
-    public ByteArrayObject(int len){
-        super(len);
+    public ByteArrayObject(int len, String type) {
+        super(len, type);
         array = new byte[len];
     }
 }

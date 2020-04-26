@@ -3,7 +3,6 @@ import classloader.classfilereader.ClassFileReader;
 import memory.MethodArea;
 import memory.jclass.JClass;
 import memory.jclass.Method;
-import minimal.A;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,7 +31,6 @@ public class InterpreterTest {
     @ValueSource(strings = {"Student"})
 //    @ValueSource(strings = {"minimal/A"})
     void Interpret(String className) {
-        A a = new A();
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);
         });

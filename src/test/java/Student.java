@@ -10,8 +10,8 @@ public class Student extends People {
         value2 = 3.5;
     }
 
-    public Student(String name, int age) {
-        this.name = name;
+    public Student(int id, int age) {
+        this.id = id;
         this.age = age;
         hasHomework = true;
     }
@@ -48,10 +48,10 @@ public class Student extends People {
     public static void main(String[] args) {
         setValue();//invokeStatic
         int age = 22; //ldc
-        Student xxz = new Student("xxz", age);//new
-        String name = xxz.name;//getfield
+        Student xxz = new Student(123456, age);//new
+        int id = xxz.id;//getfield
         if (xxz instanceof Student) {//instanceof
-            xxz.name = "xxz again";//setfield
+            xxz.id = 1456776728;//setfield
         }
         xxz = (Student) xxz;//checkcast
         xxz.solveMathProblem();//invokeVirtual

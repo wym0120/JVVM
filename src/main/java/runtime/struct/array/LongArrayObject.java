@@ -7,8 +7,8 @@ import runtime.struct.ArrayObject;
 public class LongArrayObject extends ArrayObject {
     private long[] array;
 
-    public LongArrayObject(int len){
-        super(len);
+    public LongArrayObject(int len, String type) {
+        super(len, type);
         array = new long[len];
     }
 }

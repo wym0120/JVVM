@@ -19,4 +19,19 @@ public class ColorUtil {
         System.out.println(ANSI_YELLOW + message + ANSI_RESET);
     }
 
+    public static void printGreen(String message) {
+        System.out.println(ANSI_GREEN + message + ANSI_RESET);
+    }
+
+    public static void printPurple(String message) {
+        System.out.println(ANSI_PURPLE + message + ANSI_RESET);
+    }
+
+    public static void printRed(String message) {
+        System.out.println(ANSI_RED + message + ANSI_RESET);
+    }
+
+    public static void printCyan(String message) {
+        System.out.println(ANSI_CYAN + message + ANSI_RESET);
+    }
 }

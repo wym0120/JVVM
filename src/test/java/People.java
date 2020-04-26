@@ -1,6 +1,6 @@
 public abstract class People implements Play {
     public int age;
-    public String name;
+    public int id;
 
     public abstract int solveMathProblem();
 
