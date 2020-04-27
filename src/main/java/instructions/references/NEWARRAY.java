@@ -3,10 +3,11 @@ package instructions.references;
 import classloader.ClassLoader;
 import classloader.classfilereader.classpath.EntryType;
 import instructions.base.Instruction;
+import memory.JHeap;
 import memory.jclass.JClass;
 import runtime.OperandStack;
 import runtime.StackFrame;
-import runtime.struct.JObject;
+import runtime.struct.ArrayObject;
 import runtime.struct.array.ArrayType;
 
 import java.nio.ByteBuffer;
@@ -17,10 +18,12 @@ public class NEWARRAY extends Instruction {
     public void execute(StackFrame frame) {
         OperandStack stack = frame.getOperandStack();
         int len = stack.popInt();
-        if(len<0)throw new NegativeArraySizeException();
-        JClass arrClass = getPrimitiveArrayClass(atype,frame.getMethod().getClazz().getLoadEntryType());
-        JObject arrObject = arrClass.newArrayObject(len);
-        stack.pushObjectRef(arrObject);
+        if (len < 0) throw new NegativeArraySizeException();
+        JClass arrClass = getPrimitiveArrayClass(atype, frame.getMethod().getClazz().getLoadEntryType());
+        ArrayObject ref = arrClass.newArrayObject(len);
+        //add to heap
+        JHeap.getInstance().addObj(ref);
+        stack.pushObjectRef(ref);
     }
 
     @Override

@@ -8,8 +8,10 @@ import runtime.struct.ArrayObject;
 import runtime.struct.NonArrayObject;
 import runtime.struct.Slot;
 import util.ColorUtil;
+import vo.StateVO;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Interpreter {
@@ -17,7 +19,7 @@ public class Interpreter {
 
     public void interpret(JThread thread) {
         initCodeReader(thread);
-        loop(thread);
+        ArrayList<StateVO> stateList = loop(thread);
     }
 
     /**
@@ -31,7 +33,8 @@ public class Interpreter {
         codeReader.position(nextPC);
     }
 
-    private void loop(JThread thread) {
+    private ArrayList<StateVO> loop(JThread thread) {
+        ArrayList<StateVO> ret = new ArrayList<>();
         while (true) {
             StackFrame oriTop = thread.getTopFrame();
             //parse code attribute for VO
@@ -53,9 +56,10 @@ public class Interpreter {
             //and whether there's more frame to exec
             StackFrame newTop = thread.getTopFrame();
             if (newTop == null) {
-                return;
+                return ret;
             }
             PrintInfo(oriTop, newTop, thread, instruction);
+            ret.add(Recorder.recodeState(oriTop, newTop, instruction));
             if (oriTop != newTop) {
                 initCodeReader(thread);
             }

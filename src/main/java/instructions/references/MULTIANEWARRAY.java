@@ -1,6 +1,7 @@
 package instructions.references;
 
 import instructions.base.Instruction;
+import memory.JHeap;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import memory.jclass.runtimeConstantPool.constant.ref.ClassRef;
@@ -18,13 +19,15 @@ public class MULTIANEWARRAY extends Instruction {
     @Override
     public void execute(StackFrame frame) {
         RuntimeConstantPool runtimeConstantPool = frame.getMethod().getClazz().getRuntimeConstantPool();
-        ClassRef ref = (ClassRef) runtimeConstantPool.getConstant(index);
+        ClassRef classRef = (ClassRef) runtimeConstantPool.getConstant(index);
         try {
-            JClass arrClass = ref.getResolvedClass();
+            JClass arrClass = classRef.getResolvedClass();
             OperandStack stack = frame.getOperandStack();
             int[] lenArr = popAndCheck(stack, dimensions);
-            ArrayObject arr = createMultiDimensionArray(0, lenArr, arrClass);
-            stack.pushObjectRef(arr);
+            ArrayObject ref = createMultiDimensionArray(0, lenArr, arrClass);
+            //add to heap
+            JHeap.getInstance().addObj(ref);
+            stack.pushObjectRef(ref);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
