@@ -1,4 +1,5 @@
 import classloader.ClassLoader;
+import execution.Interpreter;
 import memory.jclass.JClass;
 import memory.jclass.Method;
 import runtime.JThread;

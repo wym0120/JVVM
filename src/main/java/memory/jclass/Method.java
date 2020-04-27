@@ -2,7 +2,13 @@ package memory.jclass;
 
 import classloader.classfileparser.MethodInfo;
 import classloader.classfileparser.attribute.CodeAttribute;
+import execution.Decoder;
+import instructions.base.Instruction;
 import lombok.Data;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+
 
 @Data
 public class Method extends ClassMember {
@@ -10,7 +16,8 @@ public class Method extends ClassMember {
     private int maxLocal;
     private int argc;
     private byte[] code;
-
+    private ArrayList<String> instList;
+    boolean parsed = false;
 
     public Method(MethodInfo info, JClass clazz) {
         this.clazz = clazz;
@@ -61,6 +68,22 @@ public class Method extends ClassMember {
             }
         }
         return cnt;
+    }
+
+    public void parseCode() {
+        ByteBuffer codeReader = ByteBuffer.wrap(code);
+        int position = 0;
+        codeReader.position(position);
+        int size = code.length;
+        instList = new ArrayList<>();
+        while (position <= size - 1) {
+            int opcode = codeReader.get() & 0xff;
+            Instruction instruction = Decoder.decode(opcode);
+            instruction.fetchOperands(codeReader);
+            instList.add(instruction.toString());
+            position = codeReader.position();
+        }
+        parsed = true;
     }
 
 }

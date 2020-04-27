@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 
 public class SIPUSH extends Instruction {
     private short val;
+
     @Override
     public void fetchOperands(ByteBuffer reader) {
         val = reader.getShort();
@@ -15,5 +16,10 @@ public class SIPUSH extends Instruction {
     @Override
     public void execute(StackFrame frame) {
         frame.getOperandStack().pushInt(val);
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " value : " + val;
     }
 }

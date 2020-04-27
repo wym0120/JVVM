@@ -1,5 +1,6 @@
 import classloader.ClassLoader;
 import classloader.classfilereader.ClassFileReader;
+import execution.Interpreter;
 import memory.MethodArea;
 import memory.jclass.JClass;
 import memory.jclass.Method;

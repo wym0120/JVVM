@@ -10,9 +10,6 @@ import runtime.struct.ArrayObject;
 import runtime.struct.array.RefArrayObject;
 
 import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class MULTIANEWARRAY extends Instruction {
     private int index;//uint16
@@ -66,5 +63,10 @@ public class MULTIANEWARRAY extends Instruction {
     public void fetchOperands(ByteBuffer reader) {
         index = reader.getShort() & 0xFFFF;
         dimensions = reader.get() & 0xFF;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " index : " + index + "dimension : " + dimensions;
     }
 }

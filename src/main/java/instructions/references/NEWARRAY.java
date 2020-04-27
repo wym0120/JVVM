@@ -36,14 +36,23 @@ public class NEWARRAY extends Instruction {
                 case ArrayType.AT_BYTE: return loader.loadClass("[B",initiatingEntry);
                 case ArrayType.AT_CHAR: return loader.loadClass("[C",initiatingEntry);
                 case ArrayType.AT_SHORT: return loader.loadClass("[S",initiatingEntry);
-                case ArrayType.AT_INT: return loader.loadClass("[I",initiatingEntry);
-                case ArrayType.AT_LONG: return loader.loadClass("[J",initiatingEntry);
-                case ArrayType.AT_FLOAT: return loader.loadClass("F",initiatingEntry);
-                case ArrayType.AT_DOUBLE: return loader.loadClass("D",initiatingEntry);
+                case ArrayType.AT_INT:
+                    return loader.loadClass("[I", initiatingEntry);
+                case ArrayType.AT_LONG:
+                    return loader.loadClass("[J", initiatingEntry);
+                case ArrayType.AT_FLOAT:
+                    return loader.loadClass("F", initiatingEntry);
+                case ArrayType.AT_DOUBLE:
+                    return loader.loadClass("D", initiatingEntry);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         throw new RuntimeException("Invalid atype!");
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " array type : " + ArrayType.getName(atype);
     }
 }

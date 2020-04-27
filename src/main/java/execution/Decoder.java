@@ -1,3 +1,5 @@
+package execution;
+
 import instructions.base.Instruction;
 import instructions.base.OpCode;
 import instructions.comparison.*;
@@ -17,21 +19,12 @@ import instructions.math.shift.*;
 import instructions.references.*;
 import instructions.stack.*;
 import instructions.store.*;
-import runtime.JThread;
-import runtime.StackFrame;
-import runtime.struct.ArrayObject;
-import runtime.struct.NonArrayObject;
-import runtime.struct.Slot;
-import util.ColorUtil;
 
-import java.nio.ByteBuffer;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import static instructions.base.OpCode.RETURN_;
 
-public class Interpreter {
-    private ByteBuffer codeReader;
+public class Decoder {
 
     private static HashMap<Integer, Instruction> opMap;
 
@@ -204,7 +197,7 @@ public class Interpreter {
         opMap.put(OpCode.IF_ICMPLE, new IF_ICMPLE());
         opMap.put(OpCode.IF_ACMPEQ, new IF_ACMPEQ());
         opMap.put(OpCode.IF_ACMPNE, new IF_ACMPNE());
-//TODO        opMap.put(OpCode.GOTO_, new GOTO_());
+        opMap.put(OpCode.GOTO_, new GOTO());
 
 //        opMap.put(OpCode.JSR, new JSR());
 //        opMap.put(OpCode.RET, new RET());
@@ -239,7 +232,7 @@ public class Interpreter {
         opMap.put(OpCode.MULTIANEWARRAY, new MULTIANEWARRAY());
         opMap.put(OpCode.IFNULL, new IFNULL());
         opMap.put(OpCode.IFNONNULL, new IFNONNULL());
-//TODO        opMap.put(OpCode.GOTO_W, new GOTO_W());
+        opMap.put(OpCode.GOTO_W, new GOTO_W());
 
 //        opMap.put(OpCode.JSR_W, new JSR_W());
 //        opMap.put(OpCode.BREAKPOINT, new BREAKPOINT());
@@ -247,97 +240,11 @@ public class Interpreter {
 //        opMap.put(OpCode.IMPDEP2, new IMPDEP2());
     }
 
-
-    public void interpret(JThread thread) {
-        initCodeReader(thread);
-        loop(thread);
-    }
-
-    /**
-     * This method set the code reader according to topFrame
-     * When topFrame changes, this method should be called
-     */
-    private void initCodeReader(JThread thread) {
-        byte[] code = thread.getTopFrame().getMethod().getCode();
-        codeReader = ByteBuffer.wrap(code);
-        int nextPC = thread.getTopFrame().getNextPC();
-        codeReader.position(nextPC);
-    }
-
-    private void loop(JThread thread) {
-        while (true) {
-            //set the reader's position to nextPC
-            codeReader.position(thread.getTopFrame().getNextPC());
-            //fetch and decode
-            int opcode = codeReader.get() & 0xff;
-            Instruction instruction = decode(opcode);
-            instruction.fetchOperands(codeReader);
-            //set nextPC to reader's position
-            int nextPC = codeReader.position();
-            thread.getTopFrame().setNextPC(nextPC);
-            StackFrame oriTop = thread.getTopFrame();
-            instruction.execute(oriTop);
-            //check whether there's a new frame
-            //and whether there's more frame to exec
-            StackFrame newTop = thread.getTopFrame();
-            if (newTop == null) {
-                return;
-            }
-            PrintInfo(oriTop, newTop, thread, instruction);
-//            try {
-//            } catch (Exception e) {
-//                //ignore
-//            }
-            if (oriTop != newTop) {
-                initCodeReader(thread);
-            }
-        }
-
-    }
-
-    private Instruction decode(int opcode) {
+    public static Instruction decode(int opcode) {
         Instruction instruction = opMap.get(opcode);
         if (instruction == null) {
             throw new UnsupportedOperationException("Unsupported instruction " + String.format("0x%08X", opcode));
         }
         return instruction;
     }
-
-    private void PrintInfo(StackFrame ori, StackFrame next, JThread thread, Instruction instruction) {
-        String langSpace = "    ";
-        String classNameOfInst = instruction.getClass().toString();
-        System.out.println("After " + classNameOfInst.substring(classNameOfInst.lastIndexOf(".") + 1) + " exec:");
-        ColorUtil.printYellow(("    Methods in current thread:"));
-        thread.getStack().getStack().forEach(m -> System.out.println(langSpace + m.getMethod().getClazz().getName() + " : " + m.getMethod().getName()));
-        System.out.println();
-        ColorUtil.printYellow(langSpace + "Contents in operand stack:");
-        printVars(ori.getOperandStack().getSlots());
-        System.out.println();
-        ColorUtil.printYellow(langSpace + "Contents in local var:");
-        printVars(ori.getLocalVars().getVarSlots());
-        System.out.println();
-
-        if (ori == next) {
-            ColorUtil.printCyan("Next frame doesn't change.Method is still " + ori.getMethod().getClazz().getName() + " : " + ori.getMethod().getName());
-        } else {
-            ColorUtil.printRed("Next frame changed.Method is " + next.getMethod().getClazz().getName() + " : " + next.getMethod().getName());
-        }
-        ColorUtil.printBlue("----------------------------------------------------------------------");
-    }
-
-    private void printVars(Slot[] vars) {
-        String langSpace = "    ";
-        Arrays.stream(vars)
-                .forEach(s -> {
-                    assert s != null;
-                    if (s.getValue() != null) System.out.println(langSpace + "value = " + s.getValue());
-                    else if (s.getObject() != null) {
-                        if (s.getObject() instanceof NonArrayObject)
-                            System.out.println(langSpace + "Object ref to -> " + s.getObject().getClazz().getName());
-                        else if (s.getObject() instanceof ArrayObject)
-                            System.out.println(langSpace + "Object ref to -> " + ((ArrayObject) s.getObject()).getType());
-                    }
-                });
-    }
-
 }

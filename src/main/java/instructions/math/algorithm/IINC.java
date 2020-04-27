@@ -23,4 +23,9 @@ public class IINC extends Instruction {
         num = reader.get();
     }
 
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " index : " + index + "num : " + num;
+    }
+
 }
