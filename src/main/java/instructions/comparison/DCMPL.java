@@ -12,8 +12,8 @@ import runtime.StackFrame;
 public class DCMPL extends NoOperandsInstruction {
     @Override
     public void execute(StackFrame frame) {
-        double value1 = frame.getOperandStack().popDouble();
         double value2 = frame.getOperandStack().popDouble();
+        double value1 = frame.getOperandStack().popDouble();
         if (Double.isNaN(value1) || Double.isNaN(value2)) {
             frame.getOperandStack().pushInt(-1);
         } else {

@@ -13,8 +13,8 @@ import runtime.struct.JObject;
 public abstract class IF_ACMPCOND extends BranchInstruction {
     @Override
     public void execute(StackFrame frame) {
-        JObject value1 = frame.getOperandStack().popObjectRef();
         JObject value2 = frame.getOperandStack().popObjectRef();
+        JObject value1 = frame.getOperandStack().popObjectRef();
 
         if (condition(value1, value2)) {
             int nextPC = frame.getNextPC();

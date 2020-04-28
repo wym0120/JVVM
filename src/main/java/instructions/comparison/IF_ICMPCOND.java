@@ -12,8 +12,8 @@ import runtime.StackFrame;
 public abstract class IF_ICMPCOND extends BranchInstruction {
     @Override
     public void execute(StackFrame frame) {
-        int value1 = frame.getOperandStack().popInt();
         int value2 = frame.getOperandStack().popInt();
+        int value1 = frame.getOperandStack().popInt();
         if (condition(value1, value2)) {
             int nextPC = frame.getNextPC();
             int branchNext = nextPC - 3 + offset;
