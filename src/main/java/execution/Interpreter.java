@@ -1,5 +1,9 @@
 package execution;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import instructions.base.Instruction;
 import memory.jclass.Method;
 import runtime.JThread;
@@ -20,6 +24,18 @@ public class Interpreter {
     public void interpret(JThread thread) {
         initCodeReader(thread);
         ArrayList<StateVO> stateList = loop(thread);
+
+
+        //todo: @xxz !!! write it to file and make sure ljxb won't kill us
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        String jsonString = null;
+        try {
+            jsonString = mapper.writeValueAsString(stateList);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(jsonString);
     }
 
     /**

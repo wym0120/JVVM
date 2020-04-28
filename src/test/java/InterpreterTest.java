@@ -29,7 +29,7 @@ public class InterpreterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"MyArray"})
+    @ValueSource(strings = {"MyArray", "Student"})
     void Interpret(String className) {
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);
