@@ -29,8 +29,7 @@ public class InterpreterTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"Student"})
-//    @ValueSource(strings = {"minimal/A"})
+    @ValueSource(strings = {"MyArray"})
     void Interpret(String className) {
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);

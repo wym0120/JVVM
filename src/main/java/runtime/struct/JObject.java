@@ -16,7 +16,6 @@ public abstract class JObject {
 
     public JObject() {
         id = numInHeap;
-        numInHeap++;
     }
 
     public boolean isInstanceOf(JClass clazz) {

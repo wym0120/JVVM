@@ -11,5 +11,6 @@ public class ArrayObject extends JObject {
         if (len < 0) throw new NegativeArraySizeException();
         this.len = len;
         this.type = type;
+        numInHeap++;
     }
 }

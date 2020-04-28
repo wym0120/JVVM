@@ -8,7 +8,9 @@ import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import memory.jclass.runtimeConstantPool.constant.ref.FieldRef;
 import runtime.OperandStack;
 import runtime.StackFrame;
+import runtime.struct.JObject;
 import runtime.struct.NonArrayObject;
+
 
 public class PUTFIELD extends Index16Instruction {
     @Override
@@ -32,7 +34,7 @@ public class PUTFIELD extends Index16Instruction {
             String descriptor = field.getDescriptor();
             int slotID = field.getSlotID();
             OperandStack stack = frame.getOperandStack();
-            NonArrayObject ref = null;
+            JObject ref = null;
             switch (descriptor.charAt(0)) {
                 case 'Z':
                 case 'B':
@@ -40,50 +42,43 @@ public class PUTFIELD extends Index16Instruction {
                 case 'S':
                 case 'I':
                     int intVal = stack.popInt();
-                    ref = (NonArrayObject) stack.popObjectRef();
-                    //todo:nullpointerException need to be check whether set JObject isNull field can trigger this exception!!!!!!
-                    if (ref.isNull()) {
-                        throw new NullPointerException();
-                    }
-                    ref.getFields().setInt(slotID, intVal);
+                    ref = stack.popObjectRef();
+                    checkNullPointerException(ref);
+                    ((NonArrayObject) ref).getFields().setInt(slotID, intVal);
                     break;
                 case 'F':
                     float floatVal = stack.popFloat();
-                    ref = (NonArrayObject) stack.popObjectRef();
-                    if (ref.isNull()) {
-                        throw new NullPointerException();
-                    }
-                    ref.getFields().setFloat(slotID, floatVal);
+                    ref = stack.popObjectRef();
+                    checkNullPointerException(ref);
+                    ((NonArrayObject) ref).getFields().setFloat(slotID, floatVal);
                     break;
                 case 'J':
-                    long longValue = stack.popLong();
-                    ref = (NonArrayObject) stack.popObjectRef();
-                    if (ref.isNull()) {
-                        throw new NullPointerException();
-                    }
-                    ref.getFields().setLong(slotID, longValue);
+                    long longVal = stack.popLong();
+                    ref = stack.popObjectRef();
+                    checkNullPointerException(ref);
+                    ((NonArrayObject) ref).getFields().setLong(slotID, longVal);
                     break;
                 case 'D':
-                    double doubleValue = stack.popDouble();
-                    ref = (NonArrayObject) stack.popObjectRef();
-                    if (ref.isNull()) {
-                        throw new NullPointerException();
-                    }
-                    ref.getFields().setDouble(slotID, doubleValue);
+                    double doubleVal = stack.popDouble();
+                    ref = stack.popObjectRef();
+                    checkNullPointerException(ref);
+                    ((NonArrayObject) ref).getFields().setDouble(slotID, doubleVal);
                     break;
-                case 'L':
                 case '[':
-                    NonArrayObject refVal = (NonArrayObject) stack.popObjectRef();
-                    ref = (NonArrayObject) stack.popObjectRef();
-                    if (ref.isNull()) {
-                        throw new NullPointerException();
-                    }
-                    ref.getFields().setObjectRef(slotID, refVal);
+                case 'L':
+                    JObject refVal = stack.popObjectRef();
+                    ref = stack.popObjectRef();
+                    ((NonArrayObject) ref).getFields().setObjectRef(slotID, refVal);
                     break;
                 default:
+
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void checkNullPointerException(JObject obj) {
+        if (obj.isNull()) throw new NullPointerException();
     }
 }

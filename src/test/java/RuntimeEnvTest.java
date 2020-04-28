@@ -2,7 +2,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import runtime.OperandStack;
 import runtime.Vars;
-import runtime.struct.NonArrayObject;
+import runtime.struct.NullObject;
 
 import java.util.EmptyStackException;
 
@@ -21,7 +21,7 @@ public class RuntimeEnvTest {
         stack.pushDouble(1.5d);
         assertEquals(stack.getTop(), 5);
         stack.pushFloat(2.1f);
-        stack.pushObjectRef(new NonArrayObject(null, true));
+        stack.pushObjectRef(new NullObject());
         assertTrue(stack.popObjectRef().isNull());
         assertEquals(2.1f, stack.popFloat());
         assertEquals(1.5d, stack.popDouble());
