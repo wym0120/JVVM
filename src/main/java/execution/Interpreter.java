@@ -14,6 +14,7 @@ import runtime.struct.Slot;
 import util.ColorUtil;
 import vo.StateVO;
 
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,13 +27,19 @@ public class Interpreter {
         ArrayList<StateVO> stateList = loop(thread);
 
 
-        //todo: @xxz !!! write it to file and make sure ljxb won't kill us
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         String jsonString = null;
         try {
+
             jsonString = mapper.writeValueAsString(stateList);
-        } catch (JsonProcessingException e) {
+            File outFile = new File("out1.json");
+            outFile.createNewFile();
+            PrintWriter os = new PrintWriter(new FileOutputStream(outFile));
+            os.println(jsonString);
+            os.flush();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println(jsonString);
