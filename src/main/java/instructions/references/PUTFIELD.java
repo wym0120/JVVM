@@ -43,25 +43,25 @@ public class PUTFIELD extends Index16Instruction {
                 case 'I':
                     int intVal = stack.popInt();
                     ref = stack.popObjectRef();
-                    checkNullPointerException(ref);
+                    checkRef(ref);
                     ((NonArrayObject) ref).getFields().setInt(slotID, intVal);
                     break;
                 case 'F':
                     float floatVal = stack.popFloat();
                     ref = stack.popObjectRef();
-                    checkNullPointerException(ref);
+                    checkRef(ref);
                     ((NonArrayObject) ref).getFields().setFloat(slotID, floatVal);
                     break;
                 case 'J':
                     long longVal = stack.popLong();
                     ref = stack.popObjectRef();
-                    checkNullPointerException(ref);
+                    checkRef(ref);
                     ((NonArrayObject) ref).getFields().setLong(slotID, longVal);
                     break;
                 case 'D':
                     double doubleVal = stack.popDouble();
                     ref = stack.popObjectRef();
-                    checkNullPointerException(ref);
+                    checkRef(ref);
                     ((NonArrayObject) ref).getFields().setDouble(slotID, doubleVal);
                     break;
                 case '[':
@@ -78,7 +78,8 @@ public class PUTFIELD extends Index16Instruction {
         }
     }
 
-    private void checkNullPointerException(JObject obj) {
+    private void checkRef(JObject obj) {
+        assert obj instanceof NonArrayObject;
         if (obj.isNull()) throw new NullPointerException();
     }
 }
