@@ -45,4 +45,9 @@ public class FieldRef extends MemberRef {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "FieldRef to " + className;
+    }
 }

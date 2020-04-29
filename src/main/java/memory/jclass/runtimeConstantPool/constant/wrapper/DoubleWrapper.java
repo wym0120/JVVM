@@ -7,7 +7,12 @@ import memory.jclass.runtimeConstantPool.constant.Constant;
 public class DoubleWrapper implements Constant {
     private double value;
 
-    public DoubleWrapper(double value){
+    public DoubleWrapper(double value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "double " + value;
     }
 }

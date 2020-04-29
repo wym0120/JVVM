@@ -57,6 +57,7 @@ public class Recorder {
         Vars localVars = frame.getLocalVars();
         int nextPC = frame.getNextPC();
         ArrayList<String> instList = method.getInstList();
-        return new FrameVO(stack, localVars, nextPC, instList);
+        String methodName = method.getClazz().getName() + " : " + method.getName();
+        return new FrameVO(stack, localVars, nextPC, instList, methodName);
     }
 }

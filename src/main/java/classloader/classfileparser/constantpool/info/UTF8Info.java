@@ -2,6 +2,7 @@ package classloader.classfileparser.constantpool.info;
 
 import classloader.classfileparser.constantpool.ConstantPool;
 import com.sun.tools.javac.util.Pair;
+import lombok.Getter;
 
 import java.nio.ByteBuffer;
 
@@ -11,6 +12,7 @@ import java.nio.ByteBuffer;
  * @author xxz
  * Created on 2020-02-15
  */
+@Getter
 public class UTF8Info extends ConstantPoolInfo {
     private int length;
     private byte[] bytes;

@@ -6,14 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.constant.Constant;
+import memory.jclass.runtimeConstantPool.constant.other.NameAndType;
+import memory.jclass.runtimeConstantPool.constant.other.UTF8;
 import memory.jclass.runtimeConstantPool.constant.ref.ClassRef;
 import memory.jclass.runtimeConstantPool.constant.ref.FieldRef;
 import memory.jclass.runtimeConstantPool.constant.ref.InterfaceMethodRef;
 import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
-import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
-import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
-import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
-import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.*;
 
 import static classloader.classfileparser.constantpool.info.ConstantPoolInfo.*;
 
@@ -55,11 +54,10 @@ public class RuntimeConstantPool {
                     i++;
                     break;
 
-                //not support String class in current version
-//                case STRING:
-//                    StringInfo stringInfo = (StringInfo) info;
-//                    constants[i] = new StringWrapper(stringInfo.getStringValue());
-//                    break;
+                case STRING:
+                    StringInfo stringInfo = (StringInfo) info;
+                    constants[i] = new StringWrapper(stringInfo.getStringValue());
+                    break;
 
                 case CLASS:
                     ClassInfo classInfo = (ClassInfo) info;
@@ -80,7 +78,14 @@ public class RuntimeConstantPool {
                     InterfaceMethodrefInfo interfaceMethodrefInfo = (InterfaceMethodrefInfo) info;
                     constants[i] = new InterfaceMethodRef(this, interfaceMethodrefInfo);
                     break;
-
+                case NAME_AND_TYPE:
+                    NameAndTypeInfo nameAndTypeInfo = (NameAndTypeInfo) info;
+                    constants[i] = new NameAndType(nameAndTypeInfo);
+                    break;
+                case UTF8:
+                    UTF8Info utf8Info = (UTF8Info) info;
+                    constants[i] = new UTF8(utf8Info);
+                    break;
                 default:
                     break;
             }

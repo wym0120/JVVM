@@ -67,4 +67,9 @@ public class InterfaceMethodRef extends MemberRef {
             interfaces.addAll(Arrays.asList(clz.getInterfaces()));
         }
     }
+
+    @Override
+    public String toString() {
+        return "InterfaceMethodRef to " + className;
+    }
 }

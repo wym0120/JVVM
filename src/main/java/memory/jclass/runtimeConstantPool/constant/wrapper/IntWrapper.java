@@ -7,7 +7,12 @@ import memory.jclass.runtimeConstantPool.constant.Constant;
 public class IntWrapper implements Constant {
     private int value;
 
-    public IntWrapper(int value){
+    public IntWrapper(int value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "int " + value;
     }
 }

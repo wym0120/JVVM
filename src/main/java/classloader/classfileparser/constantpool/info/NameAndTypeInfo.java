@@ -2,6 +2,7 @@ package classloader.classfileparser.constantpool.info;
 
 import classloader.classfileparser.constantpool.ConstantPool;
 import com.sun.tools.javac.util.Pair;
+import lombok.Getter;
 
 /**
  * Description:
@@ -9,6 +10,7 @@ import com.sun.tools.javac.util.Pair;
  * @author xxz
  * Created on 2020-02-15
  */
+@Getter
 public class NameAndTypeInfo extends ConstantPoolInfo {
     private int nameIndex;
     private int descriptorIndex;

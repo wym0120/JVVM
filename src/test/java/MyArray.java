@@ -1,5 +1,5 @@
 public class MyArray {
-    static int id = 100;
+    static double id = 5.0;
     //    MyArray next;
     char[] letters;
 //    int[][] nums;

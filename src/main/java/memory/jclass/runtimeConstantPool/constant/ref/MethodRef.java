@@ -73,4 +73,9 @@ public class MethodRef extends MemberRef {
 
 
     }
+
+    @Override
+    public String toString() {
+        return "MethodRef to " + className;
+    }
 }

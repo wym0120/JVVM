@@ -7,7 +7,12 @@ import memory.jclass.runtimeConstantPool.constant.Constant;
 public class LongWrapper implements Constant {
     private long value;
 
-    public LongWrapper(long value){
+    public LongWrapper(long value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "long " + value;
     }
 }

@@ -2,8 +2,12 @@ package vo;
 
 import memory.jclass.ClassMember;
 import memory.jclass.JClass;
+import memory.jclass.runtimeConstantPool.constant.Constant;
+import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
+import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
 import runtime.Vars;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +23,7 @@ public class ClassVO extends HeapContentVO {
         this.className = clazz.getName();
         if (!className.startsWith("[")) {
             this.staticMembers = parseStaticMembers(clazz);
-//            this.rtcp =
+            this.rtcp = parseRTCP(clazz);
         }
     }
 
@@ -37,6 +41,13 @@ public class ClassVO extends HeapContentVO {
         return ret;
     }
 
-
-    //parse rtcp
+    private List<String> parseRTCP(JClass clazz) {
+        List<String> ret = new ArrayList<>();
+        Constant[] constants = clazz.getRuntimeConstantPool().getConstants();
+        for (int i = 0; i < constants.length; i++) {
+            ret.add("index: " + i + " " + constants[i].toString());
+            if (constants[i] instanceof DoubleWrapper || constants[i] instanceof LongWrapper) i++;
+        }
+        return ret;
+    }
 }

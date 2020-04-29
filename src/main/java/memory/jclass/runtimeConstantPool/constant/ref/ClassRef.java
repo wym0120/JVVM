@@ -9,4 +9,9 @@ public class ClassRef extends SymRef {
         this.className = classInfo.getClassName();
     }
 
+    @Override
+    public String toString() {
+        return "ClassRef to " + className;
+    }
+
 }
