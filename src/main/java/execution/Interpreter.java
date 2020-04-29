@@ -1,9 +1,5 @@
 package execution;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import instructions.base.Instruction;
 import memory.jclass.Method;
 import runtime.JThread;
@@ -14,7 +10,6 @@ import runtime.struct.Slot;
 import util.ColorUtil;
 import vo.StateVO;
 
-import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,27 +17,9 @@ import java.util.Arrays;
 public class Interpreter {
     private ByteBuffer codeReader;
 
-    public void interpret(JThread thread) {
+    public ArrayList<StateVO> interpret(JThread thread) {
         initCodeReader(thread);
-        ArrayList<StateVO> stateList = loop(thread);
-
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-        String jsonString = null;
-        try {
-
-            jsonString = mapper.writeValueAsString(stateList);
-            File outFile = new File("out1.json");
-            outFile.createNewFile();
-            PrintWriter os = new PrintWriter(new FileOutputStream(outFile));
-            os.println(jsonString);
-            os.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(jsonString);
+        return loop(thread);
     }
 
     /**

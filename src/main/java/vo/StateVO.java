@@ -1,7 +1,5 @@
 package vo;
 
-import instructions.base.Instruction;
-
 /**
  * Description:
  *
@@ -15,18 +13,18 @@ public class StateVO {
     private MemoryVO memory;
     private boolean hasNext;
 
-    public StateVO(FrameVO currentFrame, FrameVO optionalNextFrame, MemoryVO memory, Instruction instruction) {
+    public StateVO(FrameVO currentFrame, FrameVO optionalNextFrame, MemoryVO memory, String instruction) {
+        this.instruction = instruction;
         this.currentFrame = currentFrame;
         this.optionalNextFrame = optionalNextFrame;
         this.memory = memory;
-        this.instruction = instruction.toString();
         hasNext = true;
     }
 
-    public StateVO(FrameVO currentFrame, MemoryVO memory, Instruction instruction) {
+    public StateVO(FrameVO currentFrame, MemoryVO memory, String instruction) {
+        this.instruction = instruction;
         this.currentFrame = currentFrame;
         this.memory = memory;
-        this.instruction = instruction.toString();
         hasNext = false;
     }
 }

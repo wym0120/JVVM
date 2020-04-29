@@ -29,22 +29,6 @@ public class Student extends People {
         return a + b;
     }
 
-//    @Override
-//    public void playGame() {
-//        if (value1 >= 0) {
-//            if (value1 < 3) {
-//                if (value2 <= 4.0) {
-//                    if (value2 > 3) {
-//                        if (value2 + value1 == 5.5) {
-//                            double res = value1 + value2 - value1 / value2 * value1;
-//                            System.out.println(res);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-
     public static void main(String[] args) {
         setValue();//invokeStatic
         int age = 22; //ldc

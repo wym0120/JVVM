@@ -19,15 +19,17 @@ import java.util.Set;
 public class Recorder {
 
     public static StateVO recodeState(StackFrame ori, StackFrame next, Instruction instruction) {
-        StateVO state = null;
+        StateVO state;
         Set<JObject> heap = JHeap.getInstance().getHeap();
+        //must handle instruction before next frame!!
+        String currentInst = instruction.toString();
         MemoryVO memoryVO = generateMemoryVO(heap);
         FrameVO oriVO = generateFrameVO(ori);
         if (ori == next) {
-            state = new StateVO(oriVO, memoryVO, instruction);
+            state = new StateVO(oriVO, memoryVO, currentInst);
         } else {
             FrameVO nextVO = generateFrameVO(next);
-            state = new StateVO(oriVO, nextVO, memoryVO, instruction);
+            state = new StateVO(oriVO, nextVO, memoryVO, currentInst);
         }
         return state;
     }

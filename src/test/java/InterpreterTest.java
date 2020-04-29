@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import runtime.JThread;
 import runtime.StackFrame;
+import util.JsonUtil;
 
 import java.io.File;
 
@@ -22,14 +23,14 @@ public class InterpreterTest {
     static void init() {
         loader = ClassLoader.getInstance();
 //        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
-//        String testPath = String.join(File.separator, "build", "classes", "java", "test");
-        String testPath = String.join(File.separator, "out", "test", "classes" );
+        String testPath = String.join(File.separator, "build", "classes", "java", "test");
+//        String testPath = String.join(File.separator, "out", "test", "classes" );
         ClassFileReader.setUserClasspath(testPath);
 
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"ControlInstructionTest"})
+    @ValueSource(strings = {"MyArray"})
     void Interpret(String className) {
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);
@@ -39,7 +40,7 @@ public class InterpreterTest {
         StackFrame mainFrame = new StackFrame(thread, main, main.getMaxStack(), main.getMaxLocal());
         thread.pushFrame(mainFrame);
         Interpreter interpreter = new Interpreter();
-        interpreter.interpret(thread);
+        JsonUtil.storeResult(className, interpreter.interpret(thread));
     }
 
     @AfterAll
