@@ -8,6 +8,8 @@ import runtime.Vars;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static memory.jclass.Field.parseDescriptor;
+
 @Data
 public class NonArrayObject extends JObject {
 
@@ -21,19 +23,18 @@ public class NonArrayObject extends JObject {
         fields = new Vars(clazz.getInstanceSlotCount());
         fieldInfoList = new ArrayList<>();
         initDefaultValue(clazz);
-        //todo:sort by index
-        generateFieldInfoList(clazz);
+        generateInstanceFieldInfoList(clazz);
     }
 
-    private void generateFieldInfoList(JClass clazz) {
+    private void generateInstanceFieldInfoList(JClass clazz) {
         do {
             Arrays.stream(clazz.getFields())
+                    .filter(f -> !f.isStatic())
                     .forEach(f -> {
-                        String staticFlag = f.isStatic() ? "static " : "";
                         String type = parseDescriptor(f.getDescriptor());
                         String name = f.getName();
                         int slotID = f.getSlotID();
-                        fieldInfoList.add(new Pair<>(staticFlag + type + " " + name, slotID));
+                        fieldInfoList.add(new Pair<>(type + " " + name, slotID));
                     });
             clazz = clazz.getSuperClass();
         } while (clazz != null);

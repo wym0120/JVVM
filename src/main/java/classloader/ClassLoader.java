@@ -15,6 +15,7 @@ import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
 import runtime.Vars;
+import runtime.struct.NullObject;
 
 import java.io.IOException;
 
@@ -163,45 +164,75 @@ public class ClassLoader {
         clazz.setStaticSlotCount(slotID);
     }
 
+    private void initDefaultValue(JClass clazz, Field field) {
+        Vars staticVars = clazz.getStaticVars();
+        int slotID = field.getSlotID();
+        String descriptor = field.getDescriptor();
+        switch (descriptor.charAt(0)) {
+            case 'Z':
+            case 'B':
+            case 'C':
+            case 'S':
+            case 'I':
+                staticVars.setInt(slotID, 0);
+                break;
+            case 'F':
+                staticVars.setFloat(slotID, 0);
+                break;
+            case 'J':
+                staticVars.setLong(slotID, 0);
+                break;
+            case 'D':
+                staticVars.setDouble(slotID, 0);
+                break;
+            default:
+                staticVars.setObjectRef(slotID, new NullObject());
+                break;
+        }
+    }
+
+    private void loadValueFromRTCP(JClass clazz, Field field) {
+        //load const value from runtimeConstantPool for base type or String
+        Vars staticVars = clazz.getStaticVars();
+        RuntimeConstantPool runtimeConstantPool = clazz.getRuntimeConstantPool();
+        int constantPoolIndex = field.getConstValueIndex();
+        int slotID = field.getSlotID();
+        if (constantPoolIndex > 0) {
+            switch (field.getDescriptor()) {
+                case "Z":
+                case "B":
+                case "C":
+                case "S":
+                case "I":
+                    int intVal = ((IntWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
+                    staticVars.setInt(slotID, intVal);
+                    break;
+                case "J":
+                    long longVal = ((LongWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
+                    staticVars.setLong(slotID, longVal);
+                    break;
+                case "D":
+                    double doubleVal = ((DoubleWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
+                    staticVars.setDouble(slotID, doubleVal);
+                    break;
+                case "F":
+                    float floatVal = ((FloatWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
+                    staticVars.setFloat(slotID, floatVal);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void allocAndInitStaticVars(JClass clazz) {
         clazz.setStaticVars(new Vars(clazz.getStaticSlotCount()));
         Field[] fields = clazz.getFields();
         for (Field f : fields) {
             if (f.isStatic() && f.isFinal()) {
-                //load const value from runtimeConstantPool for base type or String
-                Vars staticVars = clazz.getStaticVars();
-                RuntimeConstantPool runtimeConstantPool = clazz.getRuntimeConstantPool();
-                int constantPoolIndex = f.getConstValueIndex();
-                int slotID = f.getSlotID();
-                if (constantPoolIndex > 0) {
-                    switch (f.getDescriptor()) {
-                        case "Z":
-                        case "B":
-                        case "C":
-                        case "S":
-                        case "I":
-                            int intVal = ((IntWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
-                            staticVars.setInt(slotID, intVal);
-                            break;
-                        case "J":
-                            long longVal = ((LongWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
-                            staticVars.setLong(slotID, longVal);
-                            break;
-                        case "D":
-                            double doubleVal = ((DoubleWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
-                            staticVars.setDouble(slotID, doubleVal);
-                            break;
-                        case "F":
-                            float floatVal = ((FloatWrapper) runtimeConstantPool.getConstant(constantPoolIndex)).getValue();
-                            staticVars.setFloat(slotID, floatVal);
-                            break;
-//                        case "Ljava/lang/String;":
-//                            break;
-                        default:
-                            break;
-
-                    }
-                }
+                loadValueFromRTCP(clazz, f);
+            } else if (f.isStatic()) {
+                initDefaultValue(clazz, f);
             }
         }
     }
