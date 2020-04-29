@@ -17,6 +17,10 @@ public class INVOKE_STATIC extends INVOKE_BASE {
     public void execute(StackFrame frame) {
         Method toInvoke = getMethod(frame);
 
+        if (toInvoke.getName().contains("equalInt")) {
+        }
+
+
         //check class whether init
         JClass currentClazz = toInvoke.getClazz();
         if (currentClazz.getInitState() == InitState.PREPARED) {
