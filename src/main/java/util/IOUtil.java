@@ -1,6 +1,9 @@
 package util;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class IOUtil {
     public static byte[] readFileByBytes(InputStream is) throws IOException {

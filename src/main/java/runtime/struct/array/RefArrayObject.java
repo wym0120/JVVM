@@ -4,8 +4,6 @@ import lombok.Data;
 import runtime.struct.ArrayObject;
 import runtime.struct.JObject;
 
-import java.util.Arrays;
-
 @Data
 public class RefArrayObject extends ArrayObject {
     private JObject[] array;

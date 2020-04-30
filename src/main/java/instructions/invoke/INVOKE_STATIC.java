@@ -7,7 +7,6 @@ import memory.jclass.runtimeConstantPool.constant.Constant;
 import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
 import runtime.StackFrame;
 import runtime.struct.Slot;
-import sun.jvm.hotspot.utilities.AssertionFailure;
 
 /**
  * Description:

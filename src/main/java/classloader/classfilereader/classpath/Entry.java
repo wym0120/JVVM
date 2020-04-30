@@ -2,7 +2,8 @@ package classloader.classfilereader.classpath;
 
 import lombok.Data;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 @Data
 public abstract class Entry {
