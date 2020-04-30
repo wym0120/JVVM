@@ -1,7 +1,6 @@
 package instructions.load;
 
 import instructions.base.Index8Instruction;
-import instructions.base.Instruction;
 import runtime.StackFrame;
 
 public class LLOAD extends Index8Instruction {

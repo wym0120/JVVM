@@ -4,16 +4,9 @@ import util.IOUtil;
 import util.PathUtil;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.Enumeration;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 /**
  * 适用于 abc/dir/target.zip 的情况

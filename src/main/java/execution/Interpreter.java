@@ -1,5 +1,6 @@
 package execution;
 
+import com.njuse.seecjvm.util.ColorUtil;
 import instructions.base.Instruction;
 import memory.jclass.Method;
 import runtime.JThread;
@@ -7,7 +8,6 @@ import runtime.StackFrame;
 import runtime.struct.ArrayObject;
 import runtime.struct.NonArrayObject;
 import runtime.struct.Slot;
-import util.ColorUtil;
 import vo.StateVO;
 
 import java.nio.ByteBuffer;

@@ -1,7 +1,6 @@
 package classloader.classfileparser.constantpool.info;
 
 import classloader.classfileparser.constantpool.ConstantPool;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.nio.ByteBuffer;
 

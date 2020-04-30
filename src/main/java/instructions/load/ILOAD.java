@@ -1,7 +1,6 @@
 package instructions.load;
 
 import instructions.base.Index8Instruction;
-import instructions.base.NoOperandsInstruction;
 import runtime.StackFrame;
 
 public class ILOAD extends Index8Instruction {

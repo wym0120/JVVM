@@ -1,7 +1,6 @@
 package instructions.comparison;
 
 import instructions.base.BranchInstruction;
-import instructions.base.NoOperandsInstruction;
 import runtime.StackFrame;
 
 /**

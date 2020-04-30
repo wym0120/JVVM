@@ -2,8 +2,6 @@ package classloader.classfileparser.constantpool.info;
 
 import classloader.classfileparser.constantpool.ConstantPool;
 
-import java.util.Optional;
-
 /**
  * Description:
  *

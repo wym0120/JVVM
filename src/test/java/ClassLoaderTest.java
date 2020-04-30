@@ -1,12 +1,12 @@
 import classloader.ClassLoader;
 import classloader.classfilereader.ClassFileReader;
+import com.njuse.seecjvm.util.ColorUtil;
 import memory.MethodArea;
 import memory.jclass.JClass;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import util.ColorUtil;
 
 import java.io.File;
 import java.util.Arrays;
