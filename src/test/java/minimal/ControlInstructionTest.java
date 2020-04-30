@@ -1,3 +1,5 @@
+package minimal;
+
 /**
  * Description:
  *
@@ -10,6 +12,7 @@ public class ControlInstructionTest {
 
     private void fail() {
         fail = true;
+        TestUtil.fail();
     }
 
     private int run() {
@@ -107,6 +110,7 @@ public class ControlInstructionTest {
             tester.testArithmetic();
             ret = tester.result;
         }
+
     }
 
 }
