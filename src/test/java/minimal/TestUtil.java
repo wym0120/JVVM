@@ -1,3 +1,5 @@
+package minimal;
+
 public class TestUtil {
     public static void fail() {
 

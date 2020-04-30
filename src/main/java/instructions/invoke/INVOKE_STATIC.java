@@ -3,8 +3,11 @@ package instructions.invoke;
 import memory.jclass.InitState;
 import memory.jclass.JClass;
 import memory.jclass.Method;
+import memory.jclass.runtimeConstantPool.constant.Constant;
+import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
 import runtime.StackFrame;
 import runtime.struct.Slot;
+import sun.jvm.hotspot.utilities.AssertionFailure;
 
 /**
  * Description:
@@ -17,7 +20,22 @@ public class INVOKE_STATIC extends INVOKE_BASE {
     public void execute(StackFrame frame) {
         Method toInvoke = getMethod(frame);
 
-        if (toInvoke.getName().contains("equalInt")) {
+        JClass currentClz = frame.getMethod().getClazz();
+        Constant ref = currentClz.getRuntimeConstantPool().getConstant(super.index);
+        assert ref instanceof MethodRef;
+        if (((MethodRef) ref).getClassName().contains("TestUtil")) {
+            if (toInvoke.getName().contains("equalInt")) {
+                int v1 = frame.getOperandStack().popInt();
+                int v2 = frame.getOperandStack().popInt();
+                if (v1 != v2) {
+                    throw new AssertionFailure();
+                }
+                frame.getOperandStack().pushInt(v2);
+                frame.getOperandStack().pushInt(v1);
+
+            } else if (toInvoke.getName().equals("fail")) {
+                throw new AssertionFailure();
+            }
         }
 
 
