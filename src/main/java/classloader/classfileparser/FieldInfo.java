@@ -52,9 +52,13 @@ public class FieldInfo {
         return descriptor;
     }
 
-    //todo:
-    //XXX: 这是个啥玩意儿？？
+
     public ConstantValueAttr getConstantValueAttr() {
+        for (AttributeInfo attribute : attributes) {
+            if (attribute instanceof ConstantValueAttr) {
+                return (ConstantValueAttr) attribute;
+            }
+        }
         return null;
     }
 }
