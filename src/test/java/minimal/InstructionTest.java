@@ -136,8 +136,24 @@ public class InstructionTest {
         } else {
             toB = 128;
         }
+        //i2b
         byte bt = (byte) toB;
         TestUtil.equalInt(bt, -128);
+        //i2c
+        char ch = (char) toB;
+        TestUtil.equalInt(ch, 128);
+        //i2d
+        TestUtil.equalInt((int) ((double) toB + 0.0), toB);
+        //i2l & l2i
+        TestUtil.equalInt((int) ((long) toB + ch + bt), toB);
+        //l2d
+        TestUtil.equalInt((int) ((double) ((long) toB + ch + bt) + 0.0), toB);
+        //l2f
+        TestUtil.equalInt((int) ((float) ((long) toB + ch + bt) + 0.0f), toB);
+        toB <<= 8;
+        //i2s
+        short sh = (short) toB;
+        TestUtil.equalInt(sh, -toB);
     }
 
     public static void main(String[] args) {
@@ -147,7 +163,7 @@ public class InstructionTest {
             tester.testAdd();
             ret = tester.result;
         }
-        tester.testConversion(3.99f,3.99,2147483648.0,2147483648.0f);
+        tester.testConversion(3.99f, 3.99, 2147483648.0, 2147483648.0f);
     }
 
 }
