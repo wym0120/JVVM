@@ -32,6 +32,15 @@ public class INVOKE_STATIC extends INVOKE_BASE {
                 frame.getOperandStack().pushInt(v2);
                 frame.getOperandStack().pushInt(v1);
 
+            } else if (toInvoke.getName().contains("equalFloat")) {
+                float v1 = frame.getOperandStack().popFloat();
+                float v2 = frame.getOperandStack().popFloat();
+                if (v1 - v2 > 0.0001 || v1 - v2 < -0.0001) {
+                    throw new RuntimeException();
+                }
+                frame.getOperandStack().pushFloat(v2);
+                frame.getOperandStack().pushFloat(v1);
+
             } else if (toInvoke.getName().equals("fail")) {
                 throw new RuntimeException();
             }

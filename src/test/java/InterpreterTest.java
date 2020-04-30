@@ -21,16 +21,18 @@ public class InterpreterTest {
 
     @BeforeAll
     static void init() {
+        //to trigger the compilation of test class
+//        Class<InstructionTest> controlInstructionTestClass = InstructionTest.class;
         loader = ClassLoader.getInstance();
 //        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
-        String testPath = String.join(File.separator, "build", "classes", "java", "test");
-//        String testPath = String.join(File.separator, "out", "test", "classes" );
+//        String testPath = String.join(File.separator, "build", "classes", "java", "test");
+        String testPath = String.join(File.separator, "out", "test", "classes" );
         ClassFileReader.setUserClasspath(testPath);
 
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"MyArray"})
+    @ValueSource(strings = {"minimal/InstructionTest"})
     void Interpret(String className) {
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);

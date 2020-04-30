@@ -6,7 +6,7 @@ package minimal;
  * @author xxz
  * Created on 2020-04-28
  */
-public class ControlInstructionTest {
+public class InstructionTest {
     private int result = -1;
     private boolean fail = false;
 
@@ -41,7 +41,7 @@ public class ControlInstructionTest {
         }
     }
 
-    public void testArithmetic() {
+    public void testAdd() {
         char zero = '0';
         byte a = 1, b = 2;
         short c = 3;
@@ -103,14 +103,51 @@ public class ControlInstructionTest {
 
     }
 
+    public void testConversion(float flt, double db, double bigDB, float bigFLT) {
+        //d2f
+        float a = (float) db;
+        float b = flt;
+        TestUtil.equalFloat(a, b);
+        //d2i
+        int c = (int) db;
+        //f2i
+        int d = (int) flt;
+        TestUtil.equalInt(c, d);
+        TestUtil.equalInt(c, 3);
+        //d2i
+        int max = (int) bigDB;
+        TestUtil.equalInt(max, Integer.MAX_VALUE);
+        //d2L
+        long maxL = (long) bigDB;
+        if (maxL != 2147483648L) {
+            TestUtil.fail();
+        }
+        //f2i
+        if (max != (int) bigFLT) {
+            TestUtil.fail();
+        }
+        //f2l
+        if (maxL != (long) bigFLT) {
+            TestUtil.fail();
+        }
+        int toB;
+        if (TestUtil.equalInt(c, c)) {
+            toB = 128;
+        } else {
+            toB = 128;
+        }
+        byte bt = (byte) toB;
+        TestUtil.equalInt(bt, -128);
+    }
+
     public static void main(String[] args) {
-        ControlInstructionTest tester = new ControlInstructionTest();
+        InstructionTest tester = new InstructionTest();
         int ret = tester.run();
         if (!tester.fail) {
-            tester.testArithmetic();
+            tester.testAdd();
             ret = tester.result;
         }
-
+        tester.testConversion(3.99f,3.99,2147483648.0,2147483648.0f);
     }
 
 }
