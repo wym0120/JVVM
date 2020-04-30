@@ -5,7 +5,6 @@ import memory.jclass.JClass;
 import memory.jclass.Method;
 import memory.jclass.runtimeConstantPool.constant.Constant;
 import memory.jclass.runtimeConstantPool.constant.ref.InterfaceMethodRef;
-import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
 import runtime.StackFrame;
 import runtime.Vars;
 import runtime.struct.JObject;

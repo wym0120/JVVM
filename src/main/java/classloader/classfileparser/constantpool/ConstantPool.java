@@ -2,8 +2,6 @@ package classloader.classfileparser.constantpool;
 
 import classloader.classfileparser.constantpool.info.ConstantPoolInfo;
 import com.sun.tools.javac.util.Pair;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Description:

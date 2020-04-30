@@ -1,11 +1,7 @@
 package classloader.classfilereader.classpath;
 
-import util.IOUtil;
-
 import java.io.*;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**

@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+//    id 'java-library'
 }
 
 apply plugin:'java'
@@ -27,11 +28,12 @@ dependencies {
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
     compile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
-    compile files("${System.properties['java.home']}/../lib/tools.jar")
+    compile files("${System.properties['java.home']}/../lib/tools.jar","build/libs/JVVM-1.0-SNAPSHOT.jar")
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile files("libs/JVVM-1.0-SNAPSHOT.jar")
 
     testCompile 'org.junit.jupiter:junit-jupiter-api:5.6.1'
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params
@@ -43,15 +45,21 @@ dependencies {
 
 
 //create a single Jar with all dependencies
-task fatJar(type: Jar) {
-    manifestContentCharset 'utf-8'
-    metadataCharset 'utf-8'
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Jar File Example',
-                'Implementation-Version': version,
-                'Main-Class': 'Main'
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
+//task fatJar(type: Jar) {
+//    manifestContentCharset 'utf-8'
+//    metadataCharset 'utf-8'
+//    manifest {
+//        attributes 'Implementation-Title': 'Gradle Jar File',
+//                'Implementation-Version': version,
+////                'Main-Class': 'com.njuse.seecjvm.Main'
+//                'Main-Class': 'Main'
+//
+//    }
+//    baseName = project.name + '-all'
+//    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+//    with jar
+//}
+
+//task listJars {
+//    configurations.compile.each { File file -> println file.name }
+//}

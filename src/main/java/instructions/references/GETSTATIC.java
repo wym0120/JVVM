@@ -4,7 +4,6 @@ import instructions.base.Index16Instruction;
 import memory.jclass.Field;
 import memory.jclass.InitState;
 import memory.jclass.JClass;
-import memory.jclass.Method;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import memory.jclass.runtimeConstantPool.constant.ref.FieldRef;
 import runtime.OperandStack;
