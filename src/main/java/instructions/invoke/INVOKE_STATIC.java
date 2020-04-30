@@ -28,13 +28,13 @@ public class INVOKE_STATIC extends INVOKE_BASE {
                 int v1 = frame.getOperandStack().popInt();
                 int v2 = frame.getOperandStack().popInt();
                 if (v1 != v2) {
-                    throw new AssertionFailure();
+                    throw new RuntimeException();
                 }
                 frame.getOperandStack().pushInt(v2);
                 frame.getOperandStack().pushInt(v1);
 
             } else if (toInvoke.getName().equals("fail")) {
-                throw new AssertionFailure();
+                throw new RuntimeException();
             }
         }
 
