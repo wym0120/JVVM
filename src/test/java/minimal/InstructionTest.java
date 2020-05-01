@@ -156,6 +156,66 @@ public class InstructionTest {
         TestUtil.equalInt(sh, -toB);
     }
 
+    //Areturn
+    public Integer retInteger(int a) {
+        if (a > 0) {
+            return 3;
+        } else {
+            return 5;
+        }
+    }
+
+    //Dreturn
+    public double retDouble(int a) {
+        if (a > 0) {
+            return 3;
+        } else {
+            return 5;
+        }
+    }
+
+    //Freturn
+    public float retFloat(int a) {
+        if (a > 0) {
+            return 3;
+        } else {
+            return 5;
+        }
+    }
+
+    //Ireturn
+    public int retInt(int a) {
+        if (a > 0) {
+            return 3;
+        } else {
+            return 5;
+        }
+    }
+
+    //Lreturn
+    public long retLong(int a) {
+        if (a > 0) {
+            return 3;
+        } else {
+            return 5;
+        }
+    }
+
+
+    public void testReturn() {
+        Integer integer = retInteger(3);
+        double v = retDouble(3);
+        float v1 = retFloat(3);
+        int i = retInt(3);
+        long l = retLong(3);
+        TestUtil.equalInt(integer, 3);
+        TestUtil.equalInt((int) v, 3);
+        TestUtil.equalInt((int) v1, i);
+        TestUtil.equalInt(i, (int) l);
+        TestUtil.equalInt(i, integer);
+    }
+
+
     public static void main(String[] args) {
         InstructionTest tester = new InstructionTest();
         int ret = tester.run();
@@ -164,6 +224,7 @@ public class InstructionTest {
             ret = tester.result;
         }
         tester.testConversion(3.99f, 3.99, 2147483648.0, 2147483648.0f);
+        tester.testReturn();
     }
 
 }
