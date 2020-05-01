@@ -157,11 +157,11 @@ public class InstructionTest {
     }
 
     //Areturn
-    public Integer retInteger(int a) {
+    public InstructionTest retObject(int a) {
         if (a > 0) {
-            return 3;
+            return new InstructionTest();
         } else {
-            return 5;
+            return new InstructionTest();
         }
     }
 
@@ -203,16 +203,15 @@ public class InstructionTest {
 
 
     public void testReturn() {
-        Integer integer = retInteger(3);
-        double v = retDouble(3);
+        InstructionTest test = retObject(3);
+        double v = test.retDouble(3);
         float v1 = retFloat(3);
         int i = retInt(3);
         long l = retLong(3);
-        TestUtil.equalInt(integer, 3);
         TestUtil.equalInt((int) v, 3);
         TestUtil.equalInt((int) v1, i);
         TestUtil.equalInt(i, (int) l);
-        TestUtil.equalInt(i, integer);
+        TestUtil.equalInt(i, 3);
     }
 
 
