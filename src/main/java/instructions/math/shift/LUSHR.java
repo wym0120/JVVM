@@ -11,7 +11,7 @@ public class LUSHR extends NoOperandsInstruction {
         OperandStack stack = frame.getOperandStack();
         int val2 = stack.popInt();
         long val1 = stack.popLong();
-        long res = val1 >>> (val2 & 0x1f);
+        long res = val1 >>> (val2 & 0x2f);
         stack.pushLong(res);
     }
 }
