@@ -239,7 +239,7 @@ public class InstructionTest {
             } else {
                 TestUtil.fail();
             }
-            if (big+1 >= small) {
+            if (big + 1 >= small) {
                 if (big == small) {
                     TestUtil.fail();
                 }
@@ -258,11 +258,19 @@ public class InstructionTest {
         long cl0 = 0L, cl1 = 1L;
         if (c0 == zero && c1 == one && c2 == two) {
 
-        }else {
+        } else {
             TestUtil.fail();
         }
 
         if (cl0 == zero && cl1 == one) {
+
+        } else {
+            TestUtil.fail();
+        }
+    }
+
+    public void testNull(InstructionTest test1, InstructionTest test2) {
+        if (test1 == null && test2 != null) {
 
         } else {
             TestUtil.fail();
@@ -278,8 +286,48 @@ public class InstructionTest {
         }
         tester.testConversion(3.99f, 3.99, 2147483648.0, 2147483648.0f);
         tester.testReturn();
-        tester.testBranch(3,4,5,6,7f,8f,9,10);
+        tester.testBranch(3, 4, 5, 6, 7f, 8f, 9, 10);
         tester.testConst(0, 1, 2);
+        tester.testNull(null, tester);
+
+        //invoke virtual
+        Parent p = new Child();
+        TestUtil.equalInt(p.foo(), 1);
+        //invoke virtual
+        Parent boy = new Boy();
+        TestUtil.equalInt(boy.foo(), 1);
+        //invoke interface
+        Child h = new Boy();
+        TestUtil.equalInt(h.bar(), 3);
     }
 
+}
+
+interface Human{
+    int bar();
+}
+
+class Parent {
+    public int foo() {
+        return 0;
+    }
+}
+
+class Child extends Parent implements Human {
+    public int foo() {
+        return 1;
+    }
+
+    @Override
+    public int bar() {
+        return foo();
+    }
+}
+
+class Boy extends Child implements Human {
+
+    @Override
+    public int bar() {
+        return 3;
+    }
 }
