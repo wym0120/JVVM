@@ -297,7 +297,7 @@ public class InstructionTest {
         Parent boy = new Boy();
         TestUtil.equalInt(boy.foo(), 1);
         //invoke interface
-        Child h = new Boy();
+        Human h = new Boy();
         TestUtil.equalInt(h.bar(), 3);
     }
 
