@@ -214,6 +214,43 @@ public class InstructionTest {
         TestUtil.equalInt(i, 3);
     }
 
+    public void testBranch(int small, int big, long smallL, long bigL, float smallF, float bigF,
+                           double smallD, double bigD) {
+        if (small == 3) {
+            if (small < big && smallL < bigL && smallF < bigF && smallD < bigD) {
+
+            } else {
+                TestUtil.fail();
+            }
+            big++;
+            if (big > small && bigL > smallL && bigF > smallF && bigD > smallD) {
+
+            } else {
+                TestUtil.fail();
+            }
+        } else {
+            TestUtil.fail();
+        }
+
+
+        if (small <= big) {
+            if (big > small) {
+
+            } else {
+                TestUtil.fail();
+            }
+            if (big+1 >= small) {
+                if (big == small) {
+                    TestUtil.fail();
+                }
+                if (big != small) {
+
+                } else {
+                    TestUtil.fail();
+                }
+            }
+        }
+    }
 
     public static void main(String[] args) {
         InstructionTest tester = new InstructionTest();
@@ -224,6 +261,7 @@ public class InstructionTest {
         }
         tester.testConversion(3.99f, 3.99, 2147483648.0, 2147483648.0f);
         tester.testReturn();
+        tester.testBranch(3,4,5,6,7f,8f,9,10);
     }
 
 }
