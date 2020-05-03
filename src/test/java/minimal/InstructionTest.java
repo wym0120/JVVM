@@ -252,6 +252,23 @@ public class InstructionTest {
         }
     }
 
+    public void testConst(double zero, double one, float two) {
+        double c0 = 0.0, c1 = 1.0;
+        float c2 = 2.0f;
+        long cl0 = 0L, cl1 = 1L;
+        if (c0 == zero && c1 == one && c2 == two) {
+
+        }else {
+            TestUtil.fail();
+        }
+
+        if (cl0 == zero && cl1 == one) {
+
+        } else {
+            TestUtil.fail();
+        }
+    }
+
     public static void main(String[] args) {
         InstructionTest tester = new InstructionTest();
         int ret = tester.run();
@@ -262,6 +279,7 @@ public class InstructionTest {
         tester.testConversion(3.99f, 3.99, 2147483648.0, 2147483648.0f);
         tester.testReturn();
         tester.testBranch(3,4,5,6,7f,8f,9,10);
+        tester.testConst(0, 1, 2);
     }
 
 }
