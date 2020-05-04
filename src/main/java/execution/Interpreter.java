@@ -35,6 +35,8 @@ public class Interpreter {
 
     private ArrayList<StateVO> loop(JThread thread) {
         ArrayList<StateVO> ret = new ArrayList<>();
+        //record first state
+        ret.add(Recorder.initialState(thread.getTopFrame(), thread));
         while (true) {
             StackFrame oriTop = thread.getTopFrame();
             //parse code attribute for VO
@@ -59,7 +61,7 @@ public class Interpreter {
                 return ret;
             }
             PrintInfo(oriTop, newTop, thread, instruction);
-            ret.add(Recorder.recodeState(oriTop, newTop, instruction));
+            ret.add(Recorder.recodeState(oriTop, newTop, thread));
             if (oriTop != newTop) {
                 initCodeReader(thread);
             }

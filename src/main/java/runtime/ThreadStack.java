@@ -11,15 +11,16 @@ import java.util.Stack;
 public class ThreadStack {
     private static int maxSize;
     private Stack<StackFrame> stack;
+    private Stack<Boolean> frameState;//true present frame is new added
     private int currentSize;
 
     static {
-        //todo:you can reset this value by implementing -Xss
         maxSize = 64 * 1024;//use linux x86_64 default value 256KB
     }
 
     public ThreadStack() {
         stack = new Stack<>();
+        frameState = new Stack<>();
     }
 
     public boolean isEmpty() {
@@ -31,6 +32,7 @@ public class ThreadStack {
             throw new StackOverflowError();
         }
         stack.push(frame);
+        frameState.push(true);
         currentSize++;
     }
 
@@ -39,6 +41,7 @@ public class ThreadStack {
             throw new EmptyStackException();
         }
         stack.pop();
+        frameState.pop();
         currentSize--;
     }
 

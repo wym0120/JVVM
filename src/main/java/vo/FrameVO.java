@@ -22,13 +22,15 @@ public class FrameVO {
     private int nextPC;
     private ArrayList<String> code;
     private String methodName;
+    private boolean fresh;
 
-    public FrameVO(OperandStack stack, Vars localVars, int nextPC, List<String> code, String methodName) {
+    public FrameVO(OperandStack stack, Vars localVars, int nextPC, List<String> code, String methodName, boolean fresh) {
         this.nextPC = nextPC;
         this.code = new ArrayList<>(code);
         this.operandStack = printVars(stack.getSlots());
         this.localVars = printVars(localVars.getVarSlots());
         this.methodName = methodName;
+        this.fresh = fresh;
     }
 
     private ArrayList<String> printVars(Slot[] vars) {

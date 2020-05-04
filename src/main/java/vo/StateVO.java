@@ -7,25 +7,19 @@ package vo;
  * Created on 2020-04-15
  */
 public class StateVO {
-    private String instruction;
+    private String nextInstruction;
     private FrameVO currentFrame;
     private FrameVO optionalNextFrame;
     private MemoryVO memory;
     private boolean hasNext;
     private ThreadVO thread;
 
-    public StateVO(FrameVO currentFrame, FrameVO optionalNextFrame, MemoryVO memory, String instruction) {
-        this.instruction = instruction;
+    public StateVO(FrameVO currentFrame, FrameVO optionalNextFrame, MemoryVO memory, String instruction, ThreadVO thread, boolean hasNext) {
+        this.nextInstruction = instruction;
         this.currentFrame = currentFrame;
         this.optionalNextFrame = optionalNextFrame;
         this.memory = memory;
-        hasNext = true;
-    }
-
-    public StateVO(FrameVO currentFrame, MemoryVO memory, String instruction) {
-        this.instruction = instruction;
-        this.currentFrame = currentFrame;
-        this.memory = memory;
-        hasNext = false;
+        this.thread = thread;
+        this.hasNext = hasNext;
     }
 }
