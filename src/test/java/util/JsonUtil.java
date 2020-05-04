@@ -25,7 +25,7 @@ public class JsonUtil {
         try {
 
             jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(res);
-            File outFile = new File(storePath + File.separator + name + ".json");
+            File outFile = new File(storePath + File.separator + name.replace("/", "_") + ".json");
             outFile.createNewFile();
             PrintWriter os = new PrintWriter(new FileOutputStream(outFile));
             os.println(jsonString);

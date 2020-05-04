@@ -20,9 +20,10 @@ public class ObjectVO extends HeapContentVO {
     //<name, value>
     private HashMap<String, String> members;
     private String id;
-//    private long size;
+    private boolean fresh;
 
-    public ObjectVO(JObject obj) {
+    public ObjectVO(JObject obj, boolean fresh) {
+        this.fresh = fresh;
         members = new HashMap<>();
         setBasic(obj);
     }

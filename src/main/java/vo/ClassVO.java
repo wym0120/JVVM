@@ -1,5 +1,6 @@
 package vo;
 
+import memory.MethodArea;
 import memory.jclass.ClassMember;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.constant.Constant;
@@ -18,9 +19,11 @@ public class ClassVO extends HeapContentVO {
     private String className;
     private HashMap<String, String> staticMembers;
     private List<String> rtcp;
+    private boolean fresh;
 
     public ClassVO(JClass clazz) {
         this.className = clazz.getName();
+        this.fresh = MethodArea.getClassState().get(this.className);
         if (!className.startsWith("[")) {
             this.staticMembers = parseStaticMembers(clazz);
             this.rtcp = parseRTCP(clazz);

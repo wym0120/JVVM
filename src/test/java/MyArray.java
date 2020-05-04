@@ -1,3 +1,4 @@
+
 public class MyArray {
     static double id = 5.0;
     //    MyArray next;
@@ -14,5 +15,4 @@ public class MyArray {
 //        a.refs = new MyArray[3][3];
 //        a.refs[1][1] = new MyArray();
     }
-
 }

@@ -12,6 +12,7 @@ public class StateVO {
     private FrameVO optionalNextFrame;
     private MemoryVO memory;
     private boolean hasNext;
+    private ThreadVO thread;
 
     public StateVO(FrameVO currentFrame, FrameVO optionalNextFrame, MemoryVO memory, String instruction) {
         this.instruction = instruction;
