@@ -52,6 +52,7 @@ public class CommandlineUtil {
             commandLine = parser.parse(options, args);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
+            System.exit(-1);
         }
     }
 
