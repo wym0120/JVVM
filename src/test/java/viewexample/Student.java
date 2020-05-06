@@ -16,7 +16,7 @@ public class Student extends People {
     }
 
     public static void main(String[] args) {
-        Student xiaoming = new Student(1, 18);
+        People xiaoming = new Student(1, 18);
         int[] nums = new int[]{1, 2};
         int res = xiaoming.solveMathProblem(nums);//res should equals 3
     }
