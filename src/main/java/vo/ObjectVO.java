@@ -8,7 +8,8 @@ import runtime.struct.JObject;
 import runtime.struct.NonArrayObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Description:
@@ -18,13 +19,13 @@ import java.util.HashMap;
  */
 public class ObjectVO extends HeapContentVO {
     //<name, value>
-    private HashMap<String, String> members;
+    private Map<String, String> members;
     private String id;
     private boolean fresh;
 
     public ObjectVO(JObject obj, boolean fresh) {
         this.fresh = fresh;
-        members = new HashMap<>();
+        members = new LinkedHashMap<>();
         setBasic(obj);
     }
 
@@ -40,8 +41,8 @@ public class ObjectVO extends HeapContentVO {
         this.id = obj.getId() + "@" + className;
     }
 
-    private HashMap<String, String> parseMembers(ArrayList<Pair<String, Integer>> fieldInfoList, Vars instanceVars) {
-        HashMap<String, String> ret = new HashMap<>();
+    private Map<String, String> parseMembers(ArrayList<Pair<String, Integer>> fieldInfoList, Vars instanceVars) {
+        Map<String, String> ret = new LinkedHashMap<>();
         fieldInfoList.forEach(info -> {
             String typeAndName = info.fst;
             int slotID = info.snd;
@@ -52,8 +53,8 @@ public class ObjectVO extends HeapContentVO {
         return ret;
     }
 
-    private HashMap<String, String> parseArray(ArrayObject obj) {
-        HashMap<String, String> ret = new HashMap<>();
+    private Map<String, String> parseArray(ArrayObject obj) {
+        Map<String, String> ret = new LinkedHashMap<>();
         ret.put("int len", "" + obj.getLen());
         String type = Field.parseDescriptor(obj.getType());
         String content = getArrayContent(obj);

@@ -3,7 +3,7 @@ package memory;
 import lombok.Data;
 import memory.jclass.JClass;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Data
@@ -11,8 +11,8 @@ public class MethodArea {
     private static MethodArea methodArea = new MethodArea();
 
     private MethodArea() {
-        classMap = new HashMap<>();
-        classState = new HashMap<>();
+        classMap = new LinkedHashMap<>();
+        classState = new LinkedHashMap<>();
     }
 
     private static Map<String, JClass> classMap;

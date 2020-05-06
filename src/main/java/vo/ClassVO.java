@@ -8,16 +8,13 @@ import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
 import runtime.Vars;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static memory.jclass.Field.parseDescriptor;
 
 public class ClassVO extends HeapContentVO {
     private String className;
-    private HashMap<String, String> staticMembers;
+    private Map<String, String> staticMembers;
     private List<String> rtcp;
     private boolean fresh;
 
@@ -30,8 +27,8 @@ public class ClassVO extends HeapContentVO {
         }
     }
 
-    private HashMap<String, String> parseStaticMembers(JClass clazz) {
-        HashMap<String, String> ret = new HashMap<>();
+    private Map<String, String> parseStaticMembers(JClass clazz) {
+        Map<String, String> ret = new LinkedHashMap<>();
         Vars staticVars = clazz.getStaticVars();
         Arrays.stream(clazz.getFields())
                 .filter(ClassMember::isStatic)

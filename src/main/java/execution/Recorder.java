@@ -19,7 +19,7 @@ public class Recorder {
     private static ByteBuffer codeReader;
 
     public static StateVO recodeState(StackFrame ori, StackFrame next, JThread thread) {
-        HashSet<JObject> objects = JHeap.getInstance().getObjects();
+        Set<JObject> objects = JHeap.getInstance().getObjects();
         Collection<JClass> methodArea = MethodArea.getClassMap().values();
         String nextInstruction;
         MemoryVO memoryVO = generateMemoryVO(objects, methodArea);
@@ -48,7 +48,7 @@ public class Recorder {
         return new StateVO(null, mainVO, null, nextInstruction, threadVO, false);
     }
 
-    private static MemoryVO generateMemoryVO(HashSet<JObject> heapObjects, Collection<JClass> methodArea) {
+    private static MemoryVO generateMemoryVO(Set<JObject> heapObjects, Collection<JClass> methodArea) {
         MemoryVO ret = new MemoryVO();
         List<ObjectVO> objects = ret.getObjects();
         List<ClassVO> classes = ret.getClasses();
@@ -99,6 +99,6 @@ public class Recorder {
         int opcode = codeReader.get() & 0xff;
         Instruction instruction = Decoder.decode(opcode);
         instruction.fetchOperands(codeReader);
-        return instruction.toString();
+        return nextPC + " " + instruction.toString();
     }
 }

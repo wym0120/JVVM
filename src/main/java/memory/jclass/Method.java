@@ -80,7 +80,7 @@ public class Method extends ClassMember {
             int opcode = codeReader.get() & 0xff;
             Instruction instruction = Decoder.decode(opcode);
             instruction.fetchOperands(codeReader);
-            instList.add(instruction.toString());
+            instList.add(position + " " + instruction.toString());
             position = codeReader.position();
         }
         parsed = true;
