@@ -29,7 +29,9 @@ public class OperandStack {
     public int popInt() {
         top--;
         if (top < 0) throw new EmptyStackException();
-        return slots[top].getValue();
+        int ret = slots[top].getValue();
+        slots[top] = new Slot();
+        return ret;
     }
 
     public void pushFloat(float value) {
@@ -41,7 +43,9 @@ public class OperandStack {
     public float popFloat() {
         top--;
         if (top < 0) throw new EmptyStackException();
-        return Float.intBitsToFloat(slots[top].getValue());
+        float ret = Float.intBitsToFloat(slots[top].getValue());
+        slots[top] = new Slot();
+        return ret;
     }
 
     public void pushLong(long value) {
@@ -57,8 +61,10 @@ public class OperandStack {
         top -= 2;
         if (top < 0) throw new EmptyStackException();
         int low = slots[top].getValue();
-        int high = slots[top+1].getValue();
-        return (((long) high) <<32) | ((long)low & 0x0ffffffffL);
+        int high = slots[top + 1].getValue();
+        slots[top] = new Slot();
+        slots[top + 1] = new Slot();
+        return (((long) high) << 32) | ((long) low & 0x0ffffffffL);
     }
 
     public void pushDouble(double value){
@@ -75,10 +81,12 @@ public class OperandStack {
         top++;
     }
 
-    public JObject popObjectRef(){
+    public JObject popObjectRef() {
         top--;
-        if(top<0)throw new EmptyStackException();
-        return slots[top].getObject();
+        if (top < 0) throw new EmptyStackException();
+        JObject ret = slots[top].getObject();
+        slots[top] = new Slot();
+        return ret;
     }
 
     public void pushSlot(Slot slot){
@@ -87,10 +95,12 @@ public class OperandStack {
         top++;
     }
 
-    public Slot popSlot(){
+    public Slot popSlot() {
         top--;
-        if(top<0)throw new EmptyStackException();
-        return slots[top];
+        if (top < 0) throw new EmptyStackException();
+        Slot ret = slots[top];
+        slots[top] = new Slot();
+        return ret;
     }
 
 }
