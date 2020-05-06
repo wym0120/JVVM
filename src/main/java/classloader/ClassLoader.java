@@ -79,15 +79,24 @@ public class ClassLoader {
         ret.setInitState(InitState.SUCCESS);
         methodArea.addClass(ret.getName(), ret);
         try {
-            ret.setSuperClass(loadNonArrayClass("java/lang/Object", initiatingEntry));
-            JClass[] interfaces = {loadNonArrayClass("java/lang/Cloneable", initiatingEntry)
-                    , loadNonArrayClass("java/io/Serializable", initiatingEntry)};
+            ret.setSuperClass(tryLoad("java/lang/Object", initiatingEntry));
+            JClass[] interfaces = {tryLoad("java/lang/Cloneable", initiatingEntry)
+                    , tryLoad("java/io/Serializable", initiatingEntry)};
             ret.setInterfaces(interfaces);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return ret;
 
+    }
+
+    private JClass tryLoad(String className, EntryType initiatingEntry) throws ClassNotFoundException {
+        JClass ret;
+        if ((ret = methodArea.findClass(className)) == null) {
+            return loadNonArrayClass(className, initiatingEntry);
+        } else {
+            return ret;
+        }
     }
 
     private JClass defineClass(byte[] data, EntryType definingEntry) throws ClassNotFoundException {
