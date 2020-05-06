@@ -41,11 +41,14 @@ public class Recorder {
     }
 
     public static StateVO initialState(StackFrame main, JThread thread) {
-        makeOutdated(thread);
+        Set<JObject> objects = JHeap.getInstance().getObjects();
+        Collection<JClass> methodArea = MethodArea.getClassMap().values();
+        MemoryVO memoryVO = generateMemoryVO(objects, methodArea);
         FrameVO mainVO = generateFrameVO(main, false);
         ThreadVO threadVO = generateThreadVO(thread);
         String nextInstruction = getNextInstruction(main);
-        return new StateVO(null, mainVO, null, nextInstruction, threadVO, false);
+        makeOutdated(thread);
+        return new StateVO(null, mainVO, memoryVO, nextInstruction, threadVO, false);
     }
 
     private static MemoryVO generateMemoryVO(Set<JObject> heapObjects, Collection<JClass> methodArea) {
