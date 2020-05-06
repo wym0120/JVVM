@@ -19,6 +19,7 @@ public class LCONST_N  extends NoOperandsInstruction {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName().replace("N", val + "");
+        String simpleName = this.getClass().getSimpleName();
+        return simpleName.substring(0, simpleName.length() - 1) + val;
     }
 }

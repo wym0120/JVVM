@@ -25,6 +25,7 @@ public class DCONST_N extends NoOperandsInstruction {
     @Override
     public String toString() {
         String suffix = (int) val + "";
-        return this.getClass().getSimpleName().replace("N", suffix);
+        String simpleName = this.getClass().getSimpleName();
+        return simpleName.substring(0, simpleName.length() - 1) + suffix;
     }
 }
