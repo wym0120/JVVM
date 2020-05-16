@@ -49,9 +49,7 @@ public class JClass {
         this.interfaceNames = classFile.getInterfaceNames();
         this.fields = parseFields(classFile.getFields());
         this.methods = parseMethods(classFile.getMethods());
-        runtimeConstantPool = parseRuntimeConstantPool(classFile.getConstantPool());
-        fields = parseFields(classFile.getFields());
-        methods = parseMethods(classFile.getMethods());
+        this.runtimeConstantPool = parseRuntimeConstantPool(classFile.getConstantPool());
     }
 
     //used for new array class!!!

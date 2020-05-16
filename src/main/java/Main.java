@@ -11,14 +11,13 @@ public class Main {
         CommandlineUtil.parseInput(args);
         CommandlineUtil.handleOptions();
         String[] userArgs = CommandlineUtil.readArgs();
-        //检查是否有op之外的输入
         if (userArgs.length == 0) {
             System.out.println("Please check your input. You can use jvvm -h for more information");
-            System.exit(-1);
+            return;
         }
         String className = userArgs[0];
         try {
-            runClass(className);
+            startJVM(className);
         } catch (ClassNotFoundException e) {
             System.out.println("Cannot find target class,Please check your className or classpath.");
             e.printStackTrace();
@@ -26,7 +25,7 @@ public class Main {
 
     }
 
-    private static void runClass(String className) throws ClassNotFoundException {
+    private static void startJVM(String className) throws ClassNotFoundException {
         ClassLoader loader = ClassLoader.getInstance();
         JClass clazz = loader.loadClass(className, null);
         JThread thread = new JThread();
