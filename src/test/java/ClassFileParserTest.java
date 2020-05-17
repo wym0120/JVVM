@@ -28,7 +28,7 @@ public class ClassFileParserTest {
     void parseObjectClass() {
         String className = String.join(File.separator, "java", "lang", "Object");
         byte[] content = assertDoesNotThrow(() -> {
-            return reader.readClassFile(className, null).fst;
+            return reader.readClassFile(className, null).getKey();
         });
 
         ClassFile clazz = assertDoesNotThrow(() -> {
@@ -64,7 +64,7 @@ public class ClassFileParserTest {
         String className = "HelloWorld";
 
         byte[] content = assertDoesNotThrow(() -> {
-            return reader.readClassFile(className, null).fst;
+            return reader.readClassFile(className, null).getKey();
         });
 
         ClassFile clazz = assertDoesNotThrow(() -> {

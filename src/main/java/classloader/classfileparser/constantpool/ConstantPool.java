@@ -1,7 +1,7 @@
 package classloader.classfileparser.constantpool;
 
 import classloader.classfileparser.constantpool.info.ConstantPoolInfo;
-import com.sun.tools.javac.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class ConstantPool {
     private ConstantPoolInfo[] infos;
@@ -13,10 +13,10 @@ public class ConstantPool {
         int entryCnt = 0;
         while (entryCnt < constantPoolCnt - 1) {
             Pair<ConstantPoolInfo, Integer> infoInt = ConstantPoolInfo.getConstantPoolInfo(constantPool, in, currentOfs);
-            ConstantPoolInfo info = infoInt.fst;
+            ConstantPoolInfo info = infoInt.getKey();
             constantPool.infos[entryCnt] = info;
             entryCnt += info.getEntryLength();
-            currentOfs += infoInt.snd;
+            currentOfs += infoInt.getValue();
         }
         return Pair.of(constantPool, currentOfs - offset);
     }

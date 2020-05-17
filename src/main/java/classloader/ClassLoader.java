@@ -3,7 +3,6 @@ package classloader;
 import classloader.classfileparser.ClassFile;
 import classloader.classfilereader.ClassFileReader;
 import classloader.classfilereader.classpath.EntryType;
-import com.sun.tools.javac.util.Pair;
 import memory.MethodArea;
 import memory.jclass.AccessFlags;
 import memory.jclass.Field;
@@ -14,6 +13,7 @@ import memory.jclass.runtimeConstantPool.constant.wrapper.DoubleWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.FloatWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.IntWrapper;
 import memory.jclass.runtimeConstantPool.constant.wrapper.LongWrapper;
+import org.apache.commons.lang3.tuple.Pair;
 import runtime.Vars;
 import runtime.struct.NullObject;
 
@@ -53,8 +53,8 @@ public class ClassLoader {
     private JClass loadNonArrayClass(String className, EntryType initiatingEntry) throws ClassNotFoundException {
         try {
             Pair<byte[], Integer> res = classFileReader.readClassFile(className, initiatingEntry);
-            byte[] data = res.fst;
-            EntryType definingEntry = new EntryType(res.snd);
+            byte[] data = res.getKey();
+            EntryType definingEntry = new EntryType(res.getValue());
             //define class
             JClass clazz = defineClass(data, definingEntry);
             //link class

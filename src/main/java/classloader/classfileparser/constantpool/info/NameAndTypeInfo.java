@@ -1,8 +1,8 @@
 package classloader.classfileparser.constantpool.info;
 
 import classloader.classfileparser.constantpool.ConstantPool;
-import com.sun.tools.javac.util.Pair;
 import lombok.Getter;
+import org.apache.commons.lang3.tuple.Pair;
 
 @Getter
 public class NameAndTypeInfo extends ConstantPoolInfo {

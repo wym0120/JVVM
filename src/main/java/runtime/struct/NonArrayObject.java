@@ -1,9 +1,9 @@
 package runtime.struct;
 
-import com.sun.tools.javac.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.JClass;
+import org.apache.commons.lang3.tuple.Pair;
 import runtime.Vars;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class NonArrayObject extends JObject {
                         String type = parseDescriptor(f.getDescriptor());
                         String name = f.getName();
                         int slotID = f.getSlotID();
-                        fieldInfoList.add(new Pair<>(type + " " + name, slotID));
+                        fieldInfoList.add(Pair.of(type + " " + name, slotID));
                     });
             clazz = clazz.getSuperClass();
         } while (clazz != null);

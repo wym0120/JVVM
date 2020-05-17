@@ -4,9 +4,9 @@ import classloader.classfileparser.attribute.AttributeBuilder;
 import classloader.classfileparser.attribute.AttributeInfo;
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfileparser.constantpool.info.ClassInfo;
-import com.sun.tools.javac.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.nio.ByteBuffer;
 import java.util.function.Supplier;
@@ -91,8 +91,8 @@ public class ClassFile {
         this.constantPoolCount = in.getShort();
         int currentPos = in.position();
         Pair<ConstantPool, Integer> cpInt = ConstantPool.getInstance(constantPoolCount, classfile, currentPos);
-        constantPool = cpInt.fst;
-        currentPos += cpInt.snd;
+        constantPool = cpInt.getKey();
+        currentPos += cpInt.getValue();
         in.position(currentPos);
     }
 

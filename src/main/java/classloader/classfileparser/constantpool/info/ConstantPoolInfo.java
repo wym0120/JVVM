@@ -2,7 +2,7 @@ package classloader.classfileparser.constantpool.info;
 
 import classloader.classfileparser.BuildUtil;
 import classloader.classfileparser.constantpool.ConstantPool;
-import com.sun.tools.javac.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.nio.ByteBuffer;
 
@@ -95,8 +95,8 @@ public class ConstantPoolInfo {
 
             case UTF8: {
                 Pair<UTF8Info, Integer> utf8InfoIntegerPair = UTF8Info.getInstance(constantPool, classfile, in.getByteBuffer().position());
-                ret = utf8InfoIntegerPair.fst;
-                bytesRead += utf8InfoIntegerPair.snd;
+                ret = utf8InfoIntegerPair.getKey();
+                bytesRead += utf8InfoIntegerPair.getValue();
                 break;
             }
 
@@ -121,7 +121,7 @@ public class ConstantPoolInfo {
             default:
                 throw new UnsupportedOperationException("Unsupported constant pool tag" + tag);
         }
-        return new Pair<>(ret, bytesRead);
+        return Pair.of(ret, bytesRead);
     }
 
     private static byte[] read4Bytes(BuildUtil in) {

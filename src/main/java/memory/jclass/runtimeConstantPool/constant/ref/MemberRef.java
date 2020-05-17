@@ -1,10 +1,10 @@
 package memory.jclass.runtimeConstantPool.constant.ref;
 
 import classloader.classfileparser.constantpool.info.MemberRefInfo;
-import com.sun.tools.javac.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
+import org.apache.commons.lang3.tuple.Pair;
 
 @Getter
 @Setter
@@ -16,8 +16,8 @@ public abstract class MemberRef extends SymRef {
         this.runtimeConstantPool = runtimeConstantPool;
         this.className = info.getClassName();
         Pair<String, String> nameAndType = info.getNameAndDescriptor();
-        this.name = nameAndType.fst;
-        this.descriptor = nameAndType.snd;
+        this.name = nameAndType.getKey();
+        this.descriptor = nameAndType.getValue();
     }
 
 }

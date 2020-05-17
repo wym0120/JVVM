@@ -1,7 +1,7 @@
 package vo;
 
-import com.sun.tools.javac.util.Pair;
 import memory.jclass.Field;
+import org.apache.commons.lang3.tuple.Pair;
 import runtime.Vars;
 import runtime.struct.ArrayObject;
 import runtime.struct.JObject;
@@ -38,8 +38,8 @@ public class ObjectVO extends HeapContentVO {
     private Map<String, String> parseMembers(ArrayList<Pair<String, Integer>> fieldInfoList, Vars instanceVars) {
         Map<String, String> ret = new LinkedHashMap<>();
         fieldInfoList.forEach(info -> {
-            String typeAndName = info.fst;
-            int slotID = info.snd;
+            String typeAndName = info.getKey();
+            int slotID = info.getValue();
             String type = typeAndName.split(" ")[0];
             ret.put(typeAndName, getInfo(instanceVars, type, slotID));
         });

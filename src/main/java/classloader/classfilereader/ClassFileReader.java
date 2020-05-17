@@ -1,9 +1,9 @@
 package classloader.classfilereader;
 
 import classloader.classfilereader.classpath.*;
-import com.sun.tools.javac.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.tuple.Pair;
 import util.PathUtil;
 
 import java.io.File;
@@ -87,17 +87,17 @@ public class ClassFileReader {
         byte[] data;
         if (value >= EntryType.BOOT_ENTRY) {
             if ((data = bootClasspath.readClass(realClassName)) != null) {
-                return new Pair<>(data, EntryType.BOOT_ENTRY);
+                return Pair.of(data, EntryType.BOOT_ENTRY);
             }
         }
         if (value >= EntryType.EXT_ENTRY) {
             if ((data = extClasspath.readClass(realClassName)) != null) {
-                return new Pair<>(data, EntryType.EXT_ENTRY);
+                return Pair.of(data, EntryType.EXT_ENTRY);
             }
         }
         if (value >= EntryType.USER_ENTRY) {
             if ((data = userClasspath.readClass(realClassName)) != null) {
-                return new Pair<>(data, EntryType.USER_ENTRY);
+                return Pair.of(data, EntryType.USER_ENTRY);
             }
         }
         throw new ClassNotFoundException();

@@ -34,7 +34,7 @@ public class ClassFileReaderTest {
                 assertThrows(FileNotFoundException.class, () -> reader.readClassFile(className, null));
             } else {
                 byte[] res = assertDoesNotThrow(() -> {
-                    return reader.readClassFile(className, null).fst;
+                    return reader.readClassFile(className, null).getKey();
                 });
                 System.out.println(Arrays.toString(res));
             }
