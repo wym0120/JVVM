@@ -1,12 +1,15 @@
 package runtime;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import runtime.struct.JObject;
 import runtime.struct.Slot;
 
 import java.util.EmptyStackException;
 
-@Data
+@Getter
+@Setter
 public class OperandStack {
     private int top;
     private int maxStackSize;

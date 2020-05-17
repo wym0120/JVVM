@@ -1,8 +1,11 @@
 package memory.jclass;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public abstract class ClassMember {
     public short accessFlags;
     public String name;

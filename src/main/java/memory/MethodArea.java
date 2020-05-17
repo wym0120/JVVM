@@ -1,12 +1,15 @@
 package memory;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.JClass;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
 public class MethodArea {
     private static MethodArea methodArea = new MethodArea();
 

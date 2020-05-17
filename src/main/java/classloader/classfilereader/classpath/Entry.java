@@ -1,11 +1,14 @@
 package classloader.classfilereader.classpath;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.File;
 import java.io.IOException;
 
-@Data
+@Getter
+@Setter
 public abstract class Entry {
     public final String PATH_SEPARATOR = File.pathSeparator;
     public final String FILE_SEPARATOR = File.separator;

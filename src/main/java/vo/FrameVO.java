@@ -10,12 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-04-14
- */
 public class FrameVO {
     private ArrayList<String> operandStack;//operandStack[0] is the bottom of this stack
     private ArrayList<String> localVars;

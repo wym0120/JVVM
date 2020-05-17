@@ -2,11 +2,14 @@ package memory.jclass.runtimeConstantPool.constant.ref;
 
 import classloader.ClassLoader;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 import memory.jclass.runtimeConstantPool.constant.Constant;
 
-@Data
+@Getter
+@Setter
 public abstract class SymRef implements Constant {
     public RuntimeConstantPool runtimeConstantPool;
     public String className;    //format : java/lang/Object

@@ -1,9 +1,12 @@
 package runtime.struct;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.JClass;
 
-@Data
+@Getter
+@Setter
 public abstract class JObject {
     protected static int numInHeap;
     protected int id;

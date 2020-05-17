@@ -2,13 +2,16 @@ package classloader.classfileparser.attribute;
 
 import classloader.classfileparser.BuildUtil;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.nio.ByteBuffer;
 
 /**
  * todo：bonus
  */
-@Data
+@Getter
+@Setter
 public class CodeAttribute extends AttributeInfo {
     private int maxStack;
     private int  maxLocal;

@@ -2,10 +2,13 @@ package memory.jclass;
 
 import classloader.classfileparser.FieldInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Arrays;
 
-@Data
+@Getter
+@Setter
 public class Field extends ClassMember {
     private int slotID;
     private int constValueIndex;

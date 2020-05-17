@@ -2,8 +2,11 @@ package classloader.classfileparser.attribute;
 
 import classloader.classfileparser.BuildUtil;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ConstantValueAttr extends AttributeInfo {
     private int constantValueIndex;
 

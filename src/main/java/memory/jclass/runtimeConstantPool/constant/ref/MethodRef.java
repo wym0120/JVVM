@@ -2,6 +2,8 @@ package memory.jclass.runtimeConstantPool.constant.ref;
 
 import classloader.classfileparser.constantpool.info.MethodrefInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.JClass;
 import memory.jclass.Method;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
@@ -10,7 +12,8 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Stack;
 
-@Data
+@Getter
+@Setter
 public class MethodRef extends MemberRef {
     private Method method;
 

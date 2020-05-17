@@ -5,12 +5,15 @@ import classloader.classfileparser.attribute.CodeAttribute;
 import execution.Decoder;
 import instructions.base.Instruction;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 
-@Data
+@Getter
+@Setter
 public class Method extends ClassMember {
     private int maxStack;
     private int maxLocal;

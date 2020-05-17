@@ -1,13 +1,15 @@
 package runtime;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.Method;
 
-@Data
+@Getter
+@Setter
 public class StackFrame {
     private OperandStack operandStack;
     private Vars localVars;
-    private StackFrame lower;
     private JThread thread;
     private int nextPC;
     private Method method;

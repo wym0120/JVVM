@@ -2,10 +2,13 @@ package classloader.classfileparser.attribute;
 
 import classloader.classfileparser.BuildUtil;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.nio.ByteBuffer;
 
-@Data
+@Getter
+@Setter
 public class AttributeInfo {
 
     private int attributeNameAndIndex;

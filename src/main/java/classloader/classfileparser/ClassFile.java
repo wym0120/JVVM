@@ -4,14 +4,16 @@ import classloader.classfileparser.attribute.AttributeBuilder;
 import classloader.classfileparser.attribute.AttributeInfo;
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfileparser.constantpool.info.ClassInfo;
-import classloader.classfileparser.constantpool.info.UTF8Info;
 import com.sun.tools.javac.util.Pair;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.nio.ByteBuffer;
 import java.util.function.Supplier;
 
-@Data
+@Getter
+@Setter
 public class ClassFile {
     private int magic;
     private short minorVersion;
@@ -113,9 +115,5 @@ public class ClassFile {
             ret[i] = ((ClassInfo) constantPool.get(interfaces[i])).getClassName();
         }
         return ret;
-    }
-
-    private String getUTF8(int index) {
-        return ((UTF8Info) constantPool.get(index)).getString();
     }
 }

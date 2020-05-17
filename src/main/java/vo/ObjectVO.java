@@ -11,12 +11,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Description:
- *
- * @author xiao bai
- * Created on 2020-04-14
- */
 public class ObjectVO extends HeapContentVO {
     //<name, value>
     private Map<String, String> members;
@@ -47,7 +41,6 @@ public class ObjectVO extends HeapContentVO {
             String typeAndName = info.fst;
             int slotID = info.snd;
             String type = typeAndName.split(" ")[0];
-            ;
             ret.put(typeAndName, getInfo(instanceVars, type, slotID));
         });
         return ret;

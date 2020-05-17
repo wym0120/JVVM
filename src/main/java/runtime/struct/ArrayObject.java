@@ -1,8 +1,10 @@
 package runtime.struct;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ArrayObject extends JObject {
     protected int len;
     protected String type;

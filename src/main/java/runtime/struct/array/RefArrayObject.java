@@ -1,10 +1,13 @@
 package runtime.struct.array;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import runtime.struct.ArrayObject;
 import runtime.struct.JObject;
 
-@Data
+@Getter
+@Setter
 public class RefArrayObject extends ArrayObject {
     private JObject[] array;
 

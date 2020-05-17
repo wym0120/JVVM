@@ -36,7 +36,6 @@ public class ClassLoader {
     /**
      * @param className       name of class
      * @param initiatingEntry null value represents load MainClass
-     * @throws ClassNotFoundException cnf
      */
     public JClass loadClass(String className, EntryType initiatingEntry) throws ClassNotFoundException {
         JClass ret;

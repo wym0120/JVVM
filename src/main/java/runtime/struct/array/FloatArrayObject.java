@@ -1,9 +1,12 @@
 package runtime.struct.array;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import runtime.struct.ArrayObject;
 
-@Data
+@Getter
+@Setter
 public class FloatArrayObject extends ArrayObject {
     private float[] array;
 

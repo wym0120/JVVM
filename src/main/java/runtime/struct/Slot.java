@@ -1,8 +1,11 @@
 package runtime.struct;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Slot {
     private JObject object;
     private Integer value;

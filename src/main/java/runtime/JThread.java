@@ -1,8 +1,11 @@
 package runtime;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class JThread {
     private ThreadStack stack;
 

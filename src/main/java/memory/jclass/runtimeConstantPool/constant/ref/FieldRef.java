@@ -2,11 +2,14 @@ package memory.jclass.runtimeConstantPool.constant.ref;
 
 import classloader.classfileparser.constantpool.info.FieldrefInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.Field;
 import memory.jclass.JClass;
 import memory.jclass.runtimeConstantPool.RuntimeConstantPool;
 
-@Data
+@Getter
+@Setter
 public class FieldRef extends MemberRef {
     private Field field;
 

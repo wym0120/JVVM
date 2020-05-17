@@ -76,8 +76,4 @@ public class Vars {
         varSlots[index] = slot;
     }
 
-    public Slot getSlot(int index) {
-        if (index < 0 || index >= maxSize) throw new IndexOutOfBoundsException();
-        return varSlots[index];
-    }
 }

@@ -2,6 +2,8 @@ package runtime.struct;
 
 import com.sun.tools.javac.util.Pair;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import memory.jclass.JClass;
 import runtime.Vars;
 
@@ -10,7 +12,8 @@ import java.util.Arrays;
 
 import static memory.jclass.Field.parseDescriptor;
 
-@Data
+@Getter
+@Setter
 public class NonArrayObject extends JObject {
 
     private Vars fields;

@@ -2,10 +2,13 @@ package classloader.classfileparser;
 
 import classloader.classfileparser.constantpool.ConstantPool;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.nio.ByteBuffer;
 
-@Data
+@Getter
+@Setter
 public class BuildUtil {
     private ConstantPool constantPool;
     private ByteBuffer byteBuffer;

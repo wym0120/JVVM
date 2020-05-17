@@ -3,6 +3,8 @@ package classloader.classfilereader;
 import classloader.classfilereader.classpath.*;
 import com.sun.tools.javac.util.Pair;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import util.PathUtil;
 
 import java.io.File;
@@ -12,7 +14,8 @@ import java.io.IOException;
 /**
  * This class is the simulated implementation of Java Classloader.
  */
-@Data
+@Getter
+@Setter
 public class ClassFileReader {
     private static ClassFileReader reader = new ClassFileReader();
     private static final String FILE_SEPARATOR = File.separator;
