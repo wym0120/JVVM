@@ -2,6 +2,7 @@ import classloader.classfileparser.ClassFile;
 import classloader.classfilereader.ClassFileReader;
 import memory.jclass.AccessFlags;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,7 @@ public class ClassFileParserTest {
 
     @DisplayName("validate result of parsing java.lang.Object")
     @Test
+    @Disabled
     void parseObjectClass() {
         String className = String.join(File.separator, "java", "lang", "Object");
         byte[] content = assertDoesNotThrow(() -> {

@@ -32,6 +32,7 @@ public class CommandlineUtilTest {
 
     @DisplayName("set different path")
     @Test
+    @Disabled
     void testSetBootAndExt() {
         String programInput = "-cp 123.456 -Xjre abc.efg";
         CommandlineUtil.parseInput(programInput.split(" "));
@@ -52,6 +53,7 @@ public class CommandlineUtilTest {
 
     @DisplayName("Report invalid input")
     @Test
+    @Disabled
     void testInvalidInput() {
         String programInput = "arg0 -h arg1 -Xjre xxx.xxx arg2 -cp xxx.xxx -invalid";
         assertDoesNotThrow(() -> CommandlineUtil.parseInput(programInput.split(" ")));

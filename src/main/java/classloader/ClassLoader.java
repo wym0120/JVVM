@@ -34,6 +34,8 @@ public class ClassLoader {
     }
 
     /**
+     * load phase
+     *
      * @param className       name of class
      * @param initiatingEntry null value represents load MainClass
      */
@@ -101,6 +103,9 @@ public class ClassLoader {
         return clazz;
     }
 
+    /**
+     * load superclass before add to method area
+     */
     private void resolveSuperClass(JClass clazz) throws ClassNotFoundException {
         if (!clazz.getName().equals("java/lang/Object")) {
             String superClassName = clazz.getSuperClassName();
@@ -109,6 +114,9 @@ public class ClassLoader {
         }
     }
 
+    /**
+     * load interfaces before add to method area
+     */
     private void resolveInterfaces(JClass clazz) throws ClassNotFoundException {
         EntryType initiatingEntry = clazz.getLoadEntryType();
         String[] interfaceNames = clazz.getInterfaceNames();
@@ -120,6 +128,9 @@ public class ClassLoader {
         }
     }
 
+    /**
+     * link phase
+     */
     private void linkClass(JClass clazz) {
         verify(clazz);
         prepare(clazz);
@@ -136,6 +147,11 @@ public class ClassLoader {
         clazz.setInitState(InitState.PREPARED);
     }
 
+    /**
+     * count the number of field slots in instance
+     * long and double takes two slots
+     * the field is not static
+     */
     private void calInstanceFieldSlotIDs(JClass clazz) {
         int slotID = 0;
         if (clazz.getSuperClass() != null) {
@@ -152,6 +168,11 @@ public class ClassLoader {
         clazz.setInstanceSlotCount(slotID);
     }
 
+    /**
+     * count the number of field slots in class
+     * long and double takes two slots
+     * the field is static
+     */
     private void calStaticFieldSlotIDs(JClass clazz) {
         int slotID = 0;
         Field[] fields = clazz.getFields();
@@ -165,6 +186,10 @@ public class ClassLoader {
         clazz.setStaticSlotCount(slotID);
     }
 
+    /**
+     * primitive type is set to 0
+     * ref type is set to null
+     */
     private void initDefaultValue(JClass clazz, Field field) {
         Vars staticVars = clazz.getStaticVars();
         int slotID = field.getSlotID();
@@ -192,8 +217,11 @@ public class ClassLoader {
         }
     }
 
+    /**
+     * load const value from runtimeConstantPool for primitive type
+     * String is not support now
+     */
     private void loadValueFromRTCP(JClass clazz, Field field) {
-        //load const value from runtimeConstantPool for base type or String
         Vars staticVars = clazz.getStaticVars();
         RuntimeConstantPool runtimeConstantPool = clazz.getRuntimeConstantPool();
         int constantPoolIndex = field.getConstValueIndex();
@@ -226,6 +254,10 @@ public class ClassLoader {
         }
     }
 
+    /**
+     * the value of static final field is in runtime constant pool
+     * others will be set to default value
+     */
     private void allocAndInitStaticVars(JClass clazz) {
         clazz.setStaticVars(new Vars(clazz.getStaticSlotCount()));
         Field[] fields = clazz.getFields();
