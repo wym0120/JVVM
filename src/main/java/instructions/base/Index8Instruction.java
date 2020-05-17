@@ -2,11 +2,8 @@ package instructions.base;
 
 import java.nio.ByteBuffer;
 
-/**
- * instructions get operands from localVars
- */
 public abstract class Index8Instruction extends Instruction {
-    public int index;//byte needs to be cast to unsigned int
+    public int index;//type of index is unsigned char
 
     public void fetchOperands(ByteBuffer reader) {
         index = (int) reader.get() & 0xFF;

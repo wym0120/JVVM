@@ -12,7 +12,7 @@ public abstract class IF_ACMPCOND extends BranchInstruction {
 
         if (condition(value1, value2)) {
             int nextPC = frame.getNextPC();
-            int branchNext = nextPC - 3 + offset;
+            int branchNext = nextPC - 3 + offset; // 3 = opcode + signed short offset
             frame.setNextPC(branchNext);
         }
     }

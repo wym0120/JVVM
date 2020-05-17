@@ -10,7 +10,7 @@ public abstract class IF_ICMPCOND extends BranchInstruction {
         int value1 = frame.getOperandStack().popInt();
         if (condition(value1, value2)) {
             int nextPC = frame.getNextPC();
-            int branchNext = nextPC - 3 + offset;
+            int branchNext = nextPC - 3 + offset;// 3 = opcode + signed short offset
             frame.setNextPC(branchNext);
         }
     }

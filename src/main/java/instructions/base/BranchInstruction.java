@@ -3,7 +3,7 @@ package instructions.base;
 import java.nio.ByteBuffer;
 
 public abstract class BranchInstruction extends Instruction {
-    protected int offset;
+    protected int offset;//type of offset is signed short
 
     public void fetchOperands(ByteBuffer reader) {
         offset = reader.getShort();

@@ -16,6 +16,9 @@ public class CommandlineUtil {
         options.addOption("Xjre", true, "Specify extended classpath");
     }
 
+    /**
+     * print the usage of every option
+     */
     private static void printHelpMessage() {
         String header = "\njava [-options] class [args...]\n" +
                 "   or java [-options] -jar jarfile [args...]\n";
@@ -25,17 +28,25 @@ public class CommandlineUtil {
         System.exit(0);
     }
 
-    private static void printVersion(){
+    private static void printVersion() {
         System.out.println("version 0.0.1\n");
         System.exit(0);
     }
 
-    private static void setExtEntry(String classPath){
+    /**
+     * We use -Xjre to set Bootstrap entry path and Extension entry path together
+     * You can add option -Xbootclasspath set the path of Bootstrap loader
+     *
+     * @param classPath classpath of JDK
+     */
+    private static void setBootAndExtEntry(String classPath) {
         ClassFileReader.setBootAndExtClasspath(classPath);
-
     }
 
-    private static void setUserEntry(String classPath){
+    /**
+     * @param classPath classpath of user Class
+     */
+    private static void setUserEntry(String classPath) {
         ClassFileReader.setUserClasspath(classPath);
     }
 
@@ -46,6 +57,7 @@ public class CommandlineUtil {
         }
         return ret;
     }
+
 
     public static void parseInput(String[] args) {
         try {
@@ -61,7 +73,7 @@ public class CommandlineUtil {
         if (commandLine.hasOption("v") || commandLine.hasOption("version")) printVersion();
         if (commandLine.hasOption("cp") || commandLine.hasOption("classpath"))
             setUserEntry(commandLine.getOptionValue("cp"));
-        if (commandLine.hasOption("Xjre")) setExtEntry(commandLine.getOptionValue("Xjre"));
+        if (commandLine.hasOption("Xjre")) setBootAndExtEntry(commandLine.getOptionValue("Xjre"));
     }
 
 

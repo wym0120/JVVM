@@ -9,7 +9,7 @@ public abstract class IFCOND extends BranchInstruction {
         int value = frame.getOperandStack().popInt();
         if (condition(value)) {
             int nextPC = frame.getNextPC();
-            int branchPC = nextPC - 3 + super.offset;
+            int branchPC = nextPC - 3 + super.offset; // 3 = opcode + signed short offset
             frame.setNextPC(branchPC);
         }
     }

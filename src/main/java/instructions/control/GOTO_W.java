@@ -12,7 +12,7 @@ public class GOTO_W extends BranchInstruction {
 
     @Override
     public void execute(StackFrame frame) {
-        int branchPC = frame.getNextPC() - 3 + super.offset;
+        int branchPC = frame.getNextPC() - 3 + super.offset;// 3 = opcode + signed short offset
         frame.setNextPC(branchPC);
     }
 }
