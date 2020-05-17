@@ -1,5 +1,9 @@
 package classloader.classfilereader.classpath;
 
+/**
+ * the number presents different privileges of entry
+ * The larger the number, the higher the privileges
+ */
 public class EntryType {
     private int value;
     public final static int BOOT_ENTRY = 0x1;

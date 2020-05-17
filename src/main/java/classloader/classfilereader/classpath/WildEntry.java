@@ -7,8 +7,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
- * 适用于 abc/dir/* 的情况
- * @author WYM
+ * format : dir/*
  */
 public class WildEntry extends Entry {
     public WildEntry(String classpath) {

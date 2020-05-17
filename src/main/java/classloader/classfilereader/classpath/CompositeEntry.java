@@ -5,8 +5,7 @@ import classloader.classfilereader.ClassFileReader;
 import java.io.IOException;
 
 /**
- * 适用于 abc/dir;abc/dir/subDir/* 的情况
- * @author WYM
+ * format dir/subdir/... ; dir/* ; dir/subdir/target.zip(jar)
  */
 public class CompositeEntry extends Entry{
     public CompositeEntry(String classpath) {

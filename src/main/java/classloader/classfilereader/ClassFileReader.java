@@ -26,13 +26,10 @@ public class ClassFileReader {
         return reader;
     }
 
-    private static Entry bootClasspath = null;
-    private static Entry extClasspath = null;
-    private static Entry userClasspath = null;
+    private static Entry bootClasspath = null;//bootstrap class entry
+    private static Entry extClasspath = null;//extension class entry
+    private static Entry userClasspath = null;//user class entry
 
-    /**
-     * Set Jre(ext) and XBootClasspath
-     */
     public static void setBootAndExtClasspath(String classpath) {
         bootClasspath = chooseEntryType(String.join(FILE_SEPARATOR, classpath, "lib", "*"));
         extClasspath = chooseEntryType(String.join(FILE_SEPARATOR, classpath, "lib", "ext", "*"));
@@ -71,9 +68,21 @@ public class ClassFileReader {
         return new DirEntry(classpath);
     }
 
-    public Pair<byte[], Integer> readClassFile(String className, EntryType type) throws IOException, ClassNotFoundException {
-        int value = (type == null) ? EntryType.USER_ENTRY : type.getValue();
-        checkCorrectClasspath();
+    /**
+     * read class file in privilege order
+     * USER_ENTRY has highest privileges
+     * If there is no relevant class loaded before
+     * default privilege is USER_ENTRY
+     *
+     * @param className class to be read
+     * @param privilege privilege of relevant class
+     * @return content of class file and the privilege of loaded class
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public Pair<byte[], Integer> readClassFile(String className, EntryType privilege) throws IOException, ClassNotFoundException {
+        int value = (privilege == null) ? EntryType.USER_ENTRY : privilege.getValue();
+        checkAndSetDefault();
         String realClassName = className + ".class";
         realClassName = PathUtil.transform(realClassName);
         byte[] data;
@@ -97,11 +106,12 @@ public class ClassFileReader {
 
 
     /**
-     * Check all paths are correct,if not,set default value
+     * Check all paths are not null
+     * If not, set default paths for entries
      */
-    private void checkCorrectClasspath() throws FileNotFoundException {
+    private void checkAndSetDefault() throws FileNotFoundException {
         if (bootClasspath == null) {
-            //specify the bootClasspath together with extClasspath
+            //set the bootClasspath together with extClasspath
         }
 
         if (extClasspath == null) {
@@ -111,6 +121,7 @@ public class ClassFileReader {
             if (f.exists()) {
                 setBootAndExtClasspath(String.join(FILE_SEPARATOR, ".", "jre"));
             } else {
+                // Warning : You need to make sure the name of the environment variable is the same as in your system.
                 final String JAVA_HOME = System.getenv("JAVA_HOME");
                 if (JAVA_HOME != null) {
                     f = new File(JAVA_HOME);

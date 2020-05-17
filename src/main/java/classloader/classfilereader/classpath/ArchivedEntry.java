@@ -10,9 +10,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 /**
- * 适用于 abc/dir/target.zip 的情况
- *
- * @author WYM
+ * format: dir/subdir/target.zip(jar)
  */
 public class ArchivedEntry extends Entry {
     public ArchivedEntry(String classpath) {
