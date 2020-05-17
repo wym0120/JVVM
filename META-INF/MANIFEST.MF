@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: Main
+com.njuse.seecjvm.Main-Class: com.njuse.seecjvm.Main
 

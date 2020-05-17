@@ -1,16 +1,16 @@
-import classloader.ClassLoader;
-import classloader.classfilereader.ClassFileReader;
-import execution.Interpreter;
-import memory.MethodArea;
-import memory.jclass.JClass;
-import memory.jclass.Method;
+import com.njuse.seecjvm.classloader.ClassLoader;
+import com.njuse.seecjvm.classloader.classfilereader.ClassFileReader;
+import com.njuse.seecjvm.execution.Interpreter;
+import com.njuse.seecjvm.memory.MethodArea;
+import com.njuse.seecjvm.memory.jclass.JClass;
+import com.njuse.seecjvm.memory.jclass.Method;
+import com.njuse.seecjvm.runtime.JThread;
+import com.njuse.seecjvm.runtime.StackFrame;
+import com.njuse.seecjvm.util.JsonUtil;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import runtime.JThread;
-import runtime.StackFrame;
-import util.JsonUtil;
 
 import java.io.File;
 

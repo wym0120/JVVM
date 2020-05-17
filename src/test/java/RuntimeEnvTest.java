@@ -1,8 +1,8 @@
+import com.njuse.seecjvm.runtime.OperandStack;
+import com.njuse.seecjvm.runtime.Vars;
+import com.njuse.seecjvm.runtime.struct.NullObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import runtime.OperandStack;
-import runtime.Vars;
-import runtime.struct.NullObject;
 
 import java.util.EmptyStackException;
 

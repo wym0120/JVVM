@@ -1,6 +1,6 @@
-import classloader.classfileparser.ClassFile;
-import classloader.classfilereader.ClassFileReader;
-import memory.jclass.AccessFlags;
+import com.njuse.seecjvm.classloader.classfileparser.ClassFile;
+import com.njuse.seecjvm.classloader.classfilereader.ClassFileReader;
+import com.njuse.seecjvm.memory.jclass.AccessFlags;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
