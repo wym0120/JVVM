@@ -18,7 +18,7 @@ public class PUTSTATIC extends Index16Instruction {
         JClass currentClazz = currentMethod.getClazz();
         RuntimeConstantPool currentRuntimeConstantPool = currentClazz.getRuntimeConstantPool();
         FieldRef fieldRef = (FieldRef) currentRuntimeConstantPool.getConstant(index);
-        Field field = null;
+        Field field;
         try {
             field = fieldRef.getResolvedFieldRef();
             JClass targetClazz = field.getClazz();

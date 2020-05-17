@@ -19,7 +19,7 @@ public class PUTFIELD extends Index16Instruction {
         JClass currentClazz = currentMethod.getClazz();
         RuntimeConstantPool currentRuntimeConstantPool = currentClazz.getRuntimeConstantPool();
         FieldRef fieldRef = (FieldRef) currentRuntimeConstantPool.getConstant(index);
-        Field field = null;
+        Field field;
         try {
             field = fieldRef.getResolvedFieldRef();
             JClass targetClazz = field.getClazz();
@@ -34,7 +34,7 @@ public class PUTFIELD extends Index16Instruction {
             String descriptor = field.getDescriptor();
             int slotID = field.getSlotID();
             OperandStack stack = frame.getOperandStack();
-            JObject ref = null;
+            JObject ref;
             switch (descriptor.charAt(0)) {
                 case 'Z':
                 case 'B':

@@ -15,7 +15,7 @@ public class GETSTATIC extends Index16Instruction {
     public void execute(StackFrame frame) {
         RuntimeConstantPool runtimeConstantPool = frame.getMethod().getClazz().getRuntimeConstantPool();
         FieldRef fieldRef = (FieldRef) runtimeConstantPool.getConstant(index);
-        Field field = null;
+        Field field;
         try {
             field = fieldRef.getResolvedFieldRef();
             JClass targetClazz = field.getClazz();

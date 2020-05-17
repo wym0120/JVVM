@@ -15,7 +15,7 @@ public class GETFIELD extends Index16Instruction {
     public void execute(StackFrame frame) {
         RuntimeConstantPool currentRuntimeConstantPool = frame.getMethod().getClazz().getRuntimeConstantPool();
         FieldRef fieldRef = (FieldRef) currentRuntimeConstantPool.getConstant(index);
-        Field field = null;
+        Field field;
         try {
             field = fieldRef.getResolvedFieldRef();
             JClass targetClazz = field.getClazz();
@@ -24,7 +24,7 @@ public class GETFIELD extends Index16Instruction {
             }
             OperandStack stack = frame.getOperandStack();
             NonArrayObject ref = (NonArrayObject) stack.popObjectRef();
-            //todo:nullpointerException need to be check whether set JObject isNull field can trigger this exception!!!!!!
+            //check null pointer exception
             if (ref.isNull()) {
                 throw new NullPointerException();
             }

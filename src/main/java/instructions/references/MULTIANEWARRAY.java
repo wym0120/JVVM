@@ -17,6 +17,12 @@ public class MULTIANEWARRAY extends Instruction {
     private int dimensions;//uint8
 
     @Override
+    public void fetchOperands(ByteBuffer reader) {
+        index = reader.getShort() & 0xFFFF;
+        dimensions = reader.get() & 0xFF;
+    }
+
+    @Override
     public void execute(StackFrame frame) {
         RuntimeConstantPool runtimeConstantPool = frame.getMethod().getClazz().getRuntimeConstantPool();
         ClassRef classRef = (ClassRef) runtimeConstantPool.getConstant(index);
@@ -54,18 +60,12 @@ public class MULTIANEWARRAY extends Instruction {
         index++;
         ArrayObject arr = arrClass.newArrayObject(len);
         if (index <= lenArray.length - 1) {
-            //todo: test whether arr is a ref array
+            assert arr instanceof RefArrayObject;
             for (int i = 0; i < arr.getLen(); i++) {
                 ((RefArrayObject) arr).getArray()[i] = createMultiDimensionArray(index, lenArray, arrClass.getComponentClass());
             }
         }
         return arr;
-    }
-
-    @Override
-    public void fetchOperands(ByteBuffer reader) {
-        index = reader.getShort() & 0xFFFF;
-        dimensions = reader.get() & 0xFF;
     }
 
     @Override

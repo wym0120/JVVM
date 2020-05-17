@@ -49,6 +49,12 @@ public abstract class INVOKE_BASE extends Index16Instruction {
         return newFrame;
     }
 
+    /**
+     * resolve the ref of method
+     *
+     * @param frame target frame
+     * @return resolved method
+     */
     public Method getMethod(StackFrame frame) {
         JClass currentClz = frame.getMethod().getClazz();
         Constant ref = currentClz.getRuntimeConstantPool().getConstant(super.index);
