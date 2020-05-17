@@ -1,7 +1,6 @@
 package classloader.classfileparser.attribute;
 
 import classloader.classfileparser.BuildUtil;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,16 +28,5 @@ public class AttributeInfo {
             info[i] = byteBuffer.get();
         }
     }
-
-//
-//    protected AttributeInfo(byte[] in, int offset) {
-//        ByteBuffer buffer = ByteBuffer.wrap(in, offset, in.length - offset);
-//        this.attributeNameAndIndex = buffer.getShort();
-//        this.attributeLength = buffer.getInt();
-//        this.info = new byte[this.attributeLength];
-//        for (int i = 0; i < this.attributeLength; i++) {
-//            info[i] = buffer.get();
-//        }
-//    }
 
 }

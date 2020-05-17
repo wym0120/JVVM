@@ -1,9 +1,6 @@
 import classloader.classfilereader.ClassFileReader;
 import org.apache.commons.cli.*;
 
-/**
- * @author wym
- */
 public class CommandlineUtil {
     private static CommandLine commandLine;
     private static CommandLineParser parser = new DefaultParser();

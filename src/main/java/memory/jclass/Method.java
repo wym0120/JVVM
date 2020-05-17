@@ -4,7 +4,6 @@ import classloader.classfileparser.MethodInfo;
 import classloader.classfileparser.attribute.CodeAttribute;
 import execution.Decoder;
 import instructions.base.Instruction;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

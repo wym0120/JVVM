@@ -1,6 +1,5 @@
 package memory.jclass.runtimeConstantPool.constant.wrapper;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.runtimeConstantPool.constant.Constant;

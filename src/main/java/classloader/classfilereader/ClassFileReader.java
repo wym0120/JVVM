@@ -2,7 +2,6 @@ package classloader.classfilereader;
 
 import classloader.classfilereader.classpath.*;
 import com.sun.tools.javac.util.Pair;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import util.PathUtil;

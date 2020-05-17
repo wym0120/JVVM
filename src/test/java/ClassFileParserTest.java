@@ -9,7 +9,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Optional;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ClassFileParserTest {

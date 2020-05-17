@@ -41,8 +41,7 @@ public class InterpreterTest {
         Method main = clazz.getMainMethod();
         StackFrame mainFrame = new StackFrame(thread, main, main.getMaxStack(), main.getMaxLocal());
         thread.pushFrame(mainFrame);
-        Interpreter interpreter = new Interpreter();
-        JsonUtil.storeResult(className, interpreter.interpret(thread));
+        JsonUtil.storeResult(className, Interpreter.interpret(thread));
     }
 
     @AfterAll

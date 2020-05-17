@@ -1,7 +1,6 @@
 package classloader.classfileparser.attribute;
 
 import classloader.classfileparser.BuildUtil;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Interpreter {
-    private ByteBuffer codeReader;
+    private static ByteBuffer codeReader;
 
-    public ArrayList<StateVO> interpret(JThread thread) {
+    public static ArrayList<StateVO> interpret(JThread thread) {
         initCodeReader(thread);
         return loop(thread);
     }
@@ -26,14 +26,14 @@ public class Interpreter {
      * This method set the code reader according to topFrame
      * When topFrame changes, this method should be called
      */
-    private void initCodeReader(JThread thread) {
+    private static void initCodeReader(JThread thread) {
         byte[] code = thread.getTopFrame().getMethod().getCode();
         codeReader = ByteBuffer.wrap(code);
         int nextPC = thread.getTopFrame().getNextPC();
         codeReader.position(nextPC);
     }
 
-    private ArrayList<StateVO> loop(JThread thread) {
+    private static ArrayList<StateVO> loop(JThread thread) {
         ArrayList<StateVO> ret = new ArrayList<>();
         //record first state
         ret.add(Recorder.initialState(thread.getTopFrame(), thread));
@@ -69,7 +69,7 @@ public class Interpreter {
 
     }
 
-    private void PrintInfo(StackFrame ori, StackFrame next, JThread thread, Instruction instruction) {
+    private static void PrintInfo(StackFrame ori, StackFrame next, JThread thread, Instruction instruction) {
         String langSpace = "    ";
         String classNameOfInst = instruction.getClass().toString();
         System.out.println("After " + classNameOfInst.substring(classNameOfInst.lastIndexOf(".") + 1) + " exec:");
@@ -91,7 +91,7 @@ public class Interpreter {
         ColorUtil.printBlue("----------------------------------------------------------------------");
     }
 
-    private void printVars(Slot[] vars) {
+    private static void printVars(Slot[] vars) {
         String langSpace = "    ";
         Arrays.stream(vars)
                 .forEach(s -> {

@@ -1,11 +1,5 @@
 package minimal;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-04-28
- */
 public class InstructionTest {
     private int result = -1;
     private boolean fail = false;

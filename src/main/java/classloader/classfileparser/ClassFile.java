@@ -5,7 +5,6 @@ import classloader.classfileparser.attribute.AttributeInfo;
 import classloader.classfileparser.constantpool.ConstantPool;
 import classloader.classfileparser.constantpool.info.ClassInfo;
 import com.sun.tools.javac.util.Pair;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

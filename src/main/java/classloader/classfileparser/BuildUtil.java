@@ -1,7 +1,6 @@
 package classloader.classfileparser;
 
 import classloader.classfileparser.constantpool.ConstantPool;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

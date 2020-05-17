@@ -1,7 +1,6 @@
 package runtime.struct;
 
 import com.sun.tools.javac.util.Pair;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.JClass;

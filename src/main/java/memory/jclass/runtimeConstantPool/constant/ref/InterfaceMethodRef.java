@@ -1,7 +1,6 @@
 package memory.jclass.runtimeConstantPool.constant.ref;
 
 import classloader.classfileparser.constantpool.info.InterfaceMethodrefInfo;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.JClass;

@@ -29,10 +29,10 @@ public class Main {
         ClassLoader loader = ClassLoader.getInstance();
         JClass clazz = loader.loadClass(className, null);
         JThread thread = new JThread();
+        //find main method
         Method main = clazz.getMainMethod();
         StackFrame mainFrame = new StackFrame(thread, main, main.getMaxStack(), main.getMaxLocal());
         thread.pushFrame(mainFrame);
-        Interpreter interpreter = new Interpreter();
-        interpreter.interpret(thread);
+        Interpreter.interpret(thread);
     }
 }

@@ -1,7 +1,6 @@
 package memory.jclass;
 
 import classloader.classfileparser.FieldInfo;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
