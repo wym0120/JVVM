@@ -1,7 +1,6 @@
 package memory.jclass.runtimeConstantPool.constant.ref;
 
 import classloader.classfileparser.constantpool.info.MethodrefInfo;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import memory.jclass.JClass;
@@ -20,9 +19,6 @@ public class MethodRef extends MemberRef {
     public MethodRef(RuntimeConstantPool runtimeConstantPool, MethodrefInfo methodrefInfo) {
         super(runtimeConstantPool, methodrefInfo);
     }
-
-    //todo:I think this is useless but maybe have some bugs here!!!!
-    //of course! YOU SILLY YOUNG MAN!
 
     public Method resolveMethodRef(JClass clazz) {
         resolve(clazz);
@@ -45,7 +41,7 @@ public class MethodRef extends MemberRef {
 
         assert clazz != null;
 
-        Optional<Method> optionalMethod = Optional.empty();
+        Optional<Method> optionalMethod;
 
         for (JClass currentClazz = clazz;
              currentClazz != null;

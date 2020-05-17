@@ -96,6 +96,5 @@ public class RuntimeConstantPool {
     public Constant getConstant(int index) {
         assert index >= 1;
         return constants[index - 1];
-        //todo:check whether need to handle exception
     }
 }

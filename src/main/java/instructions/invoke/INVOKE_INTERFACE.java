@@ -27,7 +27,6 @@ public class INVOKE_INTERFACE extends Index16Instruction {
         Constant methodRef = currentClz.getRuntimeConstantPool().getConstant(super.index);
         assert methodRef instanceof InterfaceMethodRef;
         Method method = ((InterfaceMethodRef) methodRef).resolveInterfaceMethodRef();
-        //TODO add check for static/access
 
         //copy arguments
         int argc = method.getArgc();

@@ -17,7 +17,6 @@ public class INVOKE_VIRTUAL extends Index16Instruction {
         Constant methodRef = currentClz.getRuntimeConstantPool().getConstant(super.index);
         assert methodRef instanceof MethodRef;
         Method method = ((MethodRef) methodRef).resolveMethodRef();
-        //TODO add check for static/access
 
         //copy arguments
         int argc = method.getArgc();

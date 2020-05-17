@@ -202,8 +202,8 @@ public class Decoder {
 //        opMap.put(OpCode.JSR, new JSR());
 //        opMap.put(OpCode.RET, new RET());
 
-//TODO        opMap.put(OpCode.TABLESWITCH, new TABLESWITCH());
-//TODO        opMap.put(OpCode.LOOKUPSWITCH, new LOOKUPSWITCH());
+//        opMap.put(OpCode.TABLESWITCH, new TABLESWITCH());
+//        opMap.put(OpCode.LOOKUPSWITCH, new LOOKUPSWITCH());
         opMap.put(OpCode.IRETURN, new IRETURN());
         opMap.put(OpCode.LRETURN, new LRETURN());
         opMap.put(OpCode.FRETURN, new FRETURN());
