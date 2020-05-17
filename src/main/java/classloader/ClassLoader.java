@@ -19,13 +19,6 @@ import runtime.struct.NullObject;
 
 import java.io.IOException;
 
-/**
- * Description:
- * Load class file
- *
- * @author xxz
- * Created on 2020-02-10
- */
 public class ClassLoader {
     private static ClassLoader classLoader = new ClassLoader();
     private ClassFileReader classFileReader;
@@ -46,7 +39,7 @@ public class ClassLoader {
      * @throws ClassNotFoundException cnf
      */
     public JClass loadClass(String className, EntryType initiatingEntry) throws ClassNotFoundException {
-        JClass ret = null;
+        JClass ret;
         if ((ret = methodArea.findClass(className)) == null) {
             if (className.charAt(0) == '[') {
                 return loadArrayClass(className, initiatingEntry);

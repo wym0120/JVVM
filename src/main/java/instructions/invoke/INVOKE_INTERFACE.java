@@ -12,12 +12,6 @@ import runtime.struct.Slot;
 
 import java.nio.ByteBuffer;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-03-29
- */
 public class INVOKE_INTERFACE extends Index16Instruction {
 
     @Override

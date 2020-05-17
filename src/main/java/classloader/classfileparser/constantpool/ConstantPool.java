@@ -3,12 +3,6 @@ package classloader.classfileparser.constantpool;
 import classloader.classfileparser.constantpool.info.ConstantPoolInfo;
 import com.sun.tools.javac.util.Pair;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-15
- */
 public class ConstantPool {
     private ConstantPoolInfo[] infos;
 

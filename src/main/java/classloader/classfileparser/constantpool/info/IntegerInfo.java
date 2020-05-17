@@ -4,12 +4,6 @@ import classloader.classfileparser.constantpool.ConstantPool;
 
 import java.nio.ByteBuffer;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-15
- */
 public class IntegerInfo extends ConstantPoolInfo {
     private byte[] bytes;
     private int value;

@@ -2,12 +2,6 @@ package classloader.classfileparser.attribute;
 
 import classloader.classfileparser.BuildUtil;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-19
- */
 public class ExceptionsAttribute extends AttributeInfo {
     private int numberOfExceptions;
     private int[] exceptionIndexTable;

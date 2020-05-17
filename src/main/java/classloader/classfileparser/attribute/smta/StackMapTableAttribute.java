@@ -3,12 +3,6 @@ package classloader.classfileparser.attribute.smta;
 import classloader.classfileparser.BuildUtil;
 import classloader.classfileparser.attribute.AttributeInfo;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-18
- */
 public class StackMapTableAttribute extends AttributeInfo {
     private int numberOfEntries;
     private StackMapFrame[] entries;

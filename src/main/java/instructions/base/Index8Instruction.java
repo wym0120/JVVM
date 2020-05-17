@@ -4,8 +4,6 @@ import java.nio.ByteBuffer;
 
 /**
  * instructions get operands from localVars
- *
- * @author WYM
  */
 public abstract class Index8Instruction extends Instruction {
     public int index;//byte needs to be cast to unsigned int

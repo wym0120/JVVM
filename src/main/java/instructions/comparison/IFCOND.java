@@ -3,12 +3,6 @@ package instructions.comparison;
 import instructions.base.BranchInstruction;
 import runtime.StackFrame;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-03-09
- */
 public abstract class IFCOND extends BranchInstruction {
     @Override
     public void execute(StackFrame frame) {

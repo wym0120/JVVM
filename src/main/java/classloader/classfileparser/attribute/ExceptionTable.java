@@ -2,12 +2,6 @@ package classloader.classfileparser.attribute;
 
 import lombok.Data;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-18
- */
 @Data
 public class ExceptionTable {
     private int startPC;

@@ -3,12 +3,6 @@ package instructions.comparison;
 import instructions.base.BranchInstruction;
 import runtime.StackFrame;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-03-10
- */
 public abstract class IF_ICMPCOND extends BranchInstruction {
     @Override
     public void execute(StackFrame frame) {

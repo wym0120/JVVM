@@ -10,12 +10,6 @@ import runtime.Vars;
 import runtime.struct.JObject;
 import runtime.struct.Slot;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-03-28
- */
 public class INVOKE_SPECIAL extends Index16Instruction {
     @Override
     public void execute(StackFrame frame) {

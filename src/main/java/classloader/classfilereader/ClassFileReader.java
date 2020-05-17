@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * @author WYM
  * This class is the simulated implementation of Java Classloader.
  */
 @Data
@@ -77,8 +76,6 @@ public class ClassFileReader {
      * @param className class to be read
      * @param privilege privilege of relevant class
      * @return content of class file and the privilege of loaded class
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
     public Pair<byte[], Integer> readClassFile(String className, EntryType privilege) throws IOException, ClassNotFoundException {
         int value = (privilege == null) ? EntryType.USER_ENTRY : privilege.getValue();

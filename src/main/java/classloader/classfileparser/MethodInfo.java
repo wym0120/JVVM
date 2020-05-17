@@ -8,12 +8,6 @@ import classloader.classfileparser.constantpool.info.UTF8Info;
 import java.nio.ByteBuffer;
 import java.util.function.Supplier;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-10
- */
 public class MethodInfo {
     private int accessFlags;
     private int nameIndex;
@@ -23,7 +17,6 @@ public class MethodInfo {
     private int attributesCount;
     private AttributeInfo[] attributes;
     private CodeAttribute code;
-
 
     public MethodInfo(ConstantPool constantPool, Supplier<AttributeInfo> attributeBuilder, ByteBuffer in) {
         BuildUtil info = new BuildUtil(in);
@@ -39,23 +32,18 @@ public class MethodInfo {
         this.descriptor = ((UTF8Info) constantPool.get(this.descriptorIndex)).getString();
     }
 
-
     public short getAccessFlags() {
         return (short) (accessFlags & 0xFFFF);
     }
-
 
     public String getName() {
         return name;
     }
 
-
     public String getDescriptor() {
         return descriptor;
     }
 
-
-    //todo: handle exception correctly
     public CodeAttribute getCodeAttribute() {
         if (code == null) {
             for (AttributeInfo attribute : attributes) {
@@ -64,9 +52,7 @@ public class MethodInfo {
                     return code;
                 }
             }
-//            throw new UnsupportedOperationException("No code attribute!");
         }
         return code;
-
     }
 }

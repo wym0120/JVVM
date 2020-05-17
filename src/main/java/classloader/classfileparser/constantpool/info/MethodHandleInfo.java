@@ -2,12 +2,6 @@ package classloader.classfileparser.constantpool.info;
 
 import classloader.classfileparser.constantpool.ConstantPool;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-15
- */
 public class MethodHandleInfo extends ConstantPoolInfo{
     private int referenceKind;
     private int referenceIndex;

@@ -5,12 +5,6 @@ import lombok.Data;
 
 import java.nio.ByteBuffer;
 
-/**
- * Description:
- * Required information to build an attribute
- * @author xxz
- * Created on 2020-02-18
- */
 @Data
 public class BuildUtil {
     private ConstantPool constantPool;

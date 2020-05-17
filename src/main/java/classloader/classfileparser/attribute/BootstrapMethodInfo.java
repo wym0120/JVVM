@@ -3,12 +3,6 @@ package classloader.classfileparser.attribute;
 import classloader.classfileparser.BuildUtil;
 import lombok.Data;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-19
- */
 @Data
 public class BootstrapMethodInfo {
     private int bootstrapMethodRef;

@@ -9,12 +9,6 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-15
- */
 public class AttributeBuilder {
 
     public static final String AnnotationDefault = "AnnotationDefault";

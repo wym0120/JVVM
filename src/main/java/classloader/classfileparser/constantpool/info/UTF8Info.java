@@ -6,11 +6,9 @@ import lombok.Getter;
 
 import java.nio.ByteBuffer;
 
+
 /**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-15
+ * todo
  */
 @Getter
 public class UTF8Info extends ConstantPoolInfo {

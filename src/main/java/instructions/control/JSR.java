@@ -3,12 +3,6 @@ package instructions.control;
 import instructions.base.BranchInstruction;
 import runtime.StackFrame;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-03-10
- */
 @Deprecated
 public class JSR extends BranchInstruction {
     @Override

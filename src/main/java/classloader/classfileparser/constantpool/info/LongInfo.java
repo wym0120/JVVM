@@ -5,12 +5,6 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.nio.ByteBuffer;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-15
- */
 public class LongInfo extends ConstantPoolInfo {
     private byte[] highBytes;
     private byte[] lowBytes;

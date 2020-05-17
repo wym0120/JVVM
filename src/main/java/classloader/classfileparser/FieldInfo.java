@@ -8,12 +8,6 @@ import classloader.classfileparser.constantpool.info.UTF8Info;
 import java.nio.ByteBuffer;
 import java.util.function.Supplier;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-10
- */
 public class FieldInfo {
     private short accessFlags;
     private short nameIndex;

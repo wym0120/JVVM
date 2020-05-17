@@ -3,10 +3,7 @@ package classloader.classfileparser.constantpool.info;
 import classloader.classfileparser.constantpool.ConstantPool;
 
 /**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-15
+ * todo
  */
 public class ClassInfo extends ConstantPoolInfo {
     private int nameIndex;

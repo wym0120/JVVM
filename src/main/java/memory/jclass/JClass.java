@@ -27,8 +27,8 @@ public class JClass {
     private String superClassName;
     private String[] interfaceNames;
     private RuntimeConstantPool runtimeConstantPool;
-    private Field[] fields;
-    private Method[] methods;
+    private Field[] fields;//
+    private Method[] methods;//
     private EntryType loadEntryType;
     private JClass superClass;
     private JClass[] interfaces;
@@ -118,7 +118,6 @@ public class JClass {
 
     /**
      * use for anewarray inst
-     * @return
      */
     public JClass getArrayClass(){
         //get descriptor

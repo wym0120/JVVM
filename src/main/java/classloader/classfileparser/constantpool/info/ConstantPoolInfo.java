@@ -6,12 +6,6 @@ import com.sun.tools.javac.util.Pair;
 
 import java.nio.ByteBuffer;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-10
- */
 public class ConstantPoolInfo {
     public static final byte CLASS = 7;
     public static final byte FIELD_REF = 9;

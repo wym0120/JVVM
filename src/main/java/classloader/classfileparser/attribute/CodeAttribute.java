@@ -6,10 +6,7 @@ import lombok.Data;
 import java.nio.ByteBuffer;
 
 /**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-18
+ * todo：bonus
  */
 @Data
 public class CodeAttribute extends AttributeInfo {

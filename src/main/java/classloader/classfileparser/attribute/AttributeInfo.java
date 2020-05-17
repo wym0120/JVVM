@@ -5,12 +5,6 @@ import lombok.Data;
 
 import java.nio.ByteBuffer;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-10
- */
 @Data
 public class AttributeInfo {
 

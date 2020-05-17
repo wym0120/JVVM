@@ -8,12 +8,6 @@ import memory.jclass.runtimeConstantPool.constant.ref.MethodRef;
 import runtime.StackFrame;
 import runtime.struct.Slot;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-03-28
- */
 public class INVOKE_STATIC extends INVOKE_BASE {
     @Override
     public void execute(StackFrame frame) {

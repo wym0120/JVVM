@@ -2,12 +2,6 @@ package classloader.classfileparser.attribute.smta;
 
 import classloader.classfileparser.BuildUtil;
 
-/**
- * Description:
- *
- * @author xxz
- * Created on 2020-02-18
- */
 public class FullFrame extends StackMapFrame {
     private int offsetDelta;
     private int numberOfLocals;
