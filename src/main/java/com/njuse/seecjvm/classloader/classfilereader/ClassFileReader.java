@@ -122,6 +122,7 @@ public class ClassFileReader {
             } else {
                 // Warning : You need to make sure the name of the environment variable is the same as in your system.
                 final String JAVA_HOME = System.getenv("JAVA_HOME");
+//                final String Java_HOME = System.getProperty("java.home");
                 if (JAVA_HOME != null) {
                     f = new File(JAVA_HOME);
                     if (f.exists()) {
