@@ -41,4 +41,9 @@ public class JHeap {
     public static Map<Integer, Boolean> getObjectState() {
         return objectState;
     }
+
+    public static void reset() {
+        objects = new LinkedHashSet<>();
+        objectState = new LinkedHashMap<>();
+    }
 }

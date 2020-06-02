@@ -1,6 +1,7 @@
 import com.njuse.seecjvm.classloader.ClassLoader;
 import com.njuse.seecjvm.classloader.classfilereader.ClassFileReader;
 import com.njuse.seecjvm.execution.Interpreter;
+import com.njuse.seecjvm.memory.JHeap;
 import com.njuse.seecjvm.memory.MethodArea;
 import com.njuse.seecjvm.memory.jclass.JClass;
 import com.njuse.seecjvm.memory.jclass.Method;
@@ -21,20 +22,20 @@ public class InterpreterTest {
 
     @BeforeAll
     static void init() {
-        //to trigger the compilation of test class
-//        Class<InstructionTest> controlInstructionTestClass = InstructionTest.class;
         loader = ClassLoader.getInstance();
-//        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
-//        String testPath = String.join(File.separator, "build", "classes", "java", "test");
-        String testPath = String.join(File.separator, "out", "test", "classes" );
+        String testPath;
+        String systemName = System.getProperty("os.name");
+        if (systemName.startsWith("Windows")) {
+            testPath = String.join(File.separator, "build", "classes", "java", "test");
+        } else {
+            testPath = String.join(File.separator, "out", "test", "classes");
+        }
         ClassFileReader.setUserClasspath(testPath);
 
     }
 
     @ParameterizedTest
-//    @ValueSource(strings = {"viewexample/Student"})
-//    @ValueSource(strings = {"minimal/ConditionTest"})
-    @ValueSource(strings = {"minimal/ConversionTest"})
+    @ValueSource(strings = {"minimal/ConversionTest", "minimal/ConditionTest", "minimal/JmpTest", "minimal/MathTest", "minimal/InstructionTest"})
     void Interpret(String className) {
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);
@@ -44,6 +45,9 @@ public class InterpreterTest {
         StackFrame mainFrame = new StackFrame(thread, main, main.getMaxStack(), main.getMaxLocal());
         thread.pushFrame(mainFrame);
         JsonUtil.storeResult(className, Interpreter.interpret(thread));
+        //reset memory
+        MethodArea.reset();
+        JHeap.reset();
     }
 
     @AfterAll

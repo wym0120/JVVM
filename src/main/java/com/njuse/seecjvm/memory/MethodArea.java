@@ -44,4 +44,9 @@ public class MethodArea {
     public static Map<String, Boolean> getClassState() {
         return classState;
     }
+
+    public static void reset() {
+        classMap = new LinkedHashMap<>();
+        classState = new LinkedHashMap<>();
+    }
 }
