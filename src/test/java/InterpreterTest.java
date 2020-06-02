@@ -25,14 +25,16 @@ public class InterpreterTest {
 //        Class<InstructionTest> controlInstructionTestClass = InstructionTest.class;
         loader = ClassLoader.getInstance();
 //        String testPath = String.join(File.separator, "src", "test", "testfile", "student");
-        String testPath = String.join(File.separator, "build", "classes", "java", "test");
-//        String testPath = String.join(File.separator, "out", "test", "classes" );
+//        String testPath = String.join(File.separator, "build", "classes", "java", "test");
+        String testPath = String.join(File.separator, "out", "test", "classes" );
         ClassFileReader.setUserClasspath(testPath);
 
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"viewexample/Student"})
+//    @ValueSource(strings = {"viewexample/Student"})
+//    @ValueSource(strings = {"minimal/ConditionTest"})
+    @ValueSource(strings = {"minimal/ConversionTest"})
     void Interpret(String className) {
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);
