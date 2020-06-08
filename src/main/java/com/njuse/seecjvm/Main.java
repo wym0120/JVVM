@@ -10,6 +10,7 @@ import com.njuse.seecjvm.runtime.StackFrame;
 
 public class Main {
     public static void main(String[] args) {
+        System.getenv("JAVA_HOME");
         CommandlineUtil.parseInput(args);
         CommandlineUtil.handleOptions();
         String[] userArgs = CommandlineUtil.readArgs();
