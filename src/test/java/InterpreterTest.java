@@ -8,6 +8,7 @@ import com.njuse.seecjvm.memory.jclass.Method;
 import com.njuse.seecjvm.runtime.JThread;
 import com.njuse.seecjvm.runtime.StackFrame;
 import com.njuse.seecjvm.util.JsonUtil;
+import minimal.StaticTest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,13 +31,18 @@ public class InterpreterTest {
         } else {
             testPath = String.join(File.separator, "out", "test", "classes");
         }
+        testPath = String.join(File.separator, "build", "classes", "java", "test");
+
         ClassFileReader.setUserClasspath(testPath);
 
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"minimal/ConversionTest", "minimal/ConditionTest", "minimal/JmpTest", "minimal/MathTest", "minimal/InstructionTest"})
+//    @ValueSource(strings = {"minimal/ConversionTest", "minimal/ConditionTest", "minimal/JmpTest", "minimal/MathTest", "minimal/InstructionTest"})
+    @ValueSource(strings = {"minimal/StaticTest"})
     void Interpret(String className) {
+        StaticTest s;
+        //TODO clinit before main method!
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);
         });
