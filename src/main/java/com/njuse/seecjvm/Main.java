@@ -35,6 +35,7 @@ public class Main {
         Method main = clazz.getMainMethod();
         StackFrame mainFrame = new StackFrame(thread, main, main.getMaxStack(), main.getMaxLocal());
         thread.pushFrame(mainFrame);
+        clazz.initClass(thread, clazz);
         Interpreter.interpret(thread);
     }
 }
