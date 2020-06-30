@@ -293,11 +293,22 @@ public class InstructionTest {
         //invoke interface
         Human h = new Boy();
         TestUtil.equalInt(h.bar(), 3);
+        TestUtil.equalInt(h.wym(), -23333);
+
+        Human ch = new Child();
+        TestUtil.equalInt(ch.wym(), 23333);
+
     }
 
 }
 
-interface Human{
+interface Creature{
+    default int wym(){
+        return 23333;
+    }
+}
+
+interface Human extends Creature{
     int bar();
 }
 
@@ -316,9 +327,15 @@ class Child extends Parent implements Human {
     public int bar() {
         return foo();
     }
+
 }
 
 class Boy extends Child implements Human {
+
+    @Override
+    public int wym() {
+        return -23333;
+    }
 
     @Override
     public int bar() {

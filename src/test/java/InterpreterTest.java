@@ -40,7 +40,10 @@ public class InterpreterTest {
     @ParameterizedTest
 //    @ValueSource(strings = {"minimal/ConversionTest", "minimal/ConditionTest", "minimal/JmpTest", "minimal/MathTest", "minimal/InstructionTest"})
 //    @ValueSource(strings = {"minimal/StaticTest"})
-    @ValueSource(strings = {"minimal/ArrayTestCase"})
+//    @ValueSource(strings = {"minimal/ArrayTestCase"})
+//    @ValueSource(strings = {"minimal/DarkMediumTest4Arith"})
+//    @ValueSource(strings = {"minimal/InstructionTest"})
+    @ValueSource(strings = {"minimal/DarkMNodeTest"})
     void Interpret(String className) {
         StaticTest s;
         //TODO clinit before main method!
