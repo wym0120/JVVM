@@ -1,5 +1,13 @@
 package minimal;
 
+
+abstract class TestShape {
+    public int edge() {
+        return 0;
+    }
+}
+
+
 class Shape {
     public int edge() {
         return 0;
@@ -7,7 +15,6 @@ class Shape {
 }
 
 class Circle extends Shape {
-
 }
 
 class Triangle extends Shape {

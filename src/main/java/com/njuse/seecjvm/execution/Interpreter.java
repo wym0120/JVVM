@@ -60,7 +60,7 @@ public class Interpreter {
             if (newTop == null) {
                 return ret;
             }
-            PrintInfo(oriTop, newTop, thread, instruction);
+//            PrintInfo(oriTop, newTop, thread, instruction);
             ret.add(Recorder.recodeState(oriTop, newTop, thread));
             if (oriTop != newTop) {
                 initCodeReader(thread);

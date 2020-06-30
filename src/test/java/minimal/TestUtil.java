@@ -1,6 +1,12 @@
 package minimal;
 
 public class TestUtil {
+
+    public static void reach(int x){
+        //should print x here
+    }
+
+
     public static void fail() {
 
     }

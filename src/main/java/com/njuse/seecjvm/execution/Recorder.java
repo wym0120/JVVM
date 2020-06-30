@@ -37,6 +37,7 @@ public class Recorder {
         }
         //make all origin classes and objects outdated before return
         makeOutdated(thread);
+        System.out.println(nextInstruction);
         return state;
     }
 
