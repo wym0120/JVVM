@@ -1,0 +1,23 @@
+aload_0
+aload_1
+aload_2
+astore_1
+astore_2
+bipush
+dup
+iadd
+iaload
+iastore
+iconst_0
+iconst_1
+iconst_2
+iconst_3
+iconst_4
+iconst_5
+invokespecial
+invokestatic 
+invokevirtual
+new          
+newarray int
+pop
+return
