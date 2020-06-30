@@ -20,6 +20,24 @@ public class DarkMediumTest4Arith {
             result /= b;
             result -= a;
         }
+        for (int i = 0; i < b; i++) {
+            result += a;
+            result *= b;
+            result ^= c;
+        }
+        for (int i = 0; i < b; i++) {
+            result /= b;
+            result -= a;
+        }
+        for (int i = 0; i < a; i++) {
+            result += a;
+            result *= b;
+            result ^= c;
+        }
+        for (int i = 0; i < a; i++) {
+            result /= b;
+            result -= a;
+        }
         TestUtil.equalInt(result, -75);
     }
 

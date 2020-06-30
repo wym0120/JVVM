@@ -41,7 +41,8 @@ public class InterpreterTest {
 //    @ValueSource(strings = {"minimal/ConversionTest", "minimal/ConditionTest", "minimal/JmpTest", "minimal/MathTest", "minimal/InstructionTest"})
 //    @ValueSource(strings = {"minimal/StaticTest"})
 //    @ValueSource(strings = {"minimal/ArrayTestCase"})
-    @ValueSource(strings = {"minimal/DarkMediumTest4Arith"})
+//    @ValueSource(strings = {"minimal/DarkMediumTest4Arith"})
+    @ValueSource(strings = {"minimal/InstructionTest"})
     void Interpret(String className) {
         StaticTest s;
         //TODO clinit before main method!
