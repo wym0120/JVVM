@@ -37,6 +37,10 @@ public class INVOKE_STATIC extends INVOKE_BASE {
 
             } else if (toInvoke.getName().equals("fail")) {
                 throw new RuntimeException();
+            } else if (toInvoke.getName().contains("reach")) {
+                int v1 = frame.getOperandStack().popInt();
+                frame.getOperandStack().pushInt(v1);
+                System.out.println(v1);
             }
         }
 
