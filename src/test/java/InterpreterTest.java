@@ -43,7 +43,7 @@ public class InterpreterTest {
 //    @ValueSource(strings = {"minimal/ArrayTestCase"})
 //    @ValueSource(strings = {"minimal/DarkMediumTest4Arith"})
 //    @ValueSource(strings = {"minimal/InstructionTest"})
-    @ValueSource(strings = {"darktestcase/DarkMNodeTest","darktestcase/DarkObjectInst","darktestcase/DarkMulArray"})
+    @ValueSource(strings = {"darktestcase/DarkMNodeTest","darktestcase/DarkHardObjectInst","darktestcase/DarkHardMulArray"})
     void Interpret(String className) {
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);

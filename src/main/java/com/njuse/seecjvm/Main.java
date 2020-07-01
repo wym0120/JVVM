@@ -1,7 +1,10 @@
 package com.njuse.seecjvm;
 
 import com.njuse.seecjvm.classloader.ClassLoader;
+import com.njuse.seecjvm.classloader.classfilereader.ClassFileReader;
 import com.njuse.seecjvm.execution.Interpreter;
+import com.njuse.seecjvm.memory.JHeap;
+import com.njuse.seecjvm.memory.MethodArea;
 import com.njuse.seecjvm.memory.jclass.JClass;
 import com.njuse.seecjvm.memory.jclass.Method;
 import com.njuse.seecjvm.runtime.JThread;
@@ -38,5 +41,20 @@ public class Main {
         thread.pushFrame(mainFrame);
         clazz.initClass(thread, clazz);
         Interpreter.interpret(thread);
+    }
+
+    public static void runTest(String mainClassName, String cp) throws ClassNotFoundException {
+        ClassLoader loader = ClassLoader.getInstance();
+        ClassFileReader.setUserClasspath(cp);
+        JClass clazz = loader.loadClass(mainClassName, null);
+        JThread thread = new JThread();
+        Method main = clazz.getMainMethod();
+        StackFrame mainFrame = new StackFrame(thread, main, main.getMaxStack(), main.getMaxLocal());
+        thread.pushFrame(mainFrame);
+        clazz.initClass(thread, clazz);
+        Interpreter.interpret(thread);
+        //reset memory
+        MethodArea.reset();
+        JHeap.reset();
     }
 }

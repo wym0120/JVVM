@@ -82,6 +82,7 @@ public class ClassFileReader {
     public Pair<byte[], Integer> readClassFile(String className, EntryType privilege) throws IOException, ClassNotFoundException {
         int value = (privilege == null) ? EntryType.USER_ENTRY : privilege.getValue();
         checkAndSetDefault();
+        className = className.replace(".", "/");
         String realClassName = className + ".class";
         realClassName = PathUtil.transform(realClassName);
         byte[] data;
