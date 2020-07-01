@@ -16,6 +16,15 @@ public class INVOKE_STATIC extends INVOKE_BASE {
         JClass currentClz = frame.getMethod().getClazz();
         Constant ref = currentClz.getRuntimeConstantPool().getConstant(super.index);
         assert ref instanceof MethodRef;
+
+
+        //check class whether init
+        JClass currentClazz = toInvoke.getClazz();
+        if (currentClazz.getInitState() == InitState.PREPARED) {
+            frame.setNextPC(frame.getNextPC() - 3);//opcode + operand = 3bytes
+            currentClazz.initClass(frame.getThread(), currentClazz);
+            return;
+        }
         if (((MethodRef) ref).getClassName().contains("TestUtil")) {
             if (toInvoke.getName().contains("equalInt")) {
                 int v2 = frame.getOperandStack().popInt();
@@ -42,15 +51,6 @@ public class INVOKE_STATIC extends INVOKE_BASE {
                 frame.getOperandStack().pushInt(v1);
                 System.out.println(v1);
             }
-        }
-
-
-        //check class whether init
-        JClass currentClazz = toInvoke.getClazz();
-        if (currentClazz.getInitState() == InitState.PREPARED) {
-            frame.setNextPC(frame.getNextPC() - 3);//opcode + operand = 3bytes
-            currentClazz.initClass(frame.getThread(), currentClazz);
-            return;
         }
 
         invokeMethod(frame, initializeFrame(frame, toInvoke), toInvoke);
