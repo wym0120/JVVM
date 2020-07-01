@@ -18,8 +18,8 @@ public class INVOKE_STATIC extends INVOKE_BASE {
         assert ref instanceof MethodRef;
         if (((MethodRef) ref).getClassName().contains("TestUtil")) {
             if (toInvoke.getName().contains("equalInt")) {
-                int v1 = frame.getOperandStack().popInt();
                 int v2 = frame.getOperandStack().popInt();
+                int v1 = frame.getOperandStack().popInt();
                 if (v1 != v2) {
                     throw new RuntimeException(v1+"!="+v2);
                 }
