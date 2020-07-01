@@ -21,7 +21,7 @@ public class INVOKE_STATIC extends INVOKE_BASE {
                 int v1 = frame.getOperandStack().popInt();
                 int v2 = frame.getOperandStack().popInt();
                 if (v1 != v2) {
-                    throw new RuntimeException();
+                    throw new RuntimeException(v1+"!="+v2);
                 }
                 frame.getOperandStack().pushInt(v2);
                 frame.getOperandStack().pushInt(v1);
