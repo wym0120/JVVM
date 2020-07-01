@@ -1,6 +1,8 @@
-package minimal;
+package darktestcase;
 
-public class InstructionTest {
+import minimal.TestUtil;
+
+public class DarkMediumInstruction {
     private int result = -1;
     private boolean fail = false;
 
@@ -151,11 +153,11 @@ public class InstructionTest {
     }
 
     //Areturn
-    public InstructionTest retObject(int a) {
+    public DarkMediumInstruction retObject(int a) {
         if (a > 0) {
-            return new InstructionTest();
+            return new DarkMediumInstruction();
         } else {
-            return new InstructionTest();
+            return new DarkMediumInstruction();
         }
     }
 
@@ -197,7 +199,7 @@ public class InstructionTest {
 
 
     public void testReturn() {
-        InstructionTest test = retObject(3);
+        DarkMediumInstruction test = retObject(3);
         double v = test.retDouble(3);
         float v1 = retFloat(3);
         int i = retInt(3);
@@ -263,7 +265,7 @@ public class InstructionTest {
         }
     }
 
-    public void testNull(InstructionTest test1, InstructionTest test2) {
+    public void testNull(DarkMediumInstruction test1, DarkMediumInstruction test2) {
         if (test1 == null && test2 != null) {
 
         } else {
@@ -272,7 +274,7 @@ public class InstructionTest {
     }
 
     public static void main(String[] args) {
-        InstructionTest tester = new InstructionTest();
+        DarkMediumInstruction tester = new DarkMediumInstruction();
         int ret = tester.run();
         if (!tester.fail) {
             tester.testAdd();

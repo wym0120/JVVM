@@ -25,12 +25,12 @@ public class InterpreterTest {
     static void init() {
         loader = ClassLoader.getInstance();
         String testPath;
-        String systemName = System.getProperty("os.name");
-        if (systemName.startsWith("Windows")) {
-            testPath = String.join(File.separator, "build", "classes", "java", "test");
-        } else {
-            testPath = String.join(File.separator, "out", "test", "classes");
-        }
+//        String systemName = System.getProperty("os.name");
+//        if (systemName.startsWith("Windows")) {
+//            testPath = String.join(File.separator, "build", "classes", "java", "test");
+//        } else {
+//            testPath = String.join(File.separator, "out", "test", "classes");
+//        }
         testPath = String.join(File.separator, "build", "classes", "java", "test");
 
         ClassFileReader.setUserClasspath(testPath);
@@ -43,11 +43,8 @@ public class InterpreterTest {
 //    @ValueSource(strings = {"minimal/ArrayTestCase"})
 //    @ValueSource(strings = {"minimal/DarkMediumTest4Arith"})
 //    @ValueSource(strings = {"minimal/InstructionTest"})
-//    @ValueSource(strings = {"minimal/DarkMNodeTest"})
-    @ValueSource(strings = {"minimal/DarkEasyBranchTest", "minimal/DarkEasyStaticTest", "minimal/DarkEasyTestUtilTest"})
+    @ValueSource(strings = {"darktestcase/DarkMNodeTest","darktestcase/DarkObjectInst","darktestcase/DarkMulArray"})
     void Interpret(String className) {
-        StaticTest s;
-        //TODO clinit before main method!
         JClass clazz = assertDoesNotThrow(() -> {
             return loader.loadClass(className, null);
         });

@@ -1,4 +1,6 @@
-package minimal;
+package darktestcase;
+
+import minimal.TestUtil;
 
 /**
  * Description:

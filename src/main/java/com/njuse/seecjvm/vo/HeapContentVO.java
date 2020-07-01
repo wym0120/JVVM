@@ -58,6 +58,7 @@ public class HeapContentVO {
                 return Arrays.toString(((DoubleArrayObject) obj).getArray());
             default:
                 assert obj instanceof RefArrayObject;
+                if(obj.getLen()==0)return "";
                 if (obj.getType().lastIndexOf('[') != 0) {
                     StringBuilder ret = new StringBuilder();
                     for (int i = 0; i < obj.getLen(); i++) {

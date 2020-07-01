@@ -296,8 +296,8 @@ public class JClass {
 
     //refer to jvm8 6.5 instanceof inst
     public boolean isAssignableFrom(JClass other) {
-        JClass s = other;
-        JClass t = this;
+        JClass s = this;
+        JClass t = other;
         if (s == t) return true;
         if (!s.isArray()) {
             if (!s.isInterface()) {
@@ -307,6 +307,7 @@ public class JClass {
                     return s.isImplementOf(t);
                 }
             } else {
+                assert s.isInterface();
                 if (!t.isInterface()) {
                     return t.isJObjectClass();
                 } else {
