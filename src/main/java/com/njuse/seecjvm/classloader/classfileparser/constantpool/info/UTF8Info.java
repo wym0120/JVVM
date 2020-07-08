@@ -7,9 +7,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.nio.ByteBuffer;
 
 
-/**
- * todo
- */
 @Getter
 public class UTF8Info extends ConstantPoolInfo {
     private int length;

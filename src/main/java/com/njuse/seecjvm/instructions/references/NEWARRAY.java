@@ -49,9 +49,9 @@ public class NEWARRAY extends Instruction {
                 case ArrayType.AT_LONG:
                     return loader.loadClass("[J", initiatingEntry);
                 case ArrayType.AT_FLOAT:
-                    return loader.loadClass("F", initiatingEntry);
+                    return loader.loadClass("[F", initiatingEntry);
                 case ArrayType.AT_DOUBLE:
-                    return loader.loadClass("D", initiatingEntry);
+                    return loader.loadClass("[D", initiatingEntry);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

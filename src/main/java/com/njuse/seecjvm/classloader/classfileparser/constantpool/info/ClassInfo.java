@@ -2,9 +2,6 @@ package com.njuse.seecjvm.classloader.classfileparser.constantpool.info;
 
 import com.njuse.seecjvm.classloader.classfileparser.constantpool.ConstantPool;
 
-/**
- * todo
- */
 public class ClassInfo extends ConstantPoolInfo {
     private int nameIndex;
 

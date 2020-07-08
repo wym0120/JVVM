@@ -6,9 +6,6 @@ import lombok.Setter;
 
 import java.nio.ByteBuffer;
 
-/**
- * todo：bonus
- */
 @Getter
 @Setter
 public class CodeAttribute extends AttributeInfo {

@@ -39,7 +39,6 @@ public abstract class INVOKE_BASE extends Index16Instruction {
         JThread thread = caller.getThread();
         StackFrame newFrame = new StackFrame(thread, method, method.getMaxStack(), method.getMaxLocal());
 
-
         //pass arguments
         int argc = method.getArgc();
         for (int i = argc - 1; i >= 0; i--) {
