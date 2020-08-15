@@ -1,0 +1,956 @@
+[ {
+  "nextInstruction" : "0 GETSTATIC index: 2",
+  "currentFrame" : null,
+  "optionalNextFrame" : {
+    "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ "Empty" ],
+    "nextPC" : 0,
+    "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+    "methodName" : "tmp/ArrayBug : main",
+    "fresh" : false
+  },
+  "memory" : {
+    "objects" : [ ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : true
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : true
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : true
+    } ]
+  }
+}, {
+  "nextInstruction" : "0 INVOKE_STATIC index: 16",
+  "currentFrame" : {
+    "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ "Empty" ],
+    "nextPC" : 0,
+    "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+    "methodName" : "tmp/ArrayBug : main",
+    "fresh" : false
+  },
+  "optionalNextFrame" : {
+    "operandStack" : [ ],
+    "localVars" : [ ],
+    "nextPC" : 0,
+    "code" : [ "0 INVOKE_STATIC index: 16", "3 RETURN" ],
+    "methodName" : "java/lang/Object : <clinit>",
+    "fresh" : true
+  },
+  "memory" : {
+    "objects" : [ ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : true,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 0,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : true
+    }, {
+      "operandStack" : [ ],
+      "localVars" : [ ],
+      "nextPC" : 0,
+      "code" : [ "0 INVOKE_STATIC index: 16", "3 RETURN" ],
+      "methodName" : "java/lang/Object : <clinit>",
+      "fresh" : true
+    } ]
+  }
+}, {
+  "nextInstruction" : "3 RETURN",
+  "currentFrame" : {
+    "operandStack" : [ ],
+    "localVars" : [ ],
+    "nextPC" : 3,
+    "code" : [ "0 INVOKE_STATIC index: 16", "3 RETURN" ],
+    "methodName" : "java/lang/Object : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 0,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    }, {
+      "operandStack" : [ ],
+      "localVars" : [ ],
+      "nextPC" : 3,
+      "code" : [ "0 INVOKE_STATIC index: 16", "3 RETURN" ],
+      "methodName" : "java/lang/Object : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "0 ICONST_1",
+  "currentFrame" : {
+    "operandStack" : [ ],
+    "localVars" : [ ],
+    "nextPC" : 4,
+    "code" : [ "0 INVOKE_STATIC index: 16", "3 RETURN" ],
+    "methodName" : "java/lang/Object : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : {
+    "operandStack" : [ "Empty", "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ ],
+    "nextPC" : 0,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : true
+  },
+  "memory" : {
+    "objects" : [ ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : true,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 0,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "1 NEWARRAY array type : double",
+  "currentFrame" : {
+    "operandStack" : [ "value = 0x00000001", "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ ],
+    "nextPC" : 1,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "value = 0x00000001", "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 1,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "3 DUP",
+  "currentFrame" : {
+    "operandStack" : [ "Object ref to [D", "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ ],
+    "nextPC" : 3,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[0.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : true
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : true
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : true
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : true
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Object ref to [D", "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 3,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "4 ICONST_0",
+  "currentFrame" : {
+    "operandStack" : [ "Object ref to [D", "Object ref to [D", "Empty", "Empty", "Empty" ],
+    "localVars" : [ ],
+    "nextPC" : 4,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[0.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Object ref to [D", "Object ref to [D", "Empty", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 4,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "5 DCONST_1",
+  "currentFrame" : {
+    "operandStack" : [ "Object ref to [D", "Object ref to [D", "value = 0x00000000", "Empty", "Empty" ],
+    "localVars" : [ ],
+    "nextPC" : 5,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[0.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Object ref to [D", "Object ref to [D", "value = 0x00000000", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 5,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "6 DASTORE",
+  "currentFrame" : {
+    "operandStack" : [ "Object ref to [D", "Object ref to [D", "value = 0x00000000", "value = 0x00000000", "value = 0x3FF00000" ],
+    "localVars" : [ ],
+    "nextPC" : 6,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[0.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Object ref to [D", "Object ref to [D", "value = 0x00000000", "value = 0x00000000", "value = 0x3FF00000" ],
+      "localVars" : [ ],
+      "nextPC" : 6,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "7 PUTSTATIC index: 2",
+  "currentFrame" : {
+    "operandStack" : [ "Object ref to [D", "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ ],
+    "nextPC" : 7,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[1.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "null"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Object ref to [D", "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 7,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "10 RETURN",
+  "currentFrame" : {
+    "operandStack" : [ "Empty", "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ ],
+    "nextPC" : 10,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[1.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "[1.0]"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    }, {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ ],
+      "nextPC" : 10,
+      "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+      "methodName" : "tmp/ArrayBug : <clinit>",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "0 GETSTATIC index: 2",
+  "currentFrame" : {
+    "operandStack" : [ "Empty", "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ ],
+    "nextPC" : 11,
+    "code" : [ "0 ICONST_1", "1 NEWARRAY array type : double", "3 DUP", "4 ICONST_0", "5 DCONST_1", "6 DASTORE", "7 PUTSTATIC index: 2", "10 RETURN" ],
+    "methodName" : "tmp/ArrayBug : <clinit>",
+    "fresh" : false
+  },
+  "optionalNextFrame" : {
+    "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ "Empty" ],
+    "nextPC" : 0,
+    "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+    "methodName" : "tmp/ArrayBug : main",
+    "fresh" : true
+  },
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[1.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "[1.0]"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : true,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 0,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "3 ICONST_0",
+  "currentFrame" : {
+    "operandStack" : [ "Object ref to [D", "Empty", "Empty", "Empty" ],
+    "localVars" : [ "Empty" ],
+    "nextPC" : 3,
+    "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+    "methodName" : "tmp/ArrayBug : main",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[1.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "[1.0]"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Object ref to [D", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 3,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "4 LDC2_W index: 3",
+  "currentFrame" : {
+    "operandStack" : [ "Object ref to [D", "value = 0x00000000", "Empty", "Empty" ],
+    "localVars" : [ "Empty" ],
+    "nextPC" : 4,
+    "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+    "methodName" : "tmp/ArrayBug : main",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[1.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "[1.0]"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Object ref to [D", "value = 0x00000000", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 4,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "7 DASTORE",
+  "currentFrame" : {
+    "operandStack" : [ "Object ref to [D", "value = 0x00000000", "value = 0x00000000", "value = 0x40000000" ],
+    "localVars" : [ "Empty" ],
+    "nextPC" : 7,
+    "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+    "methodName" : "tmp/ArrayBug : main",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[1.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "[1.0]"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Object ref to [D", "value = 0x00000000", "value = 0x00000000", "value = 0x40000000" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 7,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    } ]
+  }
+}, {
+  "nextInstruction" : "8 RETURN",
+  "currentFrame" : {
+    "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+    "localVars" : [ "Empty" ],
+    "nextPC" : 8,
+    "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+    "methodName" : "tmp/ArrayBug : main",
+    "fresh" : false
+  },
+  "optionalNextFrame" : null,
+  "memory" : {
+    "objects" : [ {
+      "members" : {
+        "int len" : "1",
+        "double[] array" : "[2.0]"
+      },
+      "id" : "0@[D",
+      "fresh" : false
+    } ],
+    "classes" : [ {
+      "className" : "java/lang/Object",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/StringBuilder", "index: 1 MethodRef to java/lang/StringBuilder", "index: 2 MethodRef to java/lang/Object", "index: 3 MethodRef to java/lang/Class", "index: 4 MethodRef to java/lang/StringBuilder", "index: 5 String @", "index: 6 MethodRef to java/lang/Object", "index: 7 MethodRef to java/lang/Integer", "index: 8 MethodRef to java/lang/StringBuilder", "index: 9 ClassRef to java/lang/IllegalArgumentException", "index: 10 String timeout value is negative", "index: 11 MethodRef to java/lang/IllegalArgumentException", "index: 12 int 999999", "index: 13 String nanosecond timeout value out of range", "index: 14 MethodRef to java/lang/Object", "index: 15 MethodRef to java/lang/Object", "index: 16 ClassRef to java/lang/Object", "index: 17 UTF8 <init>", "index: 18 UTF8 ()V", "index: 19 UTF8 Code", "index: 20 UTF8 LineNumberTable", "index: 21 UTF8 registerNatives", "index: 22 UTF8 getClass", "index: 23 UTF8 ()Ljava/lang/Class;", "index: 24 UTF8 Signature", "index: 25 UTF8 ()Ljava/lang/Class<*>;", "index: 26 UTF8 hashCode", "index: 27 UTF8 ()I", "index: 28 UTF8 equals", "index: 29 UTF8 (Ljava/lang/Object;)Z", "index: 30 UTF8 StackMapTable", "index: 31 UTF8 clone", "index: 32 UTF8 ()Ljava/lang/Object;", "index: 33 UTF8 Exceptions", "index: 34 ClassRef to java/lang/CloneNotSupportedException", "index: 35 UTF8 toString", "index: 36 UTF8 ()Ljava/lang/String;", "index: 37 UTF8 notify", "index: 38 UTF8 notifyAll", "index: 39 UTF8 wait", "index: 40 UTF8 (J)V", "index: 41 ClassRef to java/lang/InterruptedException", "index: 42 UTF8 (JI)V", "index: 43 UTF8 finalize", "index: 44 ClassRef to java/lang/Throwable", "index: 45 UTF8 <clinit>", "index: 46 UTF8 SourceFile", "index: 47 UTF8 Object.java", "index: 48 UTF8 java/lang/StringBuilder", "index: 49 NameAndType : nameIndex = 18 descriptorIndex = 19", "index: 50 NameAndType : nameIndex = 23 descriptorIndex = 24", "index: 51 ClassRef to java/lang/Class", "index: 52 NameAndType : nameIndex = 71 descriptorIndex = 37", "index: 53 NameAndType : nameIndex = 72 descriptorIndex = 73", "index: 54 UTF8 @", "index: 55 NameAndType : nameIndex = 27 descriptorIndex = 28", "index: 56 ClassRef to java/lang/Integer", "index: 57 NameAndType : nameIndex = 75 descriptorIndex = 76", "index: 58 NameAndType : nameIndex = 36 descriptorIndex = 37", "index: 59 UTF8 java/lang/IllegalArgumentException", "index: 60 UTF8 timeout value is negative", "index: 61 NameAndType : nameIndex = 18 descriptorIndex = 77", "index: 62 UTF8 nanosecond timeout value out of range", "index: 63 NameAndType : nameIndex = 40 descriptorIndex = 41", "index: 64 NameAndType : nameIndex = 22 descriptorIndex = 19", "index: 65 UTF8 java/lang/Object", "index: 66 UTF8 java/lang/CloneNotSupportedException", "index: 67 UTF8 java/lang/InterruptedException", "index: 68 UTF8 java/lang/Throwable", "index: 69 UTF8 java/lang/Class", "index: 70 UTF8 getName", "index: 71 UTF8 append", "index: 72 UTF8 (Ljava/lang/String;)Ljava/lang/StringBuilder;", "index: 73 UTF8 java/lang/Integer", "index: 74 UTF8 toHexString", "index: 75 UTF8 (I)Ljava/lang/String;", "index: 76 UTF8 (Ljava/lang/String;)V" ],
+      "fresh" : false
+    }, {
+      "className" : "tmp/ArrayBug",
+      "staticMembers" : {
+        "static double[] a" : "[2.0]"
+      },
+      "rtcp" : [ "index: 0 MethodRef to java/lang/Object", "index: 1 FieldRef to tmp/ArrayBug", "index: 2 double 2.0", "index: 4 ClassRef to tmp/ArrayBug", "index: 5 ClassRef to java/lang/Object", "index: 6 UTF8 a", "index: 7 UTF8 [D", "index: 8 UTF8 <init>", "index: 9 UTF8 ()V", "index: 10 UTF8 Code", "index: 11 UTF8 LineNumberTable", "index: 12 UTF8 LocalVariableTable", "index: 13 UTF8 this", "index: 14 UTF8 Ltmp/ArrayBug;", "index: 15 UTF8 main", "index: 16 UTF8 ([Ljava/lang/String;)V", "index: 17 UTF8 args", "index: 18 UTF8 [Ljava/lang/String;", "index: 19 UTF8 <clinit>", "index: 20 UTF8 SourceFile", "index: 21 UTF8 ArrayBug.java", "index: 22 NameAndType : nameIndex = 9 descriptorIndex = 10", "index: 23 NameAndType : nameIndex = 7 descriptorIndex = 8", "index: 24 UTF8 tmp/ArrayBug", "index: 25 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "[D",
+      "staticMembers" : null,
+      "rtcp" : null,
+      "fresh" : false
+    }, {
+      "className" : "java/lang/Cloneable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/lang/Cloneable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Cloneable.java", "index: 4 UTF8 java/lang/Cloneable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    }, {
+      "className" : "java/io/Serializable",
+      "staticMembers" : { },
+      "rtcp" : [ "index: 0 ClassRef to java/io/Serializable", "index: 1 ClassRef to java/lang/Object", "index: 2 UTF8 SourceFile", "index: 3 UTF8 Serializable.java", "index: 4 UTF8 java/io/Serializable", "index: 5 UTF8 java/lang/Object" ],
+      "fresh" : false
+    } ]
+  },
+  "hasNext" : false,
+  "thread" : {
+    "threadStack" : [ {
+      "operandStack" : [ "Empty", "Empty", "Empty", "Empty" ],
+      "localVars" : [ "Empty" ],
+      "nextPC" : 8,
+      "code" : [ "0 GETSTATIC index: 2", "3 ICONST_0", "4 LDC2_W index: 3", "7 DASTORE", "8 RETURN" ],
+      "methodName" : "tmp/ArrayBug : main",
+      "fresh" : false
+    } ]
+  }
+} ]
